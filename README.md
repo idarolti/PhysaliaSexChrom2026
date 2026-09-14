@@ -1,4 +1,4 @@
-# PhysaliaSexChrom 2025
+# PhysaliaSexChrom 2026
 
 This repository contains all the scripts and software information necessary for this course.
 
