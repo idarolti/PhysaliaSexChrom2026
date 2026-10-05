@@ -82,14 +82,14 @@ in a couple of minutes
 
 ## 05a. Export the results
 Export the results in PAF format to your local machine.  
+
+
+
+## 03a. Option 2 Align X and Y chromosome on the server
 In your day 5 folder with the fasta files, align the two files with **[Minimap2] (https://github.com/lh3/minimap2)**
 ```
 
 ```
-
-
-## 03a. Option 2 Align X and Y chromosome on the server
-
 
 
 
