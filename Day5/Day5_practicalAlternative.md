@@ -74,16 +74,17 @@ To
 
 <img width="785" height="460" alt="Screenshot 2025-09-29 at 17 18 53" src="https://github.com/user-attachments/assets/0432353d-228d-41eb-8bf1-07703a0b0e0f" />
 
-in a couple of minutes  
+in a couple of minutes<br/>  
+<br/>
 
 ## 05a. Inspect the results online
 
 <img width="787" height="746" alt="Screenshot 2025-09-30 at 09 51 35" src="https://github.com/user-attachments/assets/1b957ff2-a4a2-4428-b35c-3cd015cde012" />  
 
-## 05a. Export the results
+## 06a. Export the results
 Export the results in PAF format to your local machine.  
-
-
+<br/>
+<br/>
 
 ## 04b. Option 2 Align X and Y chromosome on the server
 In your day 5 folder with the fasta files, align the two files with **[Minimap2](https://github.com/lh3/minimap2)**
@@ -92,7 +93,7 @@ minimap2 -c XChrom.fasta YChrom.fasta > XYAlign.paf
 ```
 Transfer the file to your local machine using FileZilla and load it into Jbrowse
 
-
+<br/>
 
 ## 06. Load the results into Jbrowse
 Open Jbrowse  
@@ -106,11 +107,11 @@ Fill in the information, select your X chromosome fasta file and click **ADD ANO
 <img width="603" height="632" alt="Screenshot 2026-10-05 at 16 24 42" src="https://github.com/user-attachments/assets/2f40f0cd-ee2d-4352-b33e-fadf7e004660" />
 
 Click **SUBMIT**  
-
+<br/>
 Select  **Dotplot View -> LAUNCH VIEW**  
 The following error message will appear  
 <img width="1390" height="416" alt="Screenshot 2026-10-05 at 16 25 29" src="https://github.com/user-attachments/assets/1db1fe95-a027-4664-9572-5ee60d60556a" />
-
+<br/>
 Choose the following settings  
 <img width="1399" height="574" alt="Screenshot 2026-10-05 at 16 25 51" src="https://github.com/user-attachments/assets/d98f31aa-7a32-4ec4-af26-6e65e704885d" />
 
@@ -118,7 +119,7 @@ Choose the following settings
 
 Click **LAUNCH**  
 and explore the plot
-
+<br/>
 Click **ADD** , choose **Linear Synteny View**  
 
 <img width="1408" height="253" alt="Screenshot 2026-10-05 at 16 31 07" src="https://github.com/user-attachments/assets/9a08e2a8-da29-47b1-bb87-24924a57f385" />
