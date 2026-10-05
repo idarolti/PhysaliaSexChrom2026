@@ -1,7 +1,10 @@
 # Day 3 Practical - 01b. K-mer analyses
 
 This second part of the practical will use another tool building on K-mers analyses for sex chromosome discovery. 
-
+We will use Sex Chromosome Identification by Negating Kmer Densities (SCINKD)
+ 
+Pinto BJ, Gable SM, Keating SE, Smith CH, Gamble T, Nielsen SV, Wilson MA. (2026). Sex chromosome identification and genome curation from a single individual with SCINKD. 
+Molecular Biology and Evolution. 43(4). **[https://doi.org/10.1093/molbev/msag067]**
 
 
 
