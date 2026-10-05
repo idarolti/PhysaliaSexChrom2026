@@ -121,7 +121,7 @@ and explore the plot
 
 Click **ADD** , choose **Linear Synteny View**  
 
-<img width="1332" height="240" alt="Screenshot 2025-09-30 at 10 25 39" src="https://github.com/user-attachments/assets/f21e387c-7661-4d15-8c16-bae7d913c74d" />
+<img width="1408" height="253" alt="Screenshot 2026-10-05 at 16 31 07" src="https://github.com/user-attachments/assets/9a08e2a8-da29-47b1-bb87-24924a57f385" />
 
 Click **LAUNCH**  
 
