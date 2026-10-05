@@ -85,12 +85,12 @@ Export the results in PAF format to your local machine.
 
 
 
-## 03a. Option 2 Align X and Y chromosome on the server
+## 03b. Option 2 Align X and Y chromosome on the server
 In your day 5 folder with the fasta files, align the two files with **[Minimap2] (https://github.com/lh3/minimap2)**
 ```
-
+minimap2 -c XChrom.fasta YChrom.fasta > XYAlign.paf
 ```
-
+Transfer the file to your local machine using FileZilla and load it into Jbrowse
 
 
 
