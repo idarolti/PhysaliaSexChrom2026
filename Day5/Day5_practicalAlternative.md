@@ -21,7 +21,7 @@ https://jbrowse.org/jb2/download/
 ```
 
 
-## 02. Prepare work folder for day 2
+## 02. Prepare work folder for day 5
 
 Open your terminal application as yesterday, connect to the server as yesterday, replace "25" with the number of your user account and use today's IP adress
 
@@ -39,12 +39,17 @@ Don't forget to open a Filezilla connection, and change the IP to today's addres
 Open a web browser, search **[NCBI Genomes](https://www.ncbi.nlm.nih.gov/genome/)** for the entry "Apeltes quadracus"  
 Select assembly **[GCA_048569185.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_048569185.1/)**  
 Download the **[X](https://www.ncbi.nlm.nih.gov/nuccore/CM109091.1?report=fasta)** and the **[Y](https://www.ncbi.nlm.nih.gov/nuccore/CM109092.1?report=fasta)** chromosome fasta files to your server account  
+You can either download them with the links above to your local machine and then use FileZille or from within the server run curl to download the files and then change their filename to make them easier to recognise.
 
 ```
-https://www.ncbi.nlm.nih.gov/genome/
+ curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109091.1&rettype=fasta&retmode=text"
+mv CM109091.1.fasta XChrom.fasta
+ curl -o CM109092.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109092.1&rettype=fasta&retmode=text"
+mv CM109092.1.fasta YChrom.fasta
+
 ```
          
-## 03. Align X and Y chromosome
+## 03a. Option 1 Align X and Y chromosome online
 Align the X and Y chromosome sequence online with **[DGenies](https://dgenies.toulouse.inra.fr)**  
 
 ```
@@ -71,12 +76,22 @@ To
 
 in a couple of minutes  
 
-## 04. Inspect the results online
+## 04a. Inspect the results online
 
 <img width="787" height="746" alt="Screenshot 2025-09-30 at 09 51 35" src="https://github.com/user-attachments/assets/1b957ff2-a4a2-4428-b35c-3cd015cde012" />  
 
-## 05. Export the results
+## 05a. Export the results
 Export the results in PAF format to your local machine.  
+In your day 5 folder with the fasta files, align the two files with **[Minimap2] (https://github.com/lh3/minimap2)**
+```
+
+```
+
+
+## 03a. Option 2 Align X and Y chromosome on the server
+
+
+
 
 
 ## 06. Load the results into Jbrowse
