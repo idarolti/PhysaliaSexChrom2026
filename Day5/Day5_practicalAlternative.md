@@ -21,6 +21,20 @@ https://jbrowse.org/jb2/download/
 ```
 
 
+## 02. Prepare work folder for day 2
+
+Open your terminal application as yesterday, connect to the server as yesterday, replace "25" with the number of your user account and use today's IP adress
+
+```
+ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@44.251.209.2
+mkdir day5
+cd day5
+conda activate /home/ubuntu/miniconda3/envs/sexchr
+```
+
+Don't forget to open a Filezilla connection, and change the IP to today's address
+
+
 ## 02. Identify sex chromosome assemblies from INSDC
 Search **[NCBI Genomes](https://www.ncbi.nlm.nih.gov/genome/)** for the entry "Apeltes quadracus"  
 Select assembly **[GCA_048569185.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_048569185.1/)**  
