@@ -102,8 +102,10 @@ Click **OPEN NEW GENOME**
 
 <img width="601" height="579" alt="Screenshot 2026-10-05 at 16 23 52" src="https://github.com/user-attachments/assets/f4ffc2d5-a70d-4658-80bf-0246a91919e8" />
 
+<br/>
 
-Fill in the information, select your X chromosome fasta file and click **ADD ANOTHER ASSEMBLY**  at the bottom, fill in the information
+
+Fill in the information, select your X chromosome fasta file and click **ADD ANOTHER ASSEMBLY**  at the bottom, fill in the next bit of information
   
 <img width="603" height="632" alt="Screenshot 2026-10-05 at 16 24 42" src="https://github.com/user-attachments/assets/2f40f0cd-ee2d-4352-b33e-fadf7e004660" />
 
@@ -111,19 +113,28 @@ Click **SUBMIT**
 <br/>
 Select  **Dotplot View -> LAUNCH VIEW**  
 The following error message will appear  
+<br/>
+
 <img width="1390" height="416" alt="Screenshot 2026-10-05 at 16 25 29" src="https://github.com/user-attachments/assets/1db1fe95-a027-4664-9572-5ee60d60556a" />
 <br/>
+<br/>
+
 Choose the following settings  
+<br/>
+
 <img width="1399" height="574" alt="Screenshot 2026-10-05 at 16 25 51" src="https://github.com/user-attachments/assets/d98f31aa-7a32-4ec4-af26-6e65e704885d" />
 
+<br/>
 
 
 Click **LAUNCH**  
 and explore the plot
 <br/>
+
 Click **ADD** , choose **Linear Synteny View**  
 
 <img width="1408" height="253" alt="Screenshot 2026-10-05 at 16 31 07" src="https://github.com/user-attachments/assets/9a08e2a8-da29-47b1-bb87-24924a57f385" />
+<br/>
 
 Click **LAUNCH**  
 
@@ -132,7 +143,7 @@ You can now explore this plot
 <img width="1375" height="334" alt="Screenshot 2025-09-30 at 10 29 15" src="https://github.com/user-attachments/assets/da17496b-2731-4e18-8c35-482236cc63c0" />
 
   
-    
+   
 ## 07. Try out more
 
 If you like, try out to compare the full genomes of the **[fourspine stickleback](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/048/569/185/GCA_048569185.1_Unibe_ApeQuad_male_1.0/GCA_048569185.1_Unibe_ApeQuad_male_1.0_genomic.fna.gz)** to that of the **[threespine stickleback](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/920/845/GCF_016920845.1_GAculeatus_UGA_version5/GCF_016920845.1_GAculeatus_UGA_version5_genomic.fna.gz)**
