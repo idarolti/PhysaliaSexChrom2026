@@ -86,7 +86,7 @@ Export the results in PAF format to your local machine.
 
 
 ## 03b. Option 2 Align X and Y chromosome on the server
-In your day 5 folder with the fasta files, align the two files with **[Minimap2] (https://github.com/lh3/minimap2)**
+In your day 5 folder with the fasta files, align the two files with **[Minimap2](https://github.com/lh3/minimap2)**
 ```
 minimap2 -c XChrom.fasta YChrom.fasta > XYAlign.paf
 ```
@@ -96,21 +96,23 @@ Transfer the file to your local machine using FileZilla and load it into Jbrowse
 
 ## 06. Load the results into Jbrowse
 Open Jbrowse  
-Click **Open Sequence file(s)**  
+Click **OPEN NEW GENOME**  
 
-<img width="622" height="634" alt="Screenshot 2025-09-30 at 10 01 54" src="https://github.com/user-attachments/assets/30c49768-3805-4381-8288-fe74f3c24020" />  
+<img width="601" height="579" alt="Screenshot 2026-10-05 at 16 23 52" src="https://github.com/user-attachments/assets/f4ffc2d5-a70d-4658-80bf-0246a91919e8" />
 
-Click **ADD ANOTHER ASSEMBLY**  
+
+Fill in the information, select your X chromosome fasta file and click **ADD ANOTHER ASSEMBLY**  at the bottom, fill in the information
   
-<img width="617" height="691" alt="Screenshot 2025-09-30 at 10 03 25" src="https://github.com/user-attachments/assets/dee3ba26-7fad-4c33-b76c-d55de07755a6" />
+<img width="603" height="632" alt="Screenshot 2026-10-05 at 16 24 42" src="https://github.com/user-attachments/assets/2f40f0cd-ee2d-4352-b33e-fadf7e004660" />
 
 Click **SUBMIT**  
 
 Select  **Dotplot View -> LAUNCH VIEW**  
 The following error message will appear  
-<img width="1348" height="422" alt="Screenshot 2025-09-30 at 10 22 43" src="https://github.com/user-attachments/assets/96b6b184-6b0e-4a87-a10b-b49ed979e25f" />
+<img width="1390" height="416" alt="Screenshot 2026-10-05 at 16 25 29" src="https://github.com/user-attachments/assets/1db1fe95-a027-4664-9572-5ee60d60556a" />
 
 Choose the following settings  
+<img width="1399" height="574" alt="Screenshot 2026-10-05 at 16 25 51" src="https://github.com/user-attachments/assets/d98f31aa-7a32-4ec4-af26-6e65e704885d" />
 
 
 
