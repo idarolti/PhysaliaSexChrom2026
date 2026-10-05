@@ -35,7 +35,7 @@ conda activate /home/ubuntu/miniconda3/envs/sexchr
 Don't forget to open a Filezilla connection, and change the IP to today's address
 
 
-## 02. Identify sex chromosome assemblies from INSDC
+## 03. Identify sex chromosome assemblies from INSDC
 Open a web browser, search **[NCBI Genomes](https://www.ncbi.nlm.nih.gov/genome/)** for the entry "Apeltes quadracus"  
 Select assembly **[GCA_048569185.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_048569185.1/)**  
 Download the **[X](https://www.ncbi.nlm.nih.gov/nuccore/CM109091.1?report=fasta)** and the **[Y](https://www.ncbi.nlm.nih.gov/nuccore/CM109092.1?report=fasta)** chromosome fasta files to your server account  
@@ -49,7 +49,7 @@ mv CM109092.1.fasta YChrom.fasta
 
 ```
          
-## 03a. Option 1 Align X and Y chromosome online
+## 04a. Option 1 Align X and Y chromosome online
 Align the X and Y chromosome sequence online with **[DGenies](https://dgenies.toulouse.inra.fr)**  
 
 ```
@@ -76,7 +76,7 @@ To
 
 in a couple of minutes  
 
-## 04a. Inspect the results online
+## 05a. Inspect the results online
 
 <img width="787" height="746" alt="Screenshot 2025-09-30 at 09 51 35" src="https://github.com/user-attachments/assets/1b957ff2-a4a2-4428-b35c-3cd015cde012" />  
 
@@ -85,7 +85,7 @@ Export the results in PAF format to your local machine.
 
 
 
-## 03b. Option 2 Align X and Y chromosome on the server
+## 04b. Option 2 Align X and Y chromosome on the server
 In your day 5 folder with the fasta files, align the two files with **[Minimap2](https://github.com/lh3/minimap2)**
 ```
 minimap2 -c XChrom.fasta YChrom.fasta > XYAlign.paf
@@ -131,7 +131,7 @@ You can now explore this plot
 
   
     
-## 06. Try out more
+## 07. Try out more
 
 If you like, try out to compare the full genomes of the **[fourspine stickleback](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/048/569/185/GCA_048569185.1_Unibe_ApeQuad_male_1.0/GCA_048569185.1_Unibe_ApeQuad_male_1.0_genomic.fna.gz)** to that of the **[threespine stickleback](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/920/845/GCF_016920845.1_GAculeatus_UGA_version5/GCF_016920845.1_GAculeatus_UGA_version5_genomic.fna.gz)**
 in Dgenies, zoom into the X and Y of the fourspine stickleback, what do you see?
