@@ -80,7 +80,7 @@ in a couple of minutes<br/>
 ## 05a. Inspect the results online
 
 <img width="787" height="746" alt="Screenshot 2025-09-30 at 09 51 35" src="https://github.com/user-attachments/assets/1b957ff2-a4a2-4428-b35c-3cd015cde012" />  
-
+<br/>
 ## 06a. Export the results
 Export the results in PAF format to your local machine.  
 <br/>
@@ -95,7 +95,7 @@ Transfer the file to your local machine using FileZilla and load it into Jbrowse
 
 <br/>
 
-## 06. Load the results into Jbrowse
+## 07. Load the results into Jbrowse
 Open Jbrowse  
 Click **OPEN NEW GENOME**  
 
