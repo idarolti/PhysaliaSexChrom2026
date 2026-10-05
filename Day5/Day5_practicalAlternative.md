@@ -141,10 +141,11 @@ Click **LAUNCH**
 You can now explore this plot  
 
 <img width="1375" height="334" alt="Screenshot 2025-09-30 at 10 29 15" src="https://github.com/user-attachments/assets/da17496b-2731-4e18-8c35-482236cc63c0" />
+<br/>
+<br/>
 
-  
    
-## 07. Try out more
+## 08. Try out more
 
 If you like, try out to compare the full genomes of the **[fourspine stickleback](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/048/569/185/GCA_048569185.1_Unibe_ApeQuad_male_1.0/GCA_048569185.1_Unibe_ApeQuad_male_1.0_genomic.fna.gz)** to that of the **[threespine stickleback](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/920/845/GCF_016920845.1_GAculeatus_UGA_version5/GCF_016920845.1_GAculeatus_UGA_version5_genomic.fna.gz)**
 in Dgenies, zoom into the X and Y of the fourspine stickleback, what do you see?
