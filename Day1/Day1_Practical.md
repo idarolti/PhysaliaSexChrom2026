@@ -185,12 +185,13 @@ Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.rea
 - **[bamCoverage](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 8), and output bw file with -o option
 - full path to files is required
 - once you have the bw files, transfer them to desktop, together with the genome fasta and index files (found at /home/ubuntu/Share/day1/02.read_mapping/reference_genome/)
+- download also the full genome bw files (Poecilia_picta_female1.bw and Poecilia_picta_male2.bw), which can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/
 
 <details>
 <summary>🔑 View Solution</summary>
 
 ```
-bamCoverage -p 8 -b Poecilia_picta_female1_chr12.bam -o Poecilia_picta_female1_chr12.bw
+bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr12.bam -o Poecilia_picta_female1_chr12.bw
 
 scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna ~/Desktop
 scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1.bw ~/Desktop
@@ -238,6 +239,7 @@ Perform genotyping of variants using [GenotypeGVCFs](https://gatk.broadinstitute
 
 ```
 cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_female1_chr12.gvcf ./03.snp_calling
+cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_female1_chr12.gvcf.idx ./03.snp_calling
 
 gatk GenotypeGVCFs \
    -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
@@ -250,7 +252,7 @@ Filter variants using [SelectVariants](https://gatk.broadinstitute.org/hc/en-us/
 ```
 gatk SelectVariants \
    -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
-   -V /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_female1_chr12.genotyped.gvcf \
+   -V ./03.snp_calling/Poecilia_picta_female1_chr12.genotyped.gvcf \
    -O ./03.snp_calling/Poecilia_picta_female1_chr12.selectvar.gvcf --restrict-alleles-to BIALLELIC --select-type-to-include SNP
 
 gatk VariantFiltration \
@@ -278,6 +280,7 @@ vcftools --vcf ./03.snp_calling/Poecilia_picta_female1_chr12.selectvar_filtered.
 
 ```
 cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf ./03.snp_calling
+cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf.idx ./03.snp_calling
 
 gatk GenotypeGVCFs \
    -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
@@ -286,7 +289,7 @@ gatk GenotypeGVCFs \
 
 gatk SelectVariants \
    -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
-   -V /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.genotyped.gvcf \
+   -V ./03.snp_calling/Poecilia_picta_male2_chr12.genotyped.gvcf \
    -O ./03.snp_calling/Poecilia_picta_male2_chr12.selectvar.gvcf --restrict-alleles-to BIALLELIC --select-type-to-include SNP
 
 gatk VariantFiltration \
