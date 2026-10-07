@@ -1,17 +1,12 @@
 # Day 3 Practical - 01b. K-mer analyses
 
 This second part of the practical will use another tool building on K-mers analyses for sex chromosome discovery. 
-We will use Sex Chromosome Identification by Negating Kmer Densities (SCINKD)
+We will use Sex Chromosome Identification by Negating Kmer Densities (SCINKD) for reference genomes and short reads.
  
 Pinto BJ, Gable SM, Keating SE, Smith CH, Gamble T, Nielsen SV, Wilson MA. (2026). Sex chromosome identification and genome curation from a single individual with SCINKD. 
-Molecular Biology and Evolution. 43(4). **[https://doi.org/10.1093/molbev/msag067]**
+Molecular Biology and Evolution. 43(4). **https://doi.org/10.1093/molbev/msag067**
 
-
-
-We will largely follow the **[KmersGwas](https://github.com/voichek/kmersGWAS/tree/master)** pipeline.  
-This builds on the program **[KMC](https://github.com/refresh-bio/KMC)** to generate Kmer tables and **[PLINK](https://www.cog-genomics.org/plink/2.0/assoc)** for assocation tests.  
-
-Start FileZilla with today's IP, open your terminal and connect to the server, set up a new working directory for today, and activate the conda environment
+Start FileZilla with today's IP, open your terminal and connect to the server, set up a new working directory for today, and activate the scinkd3 conda environment
 
 ## 00. Prepare work folder for day 3
 
@@ -19,30 +14,29 @@ Start FileZilla with today's IP, open your terminal and connect to the server, s
 ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@18.237.201.56
 mkdir day3
 cd day3
-conda activate /home/ubuntu/miniconda3/envs/sexchr/
-```
-
-## 01. Setup for K-mer analyses
-
-Within day3, set up directories for K-mer analyses, copy all scripts needed and copy the phneotype data to your directory
 
 ```
-mkdir kmersGWAS
-cd kmersGWAS
-cp ~/Share/day3/kmersGWAS/emma_kinship_kmers .
-cp ~/Share/day3/kmersGWAS/kmers_table_to_bed .
-cp ~/Share/day3/kmersGWAS/plink_to_abyss_kmers.py .
-mkdir Ppicta
-cd Ppicta
-cp ~/Share/day3/kmersGWAS/picta/Ppicta_phenotype.txt .
+
+## 01. Setup for SCINKD3 analyses identifying sex chromosomes from short reads by comparing male and female catalogs 
+We will first run scinkd3, which compares kmer catalogs of males and females using a SnakeMake Workflow
+
+Within day3, set up a directory for scinkd3-based analyses and set the right compute environment 
+
+```
+mkdir scinkd3
+cd scinkd3
+conda activate /opt/conda-envs/day5
+/opt/course-software/SCINKD3
+
 ```
 
-## 02. Generate K-mer counts
+## 02. Run SCINKD3 workflow
+Scinkd3 is a workflow that uses **[SnakeMake] (https://snakemake.readthedocs.io/en/stable/)**, 
 
 This first step generates a list of all kmers and their presence/absence across all individuals. It can be run with the script below, but takes a very long time, so we won't run it today. Have a look at the file using the code below, and see if you can understand what it does.
 
+
 ```
-cat ~/Share/day3/kmersGWAS/run_kmersGWAS_step1_Ppicta.sh
 ```
 
 The output of this step is a file called kmers.table.table. This is a long list of every kmer found in the samples and their presence/absence in each individual. The file is already saved in the server, and we can now use this file for the later steps.  
