@@ -32,12 +32,53 @@ conda activate /opt/conda-envs/day5
 
 ## 02. Run SCINKD3 workflow
 Scinkd3 is a workflow that uses **[SnakeMake](https://snakemake.readthedocs.io/en/stable/)** , a workflow management system is that can be used to generate analysis workflows via a human readable, Python based language. You can run the entire workflow by setting all needed information in a configuration file that is in **[json](https://www.json.org/json-en.html)** format.
+Copy the config file to your working directory and inspect it.
 
+```
+cp ~/Share/day3/scinkd3/config_SCINKD.v3.1.5.json
+cat config_SCINKD.v3.1.5.json
+```
+You will see information towards the settings of the tool and the input data.
+Reference genome line 	"genome": "GCF_049243985.1_Ppicta_v3.0_genomic.fna")
+This assembly has 18 chromosomes (line 	"ChrNum": "18")
+Read file naming suffix for paired-end data 	"R1_suffix": "_1.fastq.gz", "R2_suffix": "_2.fastq.gz",
+
+
+We will run the tool for another species
+
+nd we will identify its sex chromosomes using male and female RAD data that have been generated for this purpose before ([**Pinto et al 2022](https://doi.org/10.1093/jhered/esac016)**)
+Sphaerodactylus townsendi, Townsend's dwarf sphaero or Townsend's least gecko
+this assembly has 17 chromosomes (line 	"ChrNum": "18")
+
+
+Download the reference genome from NCBI for Sphaerodactylus townsendi and unzip it
+
+```
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/049/243/985/GCF_049243985.1_Ppicta_v3.0/GCF_049243985.1_Ppicta_v3.0_genomic.fna.gz
+gunzip GCF_049243985.1_Ppicta_v3.0_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/028/975/GCF_021028975.2_MPM_Stown_v2.3/GCF_021028975.2_MPM_Stown_v2.3_genomic.fna.gz
+gunzip GCF_021028975.2_MPM_Stown_v2.3_genomic.fna.gz
+```
 This first step generates a list of all kmers and their presence/absence across all individuals. It can be run with the script below, but takes a very long time, so we won't run it today. Have a look at the file using the code below, and see if you can understand what it does.
 
+The RAD seq data from Pinto et al. 2022 are deposited under BioPorject ID PRJNA746057
+Inspect the BioProject **[here](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA746057/)** 
 
+<details>
+
+<summary>Tips for collapsed sections</summary>
+
+### You can add a header
+
+You can add text within a collapsed section.
+
+You can add an image or a code block, too.
+
+```ruby
+   puts "Hello World"
 ```
-```
+
+</details>
 
 The output of this step is a file called kmers.table.table. This is a long list of every kmer found in the samples and their presence/absence in each individual. The file is already saved in the server, and we can now use this file for the later steps.  
 
