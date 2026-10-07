@@ -173,7 +173,7 @@ Install **[IGV](https://igv.org/doc/desktop/#DownloadPage/)** locally.
 Convert .bam file to .bw format, which allows for easier visualization of number of reads mapping in each genomic region. 
 (If these steps take too long to run, you can copy the bw files directly).
 
-Bam files for individual chromosomes and for the whole genome can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/ (Poecilia_picta_female1_chr8.bam, Poecilia_picta_male2_chr8.bam, Poecilia_picta_female1_chr12.bam, Poecilia_picta_male2_chr12.bam, Poecilia_picta_female1.bam, Poecilia_picta_male2.bam)
+Bam files for individual chromosomes and for the whole genome can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/ (Poecilia_picta_female1_chr12.bam, Poecilia_picta_male2_chr12.bam, Poecilia_picta_female1.bam, Poecilia_picta_male2.bam)
 
 **Task: Convert to bw format for visualization**
 
@@ -185,11 +185,11 @@ Bam files for individual chromosomes and for the whole genome can be found at /h
 <summary>🔑 View Solution</summary>
 
 ```
-bamCoverage -p 8 -b Poecilia_picta_female1_chr8.bam -o Poecilia_picta_female1_chr8.bw
+bamCoverage -p 8 -b Poecilia_picta_female1_chr12.bam -o Poecilia_picta_female1_chr12.bw
 
 scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna ~/Desktop
-scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr8.bw ~/Desktop
-scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr8.bw ~/Desktop
+scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr12.bw ~/Desktop
+scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr12.bw ~/Desktop
 ```
 
 </details>
