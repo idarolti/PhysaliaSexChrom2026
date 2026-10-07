@@ -160,6 +160,8 @@ bowtie2 -p4 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia
    -1 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R1_subset.fastq \
    -2 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R2_subset.fastq \
    | samtools view -b -S - | samtools sort - -o ./Poecilia_picta_male2_subset.bam
+
+samtools view -b -q 30 Poecilia_picta_male2_subset.bam > Poecilia_picta_male2_subset_mapq.bam
 ```
 
 </details>
@@ -168,7 +170,7 @@ bowtie2 -p4 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia
 
 * **[GATK](https://gatk.broadinstitute.org/hc/en-us)** - A genomic analysis toolkit focused on variant discovery.
 
-Create sequence dictionary for the reference sequence. DO NOT RUN!
+Create sequence dictionary for the reference sequence. This takes a while to run (SKIP)!
 
 ```
 gatk CreateSequenceDictionary -R Poecilia_picta.fna -O Poecilia_picta.dict
