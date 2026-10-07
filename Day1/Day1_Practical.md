@@ -213,7 +213,7 @@ Create sequence dictionary for the reference sequence. This takes a while to run
 gatk CreateSequenceDictionary -R Poecilia_picta.fna -O Poecilia_picta.dict
 ```
 
-Call SNPs using [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller)
+Call SNPs using [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller). This first part takes a while to run, so we will only use the subset alignment files.
 
 ```
 mkdir 03.snp_calling
@@ -229,7 +229,7 @@ gatk HaplotypeCaller \
    --min-base-quality-score 30 --pcr-indel-model NONE --sample-name picta_female1
 ```
 
-Perform genotyping of variants using [GenotypeGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/13832766863259-GenotypeGVCFs). The next steps run more quickly, so we can use as input file a gvcf based on the entire sex chromosome (chr12).
+Perform genotyping of variants using [GenotypeGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/13832766863259-GenotypeGVCFs). The next steps run more quickly, so we can use as input file a gvcf based on an entire chromosome.
 
 ```
 cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_female1_chr12.gvcf ./03.snp_calling
