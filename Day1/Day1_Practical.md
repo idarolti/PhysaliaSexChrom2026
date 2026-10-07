@@ -68,13 +68,31 @@ trimmomatic PE \
    LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50
 ```
 
-**For comparison, run FastQC and MultiQC on the trimmed reads.**
+**Task: Run FastQC and MultiQC on trimmed reads**
 
-```
+For comparison, assess the quality of your cleaned data:
+1. Create a directory named `fastqc_output_trimmed_reads`.
+2. Run `fastqc` on all paired files inside `./trimmed_reads/` and direct outputs to your new folder.
+3. Run `multiqc` to aggregate the resulting reports into the same folder.
+
+<details>
+<summary>💡 Need a hint?</summary>
+
+- Use `mkdir` to create the destination folder.
+- In bash, you can iterate over files with:  
+  `for f in ./path/to/files/*.fastq.gz; do <command>; done`  
+- Both `fastqc` and `multiqc` use `-o` to designate the output directory.
+
+</details>
+
+<details>
+<summary>🔑 View Solution</summary>
+
+```bash
 mkdir fastqc_output_trimmed_reads
-for f in ./trimmed_reads/*_paired.fastq.gz; do fastqc $f -o ./fastqc_output_trimmed_reads; done
+for f in ./trimmed_reads/*_paired.fastq.gz; do fastqc "$f" -o ./fastqc_output_trimmed_reads; done
 multiqc ./fastqc_output_trimmed_reads -o ./fastqc_output_trimmed_reads
-```
+
 
 Note - for RAD-seq data, trimming also includes removing barcodes and restriction site remnants. Tools like _process_radtags_ from **[STACKS](https://catchenlab.life.illinois.edu/stacks/)** can specifically handle these steps.
 
