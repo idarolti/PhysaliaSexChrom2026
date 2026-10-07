@@ -177,7 +177,7 @@ Bam files for individual chromosomes and for the whole genome can be found at /h
 
 **Task: Convert to bw format for visualization**
 
-- **bamCoverage (https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 8), and output bw file with -o option
+- **[bamCoverage](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 8), and output bw file with -o option
 - full path to files is required
 - once you have the bw files, transfer them to desktop, together with the genome fasta and index files (found at /home/ubuntu/Share/day1/02.read_mapping/reference_genome/)
 
@@ -193,6 +193,7 @@ scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping
 ```
 
 </details>
+
 
 Open IGV and load the genome and .bw files.
 
