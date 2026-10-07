@@ -51,10 +51,9 @@ cd scripts
 python 01.run-prank.py ../1.gametolog_sequences
 ```
 
-This part takes a few seconds to run per gametolog pair, so we can start the command and then quit if it takes too long.
+This part takes a few seconds to run per gametolog pair, so if it takes too long you can copy the output as below:
 
 ```
-rm -r ../1.gametolog_sequences
 cp -r ~/Share/day3/gametologs_divergence/1.gametolog_sequences_prank/ ../
 ```
 
