@@ -93,6 +93,7 @@ mkdir fastqc_output_trimmed_reads
 for f in ./trimmed_reads/*_paired.fastq.gz; do fastqc "$f" -o ./fastqc_output_trimmed_reads; done
 multiqc ./fastqc_output_trimmed_reads -o ./fastqc_output_trimmed_reads
 
+</summary>
 
 Note - for RAD-seq data, trimming also includes removing barcodes and restriction site remnants. Tools like _process_radtags_ from **[STACKS](https://catchenlab.life.illinois.edu/stacks/)** can specifically handle these steps.
 
