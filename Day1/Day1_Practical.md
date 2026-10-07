@@ -255,12 +255,18 @@ gatk VariantFiltration \
    --filter-expression "QUAL <= 30.0 || DP <= 20" --filter-name "low_qual_or_dp"
 ```
 
+Obtain the number of homozygous and heterozygous sites
+
+```
+vcftools --vcf ./03.snp_calling/Poecilia_picta_female1_chr12.selectvar_filtered.gvcf --extract-FORMAT-info GT --stdout | awk 'NR > 1 {print $3}' | tr '|' '/' | sort | uniq -c
+```
+
 **Task: Run genotyping and filtering for the male sample**
 
 1. Copy the male gvcf file (/home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf) to your folder
 2. Run variant genotyping with gatk GenotypeGVCFs
 3. Filter variants with gatk SelectVariants and VariantFiltration
-4. See how many homozygous and heterozygous sites are
+4. Obtain the number of homozygous and heterozygous sites
 
 <details>
 <summary>🔑 View Solution</summary>
@@ -283,6 +289,8 @@ gatk VariantFiltration \
    -V ./03.snp_calling/Poecilia_picta_male2_chr12.selectvar.gvcf \
    -O ./03.snp_calling/Poecilia_picta_male2_chr12.selectvar_filtered.gvcf \
    --filter-expression "QUAL <= 30.0 || DP <= 20" --filter-name "low_qual_or_dp"
+
+vcftools --vcf ./03.snp_calling/Poecilia_picta_male2_chr12.selectvar_filtered.gvcf --extract-FORMAT-info GT --stdout | awk 'NR > 1 {print $3}' | tr '|' '/' | sort | uniq -c
 ```
 
 </details>
