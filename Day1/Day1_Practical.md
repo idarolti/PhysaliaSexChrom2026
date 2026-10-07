@@ -8,7 +8,7 @@ This practical will cover:
 
 ## 00. Prepare work folder for day 1
 ```
-ssh -i chrsex25.pem ubuntu@44.254.129.237
+ssh -i scverse1.pem ubuntu@35.89.239.29
 mkdir day1
 cd day1
 conda activate /opt/conda-envs/day1
@@ -26,7 +26,7 @@ cd 01.trimming
 mkdir fastqc_output_raw_reads
 cd fastqc_output_raw_reads
 
-for f in /home/ubuntu/Share/day1/01.quality_trimming/raw_reads/*fastq; do fastqc $f -o ./; done
+for f in /home/ubuntu/Share/day1/01.quality_trimming/raw_reads/*fastq; do fastqc $f --outdir ./; done
 ```
 
 * **[MultiQC](https://multiqc.info)** - A tool for merging FastQC output reports of individual samples into a single summary report
@@ -41,7 +41,7 @@ After running, download the .html output file to your local machine to visualize
 
 ```
 pwd
-scp -i chrsex25.pem ubuntu@44.254.129.237:/pwd/*.html ~/Desktop
+scp -i scverse1.pem ubuntu@35.89.239.29:/pwd/*.html ~/Desktop
 ```
 
 Can find nice examples of different fastqc outputs [here](https://rtsf.natsci.msu.edu/genomics/technical-documents/fastqc-tutorial-and-faq.aspx).
@@ -51,6 +51,7 @@ Can find nice examples of different fastqc outputs [here](https://rtsf.natsci.ms
 The following command will trim reads to remove adapter sequences, regions where the average Phred score in sliding windows of four bases is <15, reads for which the leading/trailing bases have a Phred score <3, and paired-end reads where either read pair is <50 bp. You can find adapter sequences [here](https://support-docs.illumina.com/SHARE/AdapterSequences/Content/SHARE/FrontPages/AdapterSeq.htm). You can use the command on each pair (forward/R1 + reverse/R2) of fastq files.
 
 ```
+cd ../
 mkdir trimmed_reads
     
 input_dir="/home/ubuntu/Share/day1/01.quality_trimming/raw_reads/"
@@ -81,7 +82,7 @@ For comparison, assess the quality of your cleaned data:
 - Use `mkdir` to create the destination folder.
 - In bash, you can iterate over files with:  
   `for f in ./path/to/files/*.fastq.gz; do <command>; done`  
-- Both `fastqc` and `multiqc` use `-o` to designate the output directory.
+- Both `fastqc` and `multiqc` use `--outdir` to designate the output directory.
 
 </details>
 
@@ -90,8 +91,8 @@ For comparison, assess the quality of your cleaned data:
 
 ```
 mkdir fastqc_output_trimmed_reads
-for f in ./trimmed_reads/*_paired.fastq.gz; do fastqc "$f" -o ./fastqc_output_trimmed_reads; done
-multiqc ./fastqc_output_trimmed_reads -o ./fastqc_output_trimmed_reads
+for f in ./trimmed_reads/*_paired.fastq.gz; do fastqc "$f" --outdir ./fastqc_output_trimmed_reads; done
+multiqc ./fastqc_output_trimmed_reads --outdir ./fastqc_output_trimmed_reads
 ```
 
 </details>
@@ -111,6 +112,7 @@ bowtie2-build Poecilia_picta.fna Poecilia_picta
 Then, align each pair of reads to the indexed genome using bowtie2 and convert the output alignment sam file into a sorted bam file.
 
 ```
+cd ../
 mkdir 02.read_alignments
 cd 02.read_alignments
 
