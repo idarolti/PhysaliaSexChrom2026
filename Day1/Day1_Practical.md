@@ -170,13 +170,14 @@ samtools view -b -q 30 Poecilia_picta_male2_subset.bam > Poecilia_picta_male2_su
 
 Install **[IGV](https://igv.org/doc/desktop/#DownloadPage/)** locally.
 
-Convert .bam file to .bw format, which allows for easier visualization of number of reads mapping in each genomic region. (If these steps take too long to run, you can copy the bw files directly).
+Convert .bam file to .bw format, which allows for easier visualization of number of reads mapping in each genomic region. 
+(If these steps take too long to run, you can copy the bw files directly).
 
 Bam files for individual chromosomes and for the whole genome can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/ (Poecilia_picta_female1_chr8.bam, Poecilia_picta_male2_chr8.bam, Poecilia_picta_female1_chr12.bam, Poecilia_picta_male2_chr12.bam, Poecilia_picta_female1.bam, Poecilia_picta_male2.bam)
 
 **Task: Convert to bw format for visualization**
 
-- **[bamCoverage] (https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 8), and output bw file with -o option
+- **bamCoverage (https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 8), and output bw file with -o option
 - full path to files is required
 - once you have the bw files, transfer them to desktop, together with the genome fasta and index files (found at /home/ubuntu/Share/day1/02.read_mapping/reference_genome/)
 
