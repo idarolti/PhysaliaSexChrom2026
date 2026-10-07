@@ -31,7 +31,7 @@ conda activate /opt/conda-envs/day5
 ```
 
 ## 02. Run SCINKD3 workflow
-Scinkd3 is a workflow that uses **[SnakeMake] (https://snakemake.readthedocs.io/en/stable/)**, 
+Scinkd3 is a workflow that uses **[SnakeMake](https://snakemake.readthedocs.io/en/stable/)** , a workflow management system is that can be used to generate analysis workflows via a human readable, Python based language. You can run the entire workflow by setting all needed information in a configuration file that is in **[json](https://www.json.org/json-en.html)** format.
 
 This first step generates a list of all kmers and their presence/absence across all individuals. It can be run with the script below, but takes a very long time, so we won't run it today. Have a look at the file using the code below, and see if you can understand what it does.
 
