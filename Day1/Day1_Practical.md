@@ -8,7 +8,7 @@ This practical will cover:
 
 ## 00. Prepare work folder for day 1
 ```
-ssh -i scverse1.pem ubuntu@35.89.239.29
+ssh -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29
 mkdir day1
 cd day1
 conda activate /opt/conda-envs/day1
@@ -41,7 +41,7 @@ After running, download the .html output file to your local machine to visualize
 
 ```
 pwd
-scp -i scverse1.pem ubuntu@35.89.239.29:/pwd/*.html ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/pwd/*.html ~/Desktop
 ```
 
 Can find nice examples of different fastqc outputs [here](https://rtsf.natsci.msu.edu/genomics/technical-documents/fastqc-tutorial-and-faq.aspx).
@@ -193,9 +193,9 @@ Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.rea
 ```
 bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr12.bam -o Poecilia_picta_female1_chr12.bw
 
-scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna ~/Desktop
-scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1.bw ~/Desktop
-scp -i chrsex25.pem ubuntu@44.249.25.243:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2.bw ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1.bw ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2.bw ~/Desktop
 ```
 
 </details>
