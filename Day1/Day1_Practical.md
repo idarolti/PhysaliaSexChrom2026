@@ -88,10 +88,11 @@ For comparison, assess the quality of your cleaned data:
 <details>
 <summary>🔑 View Solution</summary>
 
-```bash
+```
 mkdir fastqc_output_trimmed_reads
 for f in ./trimmed_reads/*_paired.fastq.gz; do fastqc "$f" -o ./fastqc_output_trimmed_reads; done
 multiqc ./fastqc_output_trimmed_reads -o ./fastqc_output_trimmed_reads
+```
 
 </details>
 
