@@ -32,26 +32,43 @@ conda activate /opt/conda-envs/day5
 
 ## 02. Run SCINKD3 workflow
 Scinkd3 is a workflow that uses **[SnakeMake](https://snakemake.readthedocs.io/en/stable/)** , a workflow management system is that can be used to generate analysis workflows via a human readable, Python based language. You can run the entire workflow by setting all needed information in a configuration file that is in **[json](https://www.json.org/json-en.html)** format.
+
+### A. Understand the config file
+
 Copy the config file to your working directory and inspect it.
 
 ```
 cp ~/Share/day3/scinkd3/config_SCINKD.v3.1.5.json
 cat config_SCINKD.v3.1.5.json
 ```
-You will see information towards the settings of the tool and the input data.
+You will see information towards the settings of the tool and the input data. This tool uses a reference genome in fasta format and several male and female short read data files in fastq.gz format.
 Reference genome line 	"genome": "GCF_049243985.1_Ppicta_v3.0_genomic.fna")
 This assembly has 18 chromosomes (line 	"ChrNum": "18")
 Read file naming suffix for paired-end data 	"R1_suffix": "_1.fastq.gz", "R2_suffix": "_2.fastq.gz",
 
 
-We will run the tool for another species
-
-nd we will identify its sex chromosomes using male and female RAD data that have been generated for this purpose before ([**Pinto et al 2022](https://doi.org/10.1093/jhered/esac016)**)
-Sphaerodactylus townsendi, Townsend's dwarf sphaero or Townsend's least gecko
-this assembly has 17 chromosomes (line 	"ChrNum": "18")
+We will run the tool for Sphaerodactylus townsendi, Townsend's dwarf sphaero or Townsend's least gecko, and we will identify its sex chromosomes using male and female RAD data that have been generated for this purpose before ([**Pinto et al 2022](https://doi.org/10.1093/jhered/esac016)**).
 
 
-Download the reference genome from NCBI for Sphaerodactylus townsendi and unzip it
+
+Download the reference genome from NCBI for Sphaerodactylus townsendi (GCF_021028975.2) and unzip it
+For this, you can search the NCBI Genome database, then chose the FTP site and copy the full path. In your server session download the file and unzip.
+<details>
+
+<summary>Tips for collapsed sections</summary>
+
+### You can add a header
+
+You can add text within a collapsed section.
+
+You can add an image or a code block, too.
+
+```ruby
+   puts "Hello World"
+```
+
+</details>
+
 
 ```
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/049/243/985/GCF_049243985.1_Ppicta_v3.0/GCF_049243985.1_Ppicta_v3.0_genomic.fna.gz
@@ -59,6 +76,11 @@ gunzip GCF_049243985.1_Ppicta_v3.0_genomic.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/028/975/GCF_021028975.2_MPM_Stown_v2.3/GCF_021028975.2_MPM_Stown_v2.3_genomic.fna.gz
 gunzip GCF_021028975.2_MPM_Stown_v2.3_genomic.fna.gz
 ```
+
+this assembly has 17 chromosomes (line 	"ChrNum": "18")
+
+
+
 This first step generates a list of all kmers and their presence/absence across all individuals. It can be run with the script below, but takes a very long time, so we won't run it today. Have a look at the file using the code below, and see if you can understand what it does.
 
 The RAD seq data from Pinto et al. 2022 are deposited under BioPorject ID PRJNA746057
