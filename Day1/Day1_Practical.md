@@ -255,5 +255,34 @@ gatk VariantFiltration \
    --filter-expression "QUAL <= 30.0 || DP <= 20" --filter-name "low_qual_or_dp"
 ```
 
-Try running genotyping and filtering on another chromosome file (/home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_female1_chr8.gvcf)
+**Task: Run genotyping and filtering for the male sample**
 
+1. Copy the male gvcf file (/home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf) to your folder
+2. Run variant genotyping with gatk GenotypeGVCFs
+3. Filter variants with gatk SelectVariants and VariantFiltration
+4. See how many homozygous and heterozygous sites are
+
+<details>
+<summary>🔑 View Solution</summary>
+
+```
+cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf ./03.snp_calling
+
+gatk GenotypeGVCFs \
+   -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
+   --variant ./03.snp_calling/Poecilia_picta_male2_chr12.gvcf \
+   -O ./03.snp_calling/Poecilia_picta_male2_chr12.genotyped.gvcf
+
+gatk SelectVariants \
+   -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
+   -V /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.genotyped.gvcf \
+   -O ./03.snp_calling/Poecilia_picta_male2_chr12.selectvar.gvcf --restrict-alleles-to BIALLELIC --select-type-to-include SNP
+
+gatk VariantFiltration \
+   -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
+   -V ./03.snp_calling/Poecilia_picta_male2_chr12.selectvar.gvcf \
+   -O ./03.snp_calling/Poecilia_picta_male2_chr12.selectvar_filtered.gvcf \
+   --filter-expression "QUAL <= 30.0 || DP <= 20" --filter-name "low_qual_or_dp"
+```
+
+</details>
