@@ -178,7 +178,7 @@ Install **[IGV](https://igv.org/doc/desktop/#DownloadPage/)** locally.
 Convert .bam file to .bw format, which allows for easier visualization of number of reads mapping in each genomic region. 
 (If these steps take too long to run, you can copy the bw files directly).
 
-Bam files for individual chromosomes and for the whole genome can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/ (Poecilia_picta_female1_chr12.bam, Poecilia_picta_male2_chr12.bam, Poecilia_picta_female1.bam, Poecilia_picta_male2.bam)
+Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/ (Poecilia_picta_female1_chr12.bam, Poecilia_picta_male2_chr12.bam). Choose one file and run the Task below.
 
 **Task: Convert to bw format for visualization**
 
