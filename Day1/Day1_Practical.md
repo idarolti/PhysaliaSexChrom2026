@@ -273,7 +273,7 @@ vcftools --vcf ./03.snp_calling/Poecilia_picta_female1_chr12.selectvar_filtered.
 1. Copy the male gvcf file (/home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf) to your folder
 2. Run variant genotyping with gatk GenotypeGVCFs
 3. Filter variants with gatk SelectVariants and VariantFiltration
-4. Obtain the number of homozygous and heterozygous sites
+4. Obtain the number of homozygous and heterozygous sites. What can you say about the male v. female heterozygosity rate?
 
 <details>
 <summary>🔑 View Solution</summary>
