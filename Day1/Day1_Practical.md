@@ -126,6 +126,9 @@ Filter alignment files by mapping quality.
 
 ```
 samtools view -b -q 30 Poecilia_picta_female1_subset.bam > Poecilia_picta_female1_subset_mapq.bam
+
+samtools flagstat Poecilia_picta_female1_subset.bam
+samtools flagstat Poecilia_picta_female1_subset_mapq.bam
 ```
 
 Filter alignment files by uniquely mapping reads.
