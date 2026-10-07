@@ -11,7 +11,7 @@ This practical will cover:
 ssh -i chrsex25.pem ubuntu@44.254.129.237
 mkdir day1
 cd day1
-conda activate /home/ubuntu/miniconda3/envs/sexchr
+conda activate /opt/conda-envs/day1
 ```
 
 ## 01. Read quality check and trimming
