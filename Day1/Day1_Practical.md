@@ -102,7 +102,7 @@ Note - for RAD-seq data, trimming also includes removing barcodes and restrictio
 
 * **[Bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/manual.shtml)** - A tool for aligning short-read data to a reference genome or genomic sequences
 
-First, build an index for the reference genome. This takes a while to run, so skip!
+First, build an index for the reference genome. This takes a while to run (SKIP)!
 
 ```
 bowtie2-build Poecilia_picta.fna Poecilia_picta
@@ -134,15 +134,35 @@ Earlier BWA version (aln/sampe) XT:A:U flag is more reliable.
 
 HISAT2 also has useful options to filter alignments (--no-discordant --no-mixed --no-unal)
 
+**Task: Align reads and filter alignment file for male sample**
+
+1. Align reads with bowtie2
+2. Convert SAM to BAM and sort with samtools
+3. Filter alignment for a minimum mapping quality of 30 with samtools
+   
+- The fastq files for the male sample (Poecilia_picta_male2) are also located in /home/ubuntu/Share/day1/02.read_mapping/reads/
+
+<details>
+<summary>💡 Need a hint?</summary>
+
+- bowtie2 takes as input the indexed genome with -x option, the forward and reverse reads with -1 and, respectively, -2 options
+- the full path to all input files must be provided, not just the file names
+- you can pipe (|) the output alignment file through samtools to convert SAM to BAM and sort the alignments
+- use samtools view with -q 30 option to filter alignment file
+
+</details>
+
+<details>
+<summary>🔑 View Solution</summary>
+
 ```
-samtools view -h Poecilia_picta_female1_subset.bam | grep -v "XS:i:" | samtools view -bS - > Poecilia_picta_female1_subset_unique.bam
+bowtie2 -p4 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta \
+   -1 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R1_subset.fastq \
+   -2 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R2_subset.fastq \
+   | samtools view -b -S - | samtools sort - -o ./Poecilia_picta_male2_subset.bam
 ```
 
-Remove duplicates
-
-```
-picard MarkDuplicates I=Poecilia_picta_female1_subset_mapq.bam O=Poecilia_picta_female1_subset_mapq_rmdup.bam M=dupmetrics.txt REMOVE_DUPLICATES=true
-```
+</details>
 
 ## 03. Variant calling
 
