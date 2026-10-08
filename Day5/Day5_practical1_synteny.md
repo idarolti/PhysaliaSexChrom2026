@@ -29,6 +29,8 @@ Open your terminal application as usual, connect to the server as usual, replace
 ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
 mkdir day5
 cd day5
+mkdir synteny
+cd synteny
 conda activate /opt/conda-envs/day5
 ```
 
@@ -42,9 +44,9 @@ Download the **[X](https://www.ncbi.nlm.nih.gov/nuccore/CM109091.1?report=fasta)
 You can either download them with the links above to your local machine and then use FileZille or from within the server run curl to download the files and then change their filename to make them easier to recognise.
 
 ```
- curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109091.1&rettype=fasta&retmode=text"
+curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109091.1&rettype=fasta&retmode=text"
 mv CM109091.1.fasta XChrom.fasta
- curl -o CM109092.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109092.1&rettype=fasta&retmode=text"
+curl -o CM109092.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109092.1&rettype=fasta&retmode=text"
 mv CM109092.1.fasta YChrom.fasta
 
 ```
