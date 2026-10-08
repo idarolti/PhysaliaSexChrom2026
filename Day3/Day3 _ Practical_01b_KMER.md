@@ -26,8 +26,6 @@ Within day3, set up a directory for scinkd3-based analyses and set the right com
 mkdir scinkd3
 cd scinkd3
 conda activate /opt/conda-envs/day5
-/opt/course-software/SCINKD3
-
 ```
 
 ## 02. Run SCINKD3 workflow
@@ -40,7 +38,7 @@ Copy the config file to your working directory and inspect it.
 ```
 mkdir SCINKD3
 cd SCINKD3
-cp ~/Share/day3/scinkd3/SCINKD3/config_SCINKD.v3.1.5.json .
+cp /opt/course-software/SCINKD3/config_SCINKD.v3.1.5.json .
 cat config_SCINKD.v3.1.5.json
 ```
 You will see information towards the settings of the tool and the input data. This tool uses a reference genome in fasta format and several male and female short read data files in fastq.gz format.
