@@ -48,7 +48,6 @@ curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.f
 mv CM109091.1.fasta XChrom.fasta
 curl -o CM109092.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109092.1&rettype=fasta&retmode=text"
 mv CM109092.1.fasta YChrom.fasta
-
 ```
          
 ## 04a. Option 1 Align X and Y chromosome online
