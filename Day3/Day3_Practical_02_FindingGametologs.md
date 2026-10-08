@@ -220,7 +220,6 @@ genes <- sexlinked$Gene
 dotchart(sexlinked$Start/1000000,labels=sexlinked$Gene,cex=.7,main="Sex-linked genes",xlab="Sex chromosome position (Mb)",xlim=c(0,26))
 ```
 
-Run the last part of the analysis (04.SNP segregation analysis) using the SEX-DETector output from another reticulata cross. What differences can you notice in the distribution of sex-linked genes? 
 
 **Task: Run the last part of the analysis (04.SNP segregation analysis full) using the SEX-DETector output from another family.**
 
