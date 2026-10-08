@@ -130,4 +130,12 @@ Ctrl+X
 </details>
 
 
+### C. Start the Run
+
+```
+snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cores 2
+```
+
+
+<img width="2070" height="1499" alt="Workflow" src="https://github.com/user-attachments/assets/72877682-4592-4bcc-af20-9456b50fdf4d" />
 
