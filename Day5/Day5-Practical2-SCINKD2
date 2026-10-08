@@ -1,0 +1,64 @@
+# Day 5 Practical 1 - Synteny analysis of sex chromosomes
+
+This practical will cover:
+
+1. Generating pairwise whole reference genome alignments
+2. Visualising dot plots
+3. Investigate structural rearrangements
+
+We will investigate sex chromosome inversions identified in the fourspine stickleback by **[Liu et al. 2025](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1011465)**
+
+
+## 01. Local installation of visualisation software
+
+* **[JBrowse](https://jbrowse.org/jb2/)** - The next-generation genome browser
+
+Download JBrowse, a standalone application, to your local machine, chose the apropriate version for your system platform,
+double click the installation and follow the on screen instructions, double click the JBrowse App Icon
+
+```
+https://jbrowse.org/jb2/download/
+```
+
+
+## 02. Prepare work folder for day 5
+
+Open your terminal application as usual, connect to the server as usual, replace "25" with the number of your user account and use today's IP address
+
+```
+ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
+mkdir day5
+cd day5
+conda activate /opt/conda-envs/day5
+```
+
+Don't forget to open a Filezilla connection, and change the IP to today's address
+
+
+## 03. Identify sex chromosome assemblies from INSDC
+Open a web browser, search **[NCBI Genomes](https://www.ncbi.nlm.nih.gov/genome/)** for the entry "Apeltes quadracus"  
+Select assembly **[GCA_048569185.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_048569185.1/)**  
+Download the **[X](https://www.ncbi.nlm.nih.gov/nuccore/CM109091.1?report=fasta)** and the **[Y](https://www.ncbi.nlm.nih.gov/nuccore/CM109092.1?report=fasta)** chromosome fasta files to your server account  
+You can either download them with the links above to your local machine and then use FileZille or from within the server run curl to download the files and then change their filename to make them easier to recognise.
+
+```
+ curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109091.1&rettype=fasta&retmode=text"
+mv CM109091.1.fasta XChrom.fasta
+ curl -o CM109092.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109092.1&rettype=fasta&retmode=text"
+mv CM109092.1.fasta YChrom.fasta
+
+```
+         
+## 04a. Option 1 Align X and Y chromosome online
+Align the X and Y chromosome sequence online with **[DGenies](https://dgenies.toulouse.inra.fr)**  
+
+```
+https://www.ncbi.nlm.nih.gov/genome/](https://dgenies.toulouse.inra.fr
+```
+Click on the "RUN" tab  
+
+
+<img width="1293" height="831" alt="Screenshot 2025-09-29 at 17 12 08" src="https://github.com/user-attachments/assets/bbc23361-b8be-4c76-b17b-817a79c2941d" />
+
+  
+Select the fasta files you downloaded previously and fill in the required information.  
