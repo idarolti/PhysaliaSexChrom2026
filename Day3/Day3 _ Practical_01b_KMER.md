@@ -138,8 +138,9 @@ SCINKD3 will run through the steps illustrated below, you can also see them with
 ```
 cat /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile
 ```
-SCINKD3 build on the Kmer tool **[Meryl](https://github.com/marbl/meryl)** to count kmers first in each sample followed by intersecting kmers between individuals of the same sex and comparing the combined female and male Kmer catalog to identify kmers specific to each sex. It then uses the Meryl function meryl-lookup to identify reads that contain sex-specific kmers and then places those reads onto the reference genome. The results are presented as read coverage per sex of sex-specific reads along the genome as well as a plot the depicts the chromosomes with an accumulation of sex-specific reads.
-
+SCINKD3 build on the Kmer tool **[Meryl](https://github.com/marbl/meryl)** to count kmers first in each sample followed by intersecting kmers between individuals of the same sex and comparing the combined female and male Kmer catalog to identify kmers specific to each sex. It then uses the Meryl function meryl-lookup to identify reads that contain sex-specific kmers and then places those reads onto the reference genome using **[Minimap2](https://github.com/lh3/minimap2)**. The results are presented as read coverage per sex of sex-specific reads along the genome as well as a plot the depicts the chromosomes with an accumulation of sex-specific reads. 
+**CAUTION: Since there is only 2 cores per student, this will for ~2 hours.
+**
 <img width="2070" height="1499" alt="Workflow" src="https://github.com/user-attachments/assets/72877682-4592-4bcc-af20-9456b50fdf4d" />
 
 
