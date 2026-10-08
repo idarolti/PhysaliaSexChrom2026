@@ -1,33 +1,16 @@
-# Day 5 Practical 1 - Synteny analysis of sex chromosomes
+# Day 5 Practical 2 - Sex Chromosome Identification by Negating Kmer Densities (SCINKD) of haplotype-phased assemblies
 
-This practical will cover:
-
-1. Generating pairwise whole reference genome alignments
-2. Visualising dot plots
-3. Investigate structural rearrangements
-
-We will investigate sex chromosome inversions identified in the fourspine stickleback by **[Liu et al. 2025](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1011465)**
+This practical will use the SCINKD2 workflow to analyse different genome assemblies for their presence of sex chromosomes.
+The original code is here **https://github.com/DrPintoThe2nd/SCINKD**
+The corresponding publication is **[Pinto et al. 2026 MBE](https://doi.org/10.1093/molbev/msag067)**
 
 
-## 01. Local installation of visualisation software
-
-* **[JBrowse](https://jbrowse.org/jb2/)** - The next-generation genome browser
-
-Download JBrowse, a standalone application, to your local machine, chose the apropriate version for your system platform,
-double click the installation and follow the on screen instructions, double click the JBrowse App Icon
-
-```
-https://jbrowse.org/jb2/download/
-```
-
-
-## 02. Prepare work folder for day 5
+## 01. Prepare work folder for day 5 practical 2
 
 Open your terminal application as usual, connect to the server as usual, replace "25" with the number of your user account and use today's IP address
 
 ```
 ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
-mkdir day5
 cd day5
 conda activate /opt/conda-envs/day5
 ```
@@ -35,7 +18,16 @@ conda activate /opt/conda-envs/day5
 Don't forget to open a Filezilla connection, and change the IP to today's address
 
 
-## 03. Identify sex chromosome assemblies from INSDC
+## 02. Download genome assemblies
+We will explore how this tool works across species with different degrees of sex chromosme divergence
+Select to work on one of the following species
+**[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard
+**[Vulpes vulpes](https://www.inaturalist.org/taxa/42069-Vulpes-vulpes)** - Red Fox
+**[Lepidodactylus listeri](https://www.inaturalist.org/taxa/34352-Lepidodactylus-listeri)** - Christmas Island gecko
+**[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko
+
+
+
 Open a web browser, search **[NCBI Genomes](https://www.ncbi.nlm.nih.gov/genome/)** for the entry "Apeltes quadracus"  
 Select assembly **[GCA_048569185.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_048569185.1/)**  
 Download the **[X](https://www.ncbi.nlm.nih.gov/nuccore/CM109091.1?report=fasta)** and the **[Y](https://www.ncbi.nlm.nih.gov/nuccore/CM109092.1?report=fasta)** chromosome fasta files to your server account  
