@@ -47,11 +47,11 @@ This assembly has 18 chromosomes (line 	"ChrNum": "18")
 Read file naming suffix for paired-end data 	"R1_suffix": "_1.fastq.gz", "R2_suffix": "_2.fastq.gz",
 
 
-We will run the tool for Sphaerodactylus townsendi, Townsend's dwarf sphaero or Townsend's least gecko, and we will identify its sex chromosomes using male and female RAD data that have been generated for this purpose before ([**Pinto et al 2022](https://doi.org/10.1093/jhered/esac016)**).
+We will run the tool for _Sphaerodactylus_ _townsendi_, Townsend's dwarf sphaero or Townsend's least gecko, and we will identify its sex chromosomes using male and female RAD data that have been generated for this purpose before (**[Pinto et al 2022](https://doi.org/10.1093/jhered/esac016)**).
 
 
 
-Download the reference genome from NCBI for Sphaerodactylus townsendi (GCF_021028975.2) and unzip it
+Download the reference genome from NCBI for _Sphaerodactylus townsendi_ (GCF_021028975.2) and unzip it
 For this, you can search the NCBI Genome database, then chose the FTP site and copy the full path. In your server session download the file and unzip.
 <details>
 
