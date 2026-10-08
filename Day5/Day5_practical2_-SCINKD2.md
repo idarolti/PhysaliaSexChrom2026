@@ -98,7 +98,9 @@ cp ~/Share/day5/SCINKD2/genomes/SphNot/S_notatus_TG4245_Omni-C_hap1.map.pretext.
 mv S_notatus_TG4245_Omni-C_hap1.map.pretext.fasta SphNot.hap1.fasta
 bgzip SphNot.hap1.fasta
 cp ~/Share/day5/SCINKD2/genomes/SphNot/S_notatus_TG4245_Omni-C_hap2.map.pretext.fasta .
-bgzip Lepidodactylus_listeri_hic.hap2.fasta
+mv S_notatus_TG4245_Omni-C_hap2.map.pretext.fasta SphNot.hap2.fasta
+bgzip SphNot.hap2.fasta
+
   ```
 </details>
 
@@ -124,13 +126,24 @@ Ctrl+X
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
 ### time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile ### true run, don't execute
 ```
-**ONCE MORE THIS WILL FAIL DUE TO LIMITED POWER OF THE CLUSTER**
-
-So we have prepared the intermediate steps for you, do the following to get those and to generate the final plots
+**THE CLUSTER HAS NOT THE RESOURCES TO RUN THIS SO INSTEAD DO THIS**
+We have prepared the intermediate steps for you, do the following to get those and to generate the final plots. Snakemake can restart from an interruppted workflow
 
 ```
-minimap2 -x asm5 -t2 -c --eqx --secondary=no Anniella_stebbinsi_HiFi_2024.asm.hic.hap1.fasta.gz Anniella_stebbinsi_HiFi_2024.asm.hic.hap2.fasta.gz > Anniella_stebbinsi_HiFi_2024.asm.hic.paf
-minimap2 -x asm5 -t2 -c --eqx --secondary=no mVulVul1.hap1.fasta.gz mVulVul1.hap2.fasta.gz > mVulVul1.asm.hic.paf
+cp ~/Share/day5/SCINKD2/RESULTS_VULVUL/* .
+time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
+```
+
+
+
+
+
+
+```
+minimap2 -x asm5 -t1 -c --eqx --secondary=no rAnnSte1.2.hap1.fasta.gz rAnnSte1.2.hap2.fasta.gz > rAnnSte1.2.asm.hic.paf
+minimap2 -x asm5 -t1 -c --eqx --secondary=no mVulVul1.hap1.fasta.gz mVulVul1.hap2.fasta.gz > mVulVul1.asm.hic.paf
+minimap2 -x asm5 -t1 -c --eqx --secondary=no LepLis.hap1.fasta.gz LepLis.hap2.fasta.gz > LepLis.asm.hic.paf
+minimap2 -x asm5 -t1 -c --eqx --secondary=no SphNot.hap1.fasta.gz SphNot.hap2.fasta.gz > SphNot.asm.hic.paf
 
 
 ```
