@@ -12,6 +12,8 @@ Open your terminal application as usual, connect to the server as usual, replace
 ```
 ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
 cd day5
+mkdir SCINKD
+cd SCINKD
 conda activate /opt/conda-envs/day5
 ```
 
@@ -70,6 +72,15 @@ bgzip rAnnSte1.2_.hap2.fasta
   ```
 </details>
 
+The data for the Geckos are not available from the INSDC but over FigShare from the SCINKD2 paper.
+For simplicity we placed them for you in the folder for day5
+
+<details>
+  <summary>Lepidodactylus listeri</summary>
 
 
+  ```
+cp 
+  ```
+</details>
 
