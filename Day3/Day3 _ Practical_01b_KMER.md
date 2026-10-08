@@ -38,7 +38,7 @@ Scinkd3 is a workflow that uses **[SnakeMake](https://snakemake.readthedocs.io/e
 Copy the config file to your working directory and inspect it.
 
 ```
-cp ~/Share/day3/scinkd3/config_SCINKD.v3.1.5.json
+cp ~/Share/day3/scinkd3/config_SCINKD.v3.1.5.json .
 cat config_SCINKD.v3.1.5.json
 ```
 You will see information towards the settings of the tool and the input data. This tool uses a reference genome in fasta format and several male and female short read data files in fastq.gz format.
