@@ -61,10 +61,10 @@ output_dir=./trimmed_reads
 trimmomatic PE \
    $input_dir/sample1_R1.fastq \
    $input_dir/sample1_R2.fastq \
-   $output_dir/sample1_output_R1_paired.fastq.gz \
-   $output_dir/sample1_output_R1_unpaired.fastq.gz \
-   $output_dir/sample1_output_R2_paired.fastq.gz \
-   $output_dir/sample1_output_R2_unpaired.fastq.gz \
+   $output_dir/sample1_R1_trimmed_paired.fastq.gz \
+   $output_dir/sample1_R1_trimmed_unpaired.fastq.gz \
+   $output_dir/sample1_R2_trimmed_paired.fastq.gz \
+   $output_dir/sample1_R2_trimmed_unpaired.fastq.gz \
    ILLUMINACLIP:$adapter_dir/adapters.fa:2:30:10 \
    LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50
 ```
@@ -119,25 +119,20 @@ cd 02.read_alignments
 bowtie2 -p4 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta \
    -1 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_female1_R1_subset.fastq \
    -2 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_female1_R2_subset.fastq \
+   --no-mixed --no-discordant \
    | samtools view -b -S - | samtools sort - -o ./Poecilia_picta_female1_subset.bam
 ```
 
 Filter alignment files by mapping quality.
 
 ```
-samtools view -b -q 30 Poecilia_picta_female1_subset.bam > Poecilia_picta_female1_subset_mapq.bam
+samtools view -b -q 30 Poecilia_picta_female1_subset.bam > Poecilia_picta_female1_subset_mapq30.bam
 
 samtools flagstat Poecilia_picta_female1_subset.bam
-samtools flagstat Poecilia_picta_female1_subset_mapq.bam
+samtools flagstat Poecilia_picta_female1_subset_mapq30.bam
 ```
 
-Filter alignment files by uniquely mapping reads.
-
-Bowtie2 XS flag is used for this, though it can be ambiguous and inconsistent! 
-
-Earlier BWA version (aln/sampe) XT:A:U flag is more reliable.
-
-HISAT2 also has useful options to filter alignments (--no-discordant --no-mixed --no-unal)
+Alternatively, can filter alignment files by uniquely mapping reads (Bowtie2 XS flag is often used for this; earlier BWA version (aln/sampe) XT:A:U flag is more reliable).
 
 **Task: Align reads and filter alignment file for male sample**
 
@@ -164,9 +159,12 @@ HISAT2 also has useful options to filter alignments (--no-discordant --no-mixed 
 bowtie2 -p4 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta \
    -1 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R1_subset.fastq \
    -2 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R2_subset.fastq \
+   --no-mixed --no-discordant \
    | samtools view -b -S - | samtools sort - -o ./Poecilia_picta_male2_subset.bam
 
-samtools view -b -q 30 Poecilia_picta_male2_subset.bam > Poecilia_picta_male2_subset_mapq.bam
+samtools view -b -q 30 Poecilia_picta_male2_subset.bam > Poecilia_picta_male2_subset_mapq30.bam
+samtools flagstat Poecilia_picta_male2_subset.bam
+samtools flagstat Poecilia_picta_male2_subset_mapq30.bam
 ```
 
 </details>
