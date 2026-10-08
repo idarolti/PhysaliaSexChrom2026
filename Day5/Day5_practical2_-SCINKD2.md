@@ -12,8 +12,8 @@ Open your terminal application as usual, connect to the server as usual, replace
 ```
 ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
 cd day5
-mkdir SCINKD
-cd SCINKD
+mkdir SCINKD2
+cd SCINKD2
 conda activate /opt/conda-envs/day5
 ```
 
