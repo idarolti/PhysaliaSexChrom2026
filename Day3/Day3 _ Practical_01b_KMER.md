@@ -76,18 +76,7 @@ You could normally fetch those data from the BioProject mentioned above with the
 For the sake of time, we have prepared these already so you can simply copy them to your directory.
 
 ```
-cp ~/Share/day3/scinkd3/SRR15111480_1.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111480_2.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111481_1.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111481_2.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111482_1.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111482_2.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111473_1.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111473_2.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111474_1.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111474_2.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111475_1.fastq.gz .
-cp ~/Share/day3/scinkd3/SRR15111475_2.fastq.gz .
+cp ~/Share/day3/scinkd3/SRR15111* .
 ```
 The individuals SRR15111480, SRR15111481 and SRR15111482 are males, the individuals SRR15111473, SRR15111474 and SRR15111475 are females
 
@@ -116,12 +105,17 @@ nano SCINKD3/config_SCINKD.v3.1.5.json
 	"males": [
 	"SRR15111480",
 	"SRR15111481",
-	"SRR15111482"],
+	"SRR15111482",
+	"SRR15111483",
+	"SRR15111484"],
 
 	"females": [
 	"SRR15111473",
 	"SRR15111474",
-	"SRR15111475"]
+	"SRR15111475",
+	"SRR15111476",
+	"SRR15111477",
+]
 
 }
 
