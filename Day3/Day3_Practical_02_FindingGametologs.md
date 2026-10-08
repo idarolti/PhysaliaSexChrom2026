@@ -5,9 +5,10 @@ This part of the practical will cover the steps for identifying sex-linked seque
 ## 00. Prepare work folder for day 3
 
 ```
+ssh -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29
 mkdir day3
 cd day3
-conda activate /home/ubuntu/miniconda3/envs/sexchr
+conda activate /opt/conda-envs/day3
 ```
 
 ## 02. Genotyping
