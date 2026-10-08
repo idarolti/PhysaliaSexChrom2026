@@ -222,6 +222,21 @@ dotchart(sexlinked$Start/1000000,labels=sexlinked$Gene,cex=.7,main="Sex-linked g
 
 Run the last part of the analysis (04.SNP segregation analysis) using the SEX-DETector output from another reticulata cross. What differences can you notice in the distribution of sex-linked genes? 
 
+**Task: Run the last part of the analysis (04.SNP segregation analysis full) using the SEX-DETector output from another family.**
+
+For comparison, assess the quality of your cleaned data:
+1. Copy to your directory the folder ~/Share/day3/sexdetector/sexdetector_output_full_RetFam2
+2. Find how many genes are inferred as autosomal versus sex-linked
+3. Obtain a single (unique) sequence for each gene
+4. Blast unique sequences to the assembly and identify top blast hits
+5. Extract "true" sex-linked genes (as those aligning to the sex chromosome CM002717.1)
+6. Transfer the output to your desktop and use R to plot the distribution of sex-linked genes across the chromosome
+
+What differences do you find in the distribution of sex-linked genes between Family 1 and Family 2?
+
+<details>
+<summary>🔑 View Solution</summary>
+
 ```
 cd ~/day3/sexdetector/
 cp -r ~/Share/day3/sexdetector/sexdetector_output_full_RetFam2 ./
@@ -303,3 +318,5 @@ genes <- sexlinked$Gene
 
 dotchart(sexlinked$Start/1000000,labels=sexlinked$Gene,cex=.7,main="Sex-linked genes",xlab="Sex chromosome position (Mb)",xlim=c(0,26))
 ```
+</details>
+
