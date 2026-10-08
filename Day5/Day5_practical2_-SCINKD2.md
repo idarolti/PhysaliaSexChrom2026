@@ -103,7 +103,7 @@ bgzip Lepidodactylus_listeri_hic.hap2.fasta
 </details>
 
 ## 03. Run analysis
-We will here show the example for **_Vulpus_ _vulpus_**
+We will here show the example for **_Vulpes vulpes_**
 For this you need to modify the config file to your genome of interest, similar to the exercise on day3; set the cores to 1 in the config and give snakemake 2
 Please again only use two cores.
 Number of chromosomes for _Vulpus vulpus_ is 17
