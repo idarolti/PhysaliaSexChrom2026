@@ -1,8 +1,8 @@
-# Day 5 Practical
+# Day 5 Practical 1 - Synteny analysis of sex chromosomes
 
 This practical will cover:
 
-1. Generating whole reference genome alignments
+1. Generating pairwise whole reference genome alignments
 2. Visualising dot plots
 3. Investigate structural rearrangements
 
@@ -23,13 +23,13 @@ https://jbrowse.org/jb2/download/
 
 ## 02. Prepare work folder for day 5
 
-Open your terminal application as yesterday, connect to the server as yesterday, replace "25" with the number of your user account and use today's IP adress
+Open your terminal application as usual, connect to the server as usual, replace "25" with the number of your user account and use today's IP address
 
 ```
-ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@44.251.209.2
+ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
 mkdir day5
 cd day5
-conda activate /home/ubuntu/miniconda3/envs/sexchr
+conda activate /opt/conda-envs/day2
 ```
 
 Don't forget to open a Filezilla connection, and change the IP to today's address
