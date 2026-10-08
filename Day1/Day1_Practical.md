@@ -176,9 +176,9 @@ Install **[IGV](https://igv.org/doc/desktop/#DownloadPage/)** locally.
 Convert .bam file to .bw format, which allows for easier visualization of number of reads mapping in each genomic region. 
 (If these steps take too long to run, you can copy the bw files directly).
 
-Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/ (Poecilia_picta_female1_chr12.bam, Poecilia_picta_male2_chr12.bam).
+Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/ (Poecilia_picta_female1_chr8.bam, Poecilia_picta_male2_chr8.bam, Poecilia_picta_female1_chr12.bam, Poecilia_picta_male2_chr12.bam).
 
-**Task: Convert to bw format for visualization**
+**Task: Convert the two male bam files to bw format for visualization**
 
 - **[bamCoverage](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 8), and output bw file with -o option
 - full path to files is required
@@ -189,9 +189,18 @@ Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.rea
 <summary>🔑 View Solution</summary>
 
 ```
+bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr8.bam -o Poecilia_picta_male2_chr8.bw
+bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr12.bam -o Poecilia_picta_male2_chr12.bw
+
+bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr8.bam -o Poecilia_picta_female1_chr8.bw
 bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr12.bam -o Poecilia_picta_female1_chr12.bw
 
+
 scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr8.bw ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr12.bw ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr8.bw ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr12.bw ~/Desktop
 scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1.bw ~/Desktop
 scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2.bw ~/Desktop
 ```
@@ -201,7 +210,7 @@ scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day
 
 Open IGV and load the genome and .bw files.
 
-In IGV, change track height to 200, change color, select type graph "Bar Chart", Window function "Mean", select log scale.
+In IGV, change track height to 200, change color, select type graph "Bar Chart", Window function "Mean", select log scale. Optionally, use "Set Data Range" to the same limits for multiple tracks for comparison.
 
 Look at the read mapping rates for the different chromosomes. Can you identify the sex chromosome?
 
