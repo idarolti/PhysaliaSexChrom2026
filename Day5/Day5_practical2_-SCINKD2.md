@@ -134,16 +134,27 @@ cp ~/Share/day5/SCINKD2/RESULTS_VULVUL/* .
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
 ```
 
-
-
-
-
-
+For the next step we also need visualisation so we will once more generate pairwise alignments with Minimap2
 ```
 minimap2 -x asm5 -t1 -c --eqx --secondary=no rAnnSte1.2.hap1.fasta.gz rAnnSte1.2.hap2.fasta.gz > rAnnSte1.2.asm.hic.paf
 minimap2 -x asm5 -t1 -c --eqx --secondary=no mVulVul1.hap1.fasta.gz mVulVul1.hap2.fasta.gz > mVulVul1.asm.hic.paf
 minimap2 -x asm5 -t1 -c --eqx --secondary=no LepLis.hap1.fasta.gz LepLis.hap2.fasta.gz > LepLis.asm.hic.paf
 minimap2 -x asm5 -t1 -c --eqx --secondary=no SphNot.hap1.fasta.gz SphNot.hap2.fasta.gz > SphNot.asm.hic.paf
+```
 
+If the command above fails, you can copy those files from here to your local machine
 
 ```
+~/Share/day5/SCINKD2/RESULTS_ASM/
+```
+
+Can you identify the sex chromosomes from the plot?
+Compare your plot files to those in **[Pinto et al. 2026 MBE](https://doi.org/10.1093/molbev/msag067)**
+
+
+## 04. Plot data
+Transfer the  files with the following file endings to your local machine: .results, .fai, .bed
+
+Open RStudio and load the script PlotSCINKD2.R from this repository
+
+
