@@ -139,6 +139,30 @@ Ctrl+X
 snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cores 2
 ```
 
+If successfully started, snakemake will let you know what it is doing, the workflow will run for quite some time, make sure to have it started before the long break.
+SCINKD3 will run through the steps illustrated below, you can also see them with inspecting the snakefile
+```
+cat /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile
+```
+SCINKD3 build on the Kmer tool **[Meryl](https://github.com/marbl/meryl)** to count kmers first in each sample followed by intersecting kmers between individuals of the same sex and comparing the combined female and male Kmer catalog to identify kmers specific to each sex. It then uses the Meryl function meryl-lookup to identify reads that contain sex-specific kmers and then places those reads onto the reference genome. The results are presented as read coverage per sex of sex-specific reads along the genome as well as a plot the depicts the chromosomes with an accumulation of sex-specific reads.
 
 <img width="2070" height="1499" alt="Workflow" src="https://github.com/user-attachments/assets/72877682-4592-4bcc-af20-9456b50fdf4d" />
+
+
+### D. Inspect the output
+Download the files SCINKD3.males.png, SCINKD3.females.png and SCINKD3.dotplot.png to your machine and inspect them.
+Which chromosome looks like a sex chromosome and what type of heterogamety do we have here?
+
+<details>
+
+<summary>Final Plots</summary>
+
+
+</details>
+
+
+
+
+
+
 
