@@ -3,7 +3,7 @@
 This practical will use the SCINKD2 workflow to analyse different genome assemblies for their presence of sex chromosomes.
 The original code is here **https://github.com/DrPintoThe2nd/SCINKD**
 The corresponding publication is **[Pinto et al. 2026 MBE](https://doi.org/10.1093/molbev/msag067)**
-
+As on day3 this is a workflow that is executed over SnakeMake.
 
 ## 01. Prepare work folder for day 5 practical 2
 
@@ -18,7 +18,7 @@ conda activate /opt/conda-envs/day5
 Don't forget to open a Filezilla connection, and change the IP to today's address
 
 
-## 02. Download genome assemblies
+## 02. Download and prepare genome assemblies
 We will explore how this tool works across species with different degrees of sex chromosme divergence
 Select to work on one of the following species.  
 **[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard.  
@@ -26,12 +26,7 @@ Select to work on one of the following species.
 **[Lepidodactylus listeri](https://www.inaturalist.org/taxa/34352-Lepidodactylus-listeri)** - Christmas Island gecko.  
 **[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko.  
   
-
-
-Open a web browser, search **[NCBI Genomes](https://www.ncbi.nlm.nih.gov/genome/)** for the entry "Apeltes quadracus"  
-Select assembly **[GCA_048569185.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_048569185.1/)**  
-Download the **[X](https://www.ncbi.nlm.nih.gov/nuccore/CM109091.1?report=fasta)** and the **[Y](https://www.ncbi.nlm.nih.gov/nuccore/CM109092.1?report=fasta)** chromosome fasta files to your server account  
-You can either download them with the links above to your local machine and then use FileZille or from within the server run curl to download the files and then change their filename to make them easier to recognise.
+The first two species have haplotype phased assemblies in the INSDC record, so you can search for them as in practical 1 of today, identify both haplotypes, copy the download link from the FTP page and download the files.
 
 ```
  curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109091.1&rettype=fasta&retmode=text"
@@ -40,7 +35,13 @@ mv CM109091.1.fasta XChrom.fasta
 mv CM109092.1.fasta YChrom.fasta
 
 ```
-         
+For easier handling we will rename the files, SCINKD2 also has the following restriction so we take care of this as well
+File naming restriction: Both input haplotype fasta files MUST be bgzipped and MUST end in ".hap1.fasta.gz" and ".hap2.fasta.gz"
+
+```
+```
+
+
 ## 04a. Option 1 Align X and Y chromosome online
 Align the X and Y chromosome sequence online with **[DGenies](https://dgenies.toulouse.inra.fr)**  
 
