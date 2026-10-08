@@ -112,21 +112,21 @@ Next, get the SEX-DETector output for the full dataset.
 
 ```
 cd ~/day3/sexdetector
-cp -r ~/Share/day3/sexdetector/sexdetector_output_full ./
-cd sexdetector_output_full
+cp -r ~/Share/day3/sexdetector/sexdetector_output_full_RetFam1 ./
+cd sexdetector_output_full_RetFam1
 ```
 
 Find how many genes are inferred as autosomal versus sex-linked.
 
 ```
-cat Poecilia_reticulata_assignment.txt | grep -w "sex-linked" -c
-cat Poecilia_reticulata_assignment.txt | grep -w "autosomal" -c
+cat RetFam1_assignment.txt | grep -w "sex-linked" -c
+cat RetFam1_assignment.txt | grep -w "autosomal" -c
 ```
 
 Obtain a single sequence for each gene (to then blast onto the assembly).
 
 ```
-head Poecilia_reticulata_sex-linked_sequences.fasta
+head RetFam1_sex-linked_sequences.fasta
 
 awk '
   # on lines that start with ">"
@@ -150,24 +150,24 @@ awk '
     # print sequence only if not skipping
     if (!skip) print $0
   }
-' Poecilia_reticulata_sex-linked_sequences.fasta > Poecilia_reticulata_sex-linked_sequences_unique.fasta
+' RetFam1_sex-linked_sequences.fasta > RetFam1_sex-linked_sequences_unique.fasta
 
-grep ">" Poecilia_reticulata_sex-linked_sequences_unique.fasta -c
+grep ">" RetFam1_sex-linked_sequences_unique.fasta -c
 ```
 
 Use Blast to see where on the genome the identifyied sex-linked genes align. A Blast database (with makeblastdb) has been already created in the Shared folder.
 
 ```
-blastn -db ~/Share/day3/sexdetector/genome_assembly/Poecilia_reticulata -query Poecilia_reticulata_sex-linked_sequences_unique.fasta -out blastout -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq"
+blastn -db ~/Share/day3/sexdetector/genome_assembly/Poecilia_reticulata -query RetFam1_sex-linked_sequences_unique.fasta -out RetFam1_blastout -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq"
 
-head blastout
+head RetFam1_blastout
 ```
 
 Identify top blast hits for each sequence. This script takes a blast output file (format: outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq") and identifies the top blast hit for each query. Top blast hit = minimum 30 pidentity, greatest blast score and greatest pidentity. If a query has two hits with identical blast score and pidentity one is chosen randomly as the tophit. 
 
 ```
-python ../scripts/blast_tophit.py blastout blastout_tophits
-head blastout_tophits
+python ../scripts/blast_tophit.py RetFam1_blastout RetFam1_blastout_tophits
+head RetFam1_blastout_tophits
 ```
 
 Count the number of times a chromosome is assigned a sex-linked gene.
@@ -194,19 +194,19 @@ END {
     print chrom, genes_per_chrom[chrom]
   }
 }
-' blastout_tophits
+' RetFam1_blastout_tophits
 ```
 
 Extract the inferred sex-linked genes that align to the sex chromosome (CM002717.1).
 
 ```
-awk -F',' '$2 == "CM002717.1"' blastout_tophits > blastout_tophits_sexchromo
+awk -F',' '$2 == "CM002717.1"' RetFam1_blastout_tophits > RetFam1_blastout_tophits_sexchromo
 ```
 
 Transfer this file to your local machine, and plot the distribution of sex-linked genes across the sex chromosome usind R.
 
 ```
-sexlinked = read.csv("blastout_tophits_sexchromo", header=F)
+sexlinked = read.csv("RetFam1_blastout_tophits_sexchromo", header=F)
 
 dim(sexlinked)
 head(sexlinked)
@@ -224,5 +224,82 @@ Run the last part of the analysis (04.SNP segregation analysis) using the SEX-DE
 
 ```
 cd ~/day3/sexdetector/
-cp -r ~/Share/day3/sexdetector/sexdetector_output_full_Ret9 ./
+cp -r ~/Share/day3/sexdetector/sexdetector_output_full_RetFam2 ./
+cd sexdetector_output_full_RetFam2
+cat RetFam2_assignment.txt | grep -w "sex-linked" -c
+cat RetFam2_assignment.txt | grep -w "autosomal" -c
+
+head RetFam2_sex-linked_sequences.fasta
+
+awk '
+  # on lines that start with ">"
+  /^>/ {
+	# save the header line in a variable "gene"
+    gene = $0
+	# remove the leading ">" symbol, leaving just the gene name
+    sub(/^>/, "", gene)
+	# remove the suffix after the last underscore in the gene name
+    sub(/_[^_]+$/, "", gene)
+	# use an array "seen: to check if this gene ID was seen before
+    if (seen[gene]++) {
+      skip = 1
+    } else {
+      # print header
+      print $0
+      skip = 0
+    }
+  }
+  !/^>/ {
+    # print sequence only if not skipping
+    if (!skip) print $0
+  }
+' RetFam2_sex-linked_sequences.fasta > RetFam2_sex-linked_sequences_unique.fasta
+
+grep ">" RetFam2_sex-linked_sequences_unique.fasta -c
+
+blastn -db ~/Share/day3/sexdetector/genome_assembly/Poecilia_reticulata -query RetFam2_sex-linked_sequences_unique.fasta -out RetFam2_blastout -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq"
+
+head RetFam2_blastout
+
+python ../scripts/blast_tophit.py RetFam2_blastout RetFam2_blastout_tophits
+head RetFam2_blastout_tophits
+
+awk -F',' '
+{
+  # chromosome + gene combined key
+  key = $2 SUBSEP $1
+  # mark unique pairs
+  count[key] = 1
+}
+END {
+  for (k in count) {
+	# split key back into chromosome and gene
+    split(k, parts, SUBSEP)
+    chrom = parts[1]
+    gene = parts[2]
+	# increment count of unique genes per chromosome
+    genes_per_chrom[chrom]++
+  }
+  for (chrom in genes_per_chrom) {
+	# output chromosome and gene count
+    print chrom, genes_per_chrom[chrom]
+  }
+}
+' RetFam2_blastout_tophits
+
+awk -F',' '$2 == "CM002717.1"' RetFam2_blastout_tophits > RetFam2_blastout_tophits_sexchromo
+
+in R
+sexlinked = read.csv("RetFam2_blastout_tophits_sexchromo", header=F)
+
+dim(sexlinked)
+head(sexlinked)
+
+names(sexlinked) <- c("Gene","Chromosome","Bitscore","PIdentity","Start","End")
+head(sexlinked)
+
+positions <- sexlinked$Start
+genes <- sexlinked$Gene
+
+dotchart(sexlinked$Start/1000000,labels=sexlinked$Gene,cex=.7,main="Sex-linked genes",xlab="Sex chromosome position (Mb)",xlim=c(0,26))
 ```
