@@ -21,16 +21,19 @@ Don't forget to open a Filezilla connection, and change the IP to today's addres
 ## 02. Download and prepare genome assemblies
 We will explore how this tool works across species with different degrees of sex chromosme divergence
 Select to work on one of the following species.  
-**[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard.  
 **[Vulpes vulpes](https://www.inaturalist.org/taxa/42069-Vulpes-vulpes)** - Red Fox.  
+**[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard.  
 **[Lepidodactylus listeri](https://www.inaturalist.org/taxa/34352-Lepidodactylus-listeri)** - Christmas Island gecko.  
 **[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko.  
   
 The first two species have haplotype phased assemblies in the INSDC record, so you can search for them as in practical 1 of today, identify both haplotypes, copy the download link from the FTP page and download the files.
 
 <details>
-  <summary>**Anniella stebbinsi</summary>
-  
+  <summary>Vulpes vulpes</summary>
+<img width="1510" height="1190" alt="Vulpesvulpes1" src="https://github.com/user-attachments/assets/4066c7c3-98c3-4583-bbc3-e1341a8632ab" />
+<img width="857" height="795" alt="Vulpesvulpes2" src="https://github.com/user-attachments/assets/1ea67f86-fcd8-495d-9885-2e30a9abff98" />
+<img width="1166" height="432" alt="Vulpesvulpes3" src="https://github.com/user-attachments/assets/f2c0e5d0-ae5c-4246-9f9e-de1b450f14e6" />
+
   ```
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
@@ -47,30 +50,25 @@ bgzip rAnnSte1.2_.hap2.fasta
 </details>
 
 
-```
- curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109091.1&rettype=fasta&retmode=text"
-mv CM109091.1.fasta XChrom.fasta
- curl -o CM109092.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109092.1&rettype=fasta&retmode=text"
-mv CM109092.1.fasta YChrom.fasta
-
-```
-For easier handling we will rename the files, SCINKD2 also has the following restriction so we take care of this as well
-File naming restriction: Both input haplotype fasta files MUST be bgzipped and MUST end in ".hap1.fasta.gz" and ".hap2.fasta.gz"
-
-```
-```
+<details>
+  <summary>Anniella stebbinsi</summary>
 
 
-## 04a. Option 1 Align X and Y chromosome online
-Align the X and Y chromosome sequence online with **[DGenies](https://dgenies.toulouse.inra.fr)**  
+  ```
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
 
-```
-https://www.ncbi.nlm.nih.gov/genome/](https://dgenies.toulouse.inra.fr
-```
-Click on the "RUN" tab  
+mv GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz rAnnSte1.2_.hap1.fasta.gz
+mv GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz rAnnSte1.2_.hap2.fasta.gz
+
+gunzip rAnnSte1.2_.hap1.fasta.gz
+gunzip rAnnSte1.2_.hap2.fasta.gz
+
+bgzip rAnnSte1.2_.hap1.fasta
+bgzip rAnnSte1.2_.hap2.fasta
+  ```
+</details>
 
 
-<img width="1293" height="831" alt="Screenshot 2025-09-29 at 17 12 08" src="https://github.com/user-attachments/assets/bbc23361-b8be-4c76-b17b-817a79c2941d" />
 
-  
-Select the fasta files you downloaded previously and fill in the required information.  
+
