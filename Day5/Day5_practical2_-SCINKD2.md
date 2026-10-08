@@ -29,6 +29,8 @@ Select to work on one of the following species.
 **[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko.  
   
 The first two species have haplotype phased assemblies in the INSDC record, so you can search for them as in practical 1 of today, identify both haplotypes, copy the download link from the FTP page and download the files.
+SCINKD2 has the following requirements to accept the genome files:
+File naming restriction: Both input haplotype fasta files MUST be bgzipped and MUST end in ".hap1.fasta.gz" and ".hap2.fasta.gz"
 
 <details>
   <summary>Vulpes vulpes</summary>
@@ -78,9 +80,22 @@ For simplicity we placed them for you in the folder for day5
 <details>
   <summary>Lepidodactylus listeri</summary>
 
-
   ```
-cp 
+cp ~/Share/day5/SCINKD/genomes/LepLis/Lepidodactylus_listeri_hic.hap1.fasta .
+bgzip LepLis.hap1.fasta
+cp ~/Share/day5/SCINKD/genomes/LepLis/Lepidodactylus_listeri_hic.hap2.fasta .
+bgzip LepLisic.hap2.fasta
   ```
 </details>
 
+<details>
+  <summary>Sphaerodactylus notatus</summary>
+
+  ```
+cp ~/Share/day5/SCINKD/genomes/SphNot/S_notatus_TG4245_Omni-C_hap1.map.pretext.fasta .
+mv S_notatus_TG4245_Omni-C_hap1.map.pretext.fasta SphNot.hap1.fasta
+bgzip SphNot.hap1.fasta
+cp ~/Share/day5/SCINKD/genomes/SphNot/S_notatus_TG4245_Omni-C_hap2.map.pretext.fasta .
+bgzip Lepidodactylus_listeri_hic.hap2.fasta
+  ```
+</details>
