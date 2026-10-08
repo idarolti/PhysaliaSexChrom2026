@@ -80,7 +80,7 @@ cp ~/Share/day3/scinkd3/SRR15111* .
 ```
 The individuals SRR15111480, SRR15111481 and SRR15111482 are males, the individuals SRR15111473, SRR15111474 and SRR15111475 are females
 
-Now modify the config file in the SCIND3 directory to match the genome name, the prefix and the sample names. Change all memory settings to "2"
+Now modify the config file in the SCINKD3 directory to match the genome name, the prefix and the sample names. Change all memory settings to "2"
 
 <details>
 
