@@ -20,11 +20,11 @@ Don't forget to open a Filezilla connection, and change the IP to today's addres
 
 ## 02. Download genome assemblies
 We will explore how this tool works across species with different degrees of sex chromosme divergence
-Select to work on one of the following species. 
-**[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard. 
-**[Vulpes vulpes](https://www.inaturalist.org/taxa/42069-Vulpes-vulpes)** - Red Fox. 
-**[Lepidodactylus listeri](https://www.inaturalist.org/taxa/34352-Lepidodactylus-listeri)** - Christmas Island gecko. 
-**[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko. 
+Select to work on one of the following species.  
+**[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard.  
+**[Vulpes vulpes](https://www.inaturalist.org/taxa/42069-Vulpes-vulpes)** - Red Fox.  
+**[Lepidodactylus listeri](https://www.inaturalist.org/taxa/34352-Lepidodactylus-listeri)** - Christmas Island gecko.  
+**[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko.  
   
 
 
