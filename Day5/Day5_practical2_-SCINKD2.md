@@ -122,10 +122,15 @@ nano SCINKD/config.json
 Ctrl+O
 Ctrl+X
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
-time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
+### time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile ### true run, don't execute
 ```
 **ONCE MORE THIS WILL FAIL DUE TO LIMITED POWER OF THE CLUSTER**
 
+So we have prepared the intermediate steps for you, do the following to get those and to generate the final plots
+
+```
+minimap2 -x asm5 -t2 -c --eqx --secondary=no Anniella_stebbinsi_HiFi_2024.asm.hic.hap1.fasta.gz Anniella_stebbinsi_HiFi_2024.asm.hic.hap2.fasta.gz > Anniella_stebbinsi_HiFi_2024.asm.hic.paf
+minimap2 -x asm5 -t2 -c --eqx --secondary=no mVulVul1.hap1.fasta.gz mVulVul1.hap2.fasta.gz > mVulVul1.asm.hic.paf
 
 
-
+```
