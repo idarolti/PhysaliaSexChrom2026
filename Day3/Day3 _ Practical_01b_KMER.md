@@ -151,7 +151,12 @@ Which chromosome looks like a sex chromosome and what type of heterogamety do we
 
 <summary>Final Plots</summary>
 
+<img width="1600" height="600" alt="SCINKD3 males" src="https://github.com/user-attachments/assets/b7068d7d-5eb7-40d9-9a8f-ea74a5cd8f12" />
+<img width="1600" height="600" alt="SCINKD3 females" src="https://github.com/user-attachments/assets/3fc36fd2-22a3-4957-8954-b71a8698c022" />
 
+<img width="1800" height="750" alt="SCINKD3 dotplot" src="https://github.com/user-attachments/assets/5b66663f-5efb-4745-9205-3158e06aad8d" />
+
+You can search NCBI for the chromosome name "NC_059427.1" and you will see that this is chromosome 3. If you check in the original paper (**[Pinto et al 2022](https://doi.org/10.1093/jhered/esac016)**), you will see that they also had found chromosome 3 as a XY chromosome system.
 </details>
 
 
