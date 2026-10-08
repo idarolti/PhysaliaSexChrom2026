@@ -29,9 +29,8 @@ Select to work on one of the following species.
 The first two species have haplotype phased assemblies in the INSDC record, so you can search for them as in practical 1 of today, identify both haplotypes, copy the download link from the FTP page and download the files.
 
 <details>
-  <summary>Anniella stebbinsi</summary>
+  <summary>**Anniella stebbinsi</summary>
   
-  ### Anniella stebbinsi
   ```
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
