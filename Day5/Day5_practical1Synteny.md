@@ -29,7 +29,7 @@ Open your terminal application as usual, connect to the server as usual, replace
 ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
 mkdir day5
 cd day5
-conda activate /opt/conda-envs/day2
+conda activate /opt/conda-envs/day5
 ```
 
 Don't forget to open a Filezilla connection, and change the IP to today's address
