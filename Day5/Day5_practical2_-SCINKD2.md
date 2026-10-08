@@ -28,6 +28,26 @@ Select to work on one of the following species.
   
 The first two species have haplotype phased assemblies in the INSDC record, so you can search for them as in practical 1 of today, identify both haplotypes, copy the download link from the FTP page and download the files.
 
+<details>
+  <summary>Anniella stebbinsi</summary>
+  
+  ### Anniella stebbinsi
+  ```
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
+
+mv GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz rAnnSte1.2_.hap1.fasta.gz
+mv GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz rAnnSte1.2_.hap2.fasta.gz
+
+gunzip rAnnSte1.2_.hap1.fasta.gz
+gunzip rAnnSte1.2_.hap2.fasta.gz
+
+bgzip rAnnSte1.2_.hap1.fasta
+bgzip rAnnSte1.2_.hap2.fasta
+  ```
+</details>
+
+
 ```
  curl -o CM109091.1.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CM109091.1&rettype=fasta&retmode=text"
 mv CM109091.1.fasta XChrom.fasta
