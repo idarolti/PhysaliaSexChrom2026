@@ -35,17 +35,18 @@ The first two species have haplotype phased assemblies in the INSDC record, so y
 <img width="1166" height="432" alt="Vulpesvulpes3" src="https://github.com/user-attachments/assets/f2c0e5d0-ae5c-4246-9f9e-de1b450f14e6" />
 
   ```
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/964/106/925/GCA_964106925.2_mVulVul1.hap2.2/GCA_964106925.2_mVulVul1.hap2.2_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/964/106/825/GCA_964106825.2_mVulVul1.hap1.2/GCA_964106825.2_mVulVul1.hap1.2_genomic.fna.gz
 
-mv GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz rAnnSte1.2_.hap1.fasta.gz
-mv GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz rAnnSte1.2_.hap2.fasta.gz
+mv GCA_964106825.2_mVulVul1.hap1.2_genomic.fna.gz mVulVul1.hap1.fasta.gz
+mv GCA_964106925.2_mVulVul1.hap2.2_genomic.fna.gz mVulVul1.hap2.fasta.gz
 
-gunzip rAnnSte1.2_.hap1.fasta.gz
-gunzip rAnnSte1.2_.hap2.fasta.gz
+gunzip mVulVul1.hap1.fasta.gz
+gunzip mVulVul1.hap2.fasta.gz
 
-bgzip rAnnSte1.2_.hap1.fasta
-bgzip rAnnSte1.2_.hap2.fasta
+bgzip mVulVul1.hap1.fasta.gz
+bgzip mVulVul1.hap2.fasta.gz
+
   ```
 </details>
 
