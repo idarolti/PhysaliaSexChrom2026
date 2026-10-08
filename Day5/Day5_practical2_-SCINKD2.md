@@ -81,10 +81,12 @@ For simplicity we placed them for you in the folder for day5
   <summary>Lepidodactylus listeri</summary>
 
   ```
-cp ~/Share/day5/SCINKD/genomes/LepLis/Lepidodactylus_listeri_hic.hap1.fasta .
+cp ~/Share/day5/SCINKD2/genomes/LepLis/Lepidodactylus_listeri_hic.hap1.fasta .
+mv Lepidodactylus_listeri_hic.hap1.fasta LepLis.hap1.fasta
 bgzip LepLis.hap1.fasta
-cp ~/Share/day5/SCINKD/genomes/LepLis/Lepidodactylus_listeri_hic.hap2.fasta .
-bgzip LepLisic.hap2.fasta
+cp ~/Share/day5/SCINKD2/genomes/LepLis/Lepidodactylus_listeri_hic.hap2.fasta .
+mv Lepidodactylus_listeri_hic.hap2.fasta LepLis.hap2.fasta
+bgzip LepLis.hap2.fasta
   ```
 </details>
 
@@ -92,10 +94,10 @@ bgzip LepLisic.hap2.fasta
   <summary>Sphaerodactylus notatus</summary>
 
   ```
-cp ~/Share/day5/SCINKD/genomes/SphNot/S_notatus_TG4245_Omni-C_hap1.map.pretext.fasta .
+cp ~/Share/day5/SCINKD2/genomes/SphNot/S_notatus_TG4245_Omni-C_hap1.map.pretext.fasta .
 mv S_notatus_TG4245_Omni-C_hap1.map.pretext.fasta SphNot.hap1.fasta
 bgzip SphNot.hap1.fasta
-cp ~/Share/day5/SCINKD/genomes/SphNot/S_notatus_TG4245_Omni-C_hap2.map.pretext.fasta .
+cp ~/Share/day5/SCINKD2/genomes/SphNot/S_notatus_TG4245_Omni-C_hap2.map.pretext.fasta .
 bgzip Lepidodactylus_listeri_hic.hap2.fasta
   ```
 </details>
