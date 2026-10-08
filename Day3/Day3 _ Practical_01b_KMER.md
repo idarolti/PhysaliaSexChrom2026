@@ -97,6 +97,7 @@ Now modify the config file in the SCIND3 directory to match the genome name, the
 
 <summary>Solution Modify Config File</summary>
 You can either download the file to your machine and modify it with a text editor of your choice or use nano in the terminal to change the text to the one below
+
 ```
 nano SCINKD3/config_SCINKD.v3.1.5.json
 {
@@ -123,11 +124,13 @@ nano SCINKD3/config_SCINKD.v3.1.5.json
 	"SRR15111475"]
 
 }
+
 Ctrl+O
 Ctrl+X
 ```
 
 </details>
+
 
 
 ### C. Start the Run
