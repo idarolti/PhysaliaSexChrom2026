@@ -34,7 +34,7 @@ for f in /home/ubuntu/Share/day1/01.quality_trimming/raw_reads/*fastq; do fastqc
 This software uses as input the fastqc.zip files produced by FastQC. After running, download the .html output file to your local machine to visualize the results in a web browser.
 
 ```
-multiqc ./ -o ./
+multiqc ./ --outdir ./
 ```
 
 After running, download the .html output file to your local machine to visualize the results in a web browser.
@@ -116,7 +116,7 @@ cd ../
 mkdir 02.read_alignments
 cd 02.read_alignments
 
-bowtie2 -p4 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta \
+bowtie2 -p2 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta \
    -1 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_female1_R1_subset.fastq \
    -2 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_female1_R2_subset.fastq \
    --no-mixed --no-discordant \
@@ -156,7 +156,7 @@ Alternatively, can filter alignment files by uniquely mapping reads (Bowtie2 XS 
 <summary>🔑 View Solution</summary>
 
 ```
-bowtie2 -p4 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta \
+bowtie2 -p2 -x /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta \
    -1 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R1_subset.fastq \
    -2 /home/ubuntu/Share/day1/02.read_mapping/reads/Poecilia_picta_male2_R2_subset.fastq \
    --no-mixed --no-discordant \
@@ -189,11 +189,11 @@ Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.rea
 <summary>🔑 View Solution</summary>
 
 ```
-bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr8.bam -o Poecilia_picta_male2_chr8.bw
-bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr12.bam -o Poecilia_picta_male2_chr12.bw
+bamCoverage -p 2 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr8.bam -o Poecilia_picta_male2_chr8.bw
+bamCoverage -p 2 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_male2_chr12.bam -o Poecilia_picta_male2_chr12.bw
 
-bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr8.bam -o Poecilia_picta_female1_chr8.bw
-bamCoverage -p 8 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr12.bam -o Poecilia_picta_female1_chr12.bw
+bamCoverage -p 2 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr8.bam -o Poecilia_picta_female1_chr8.bw
+bamCoverage -p 2 -b /home/ubuntu/Share/day1/02.read_mapping/read_alignments/Poecilia_picta_female1_chr12.bam -o Poecilia_picta_female1_chr12.bw
 
 
 scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna ~/Desktop
@@ -231,13 +231,13 @@ Call SNPs using [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/artic
 ```
 mkdir 03.snp_calling
 
-picard AddOrReplaceReadGroups I=./02.read_alignments/Poecilia_picta_female1_subset_mapq.bam O=./02.read_alignments/Poecilia_picta_female1_subset_mapq_RG.bam RGID=1 RGLB=lib1 RGPL=illumina RGPU=unit1 RGSM=picta_female1
+picard AddOrReplaceReadGroups I=./02.read_alignments/Poecilia_picta_female1_subset_mapq30.bam O=./02.read_alignments/Poecilia_picta_female1_subset_mapq30_RG.bam RGID=1 RGLB=lib1 RGPL=illumina RGPU=unit1 RGSM=picta_female1
 
-samtools index ./02.read_alignments/Poecilia_picta_female1_subset_mapq_RG.bam
+samtools index ./02.read_alignments/Poecilia_picta_female1_subset_mapq30_RG.bam
 
 gatk HaplotypeCaller \
    -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
-   -I ./02.read_alignments/Poecilia_picta_female1_subset_mapq_RG.bam \
+   -I ./02.read_alignments/Poecilia_picta_female1_subset_mapq30_RG.bam \
    -O ./03.snp_calling/Poecilia_picta_female1_subset.gvcf --emit-ref-confidence GVCF \
    --min-base-quality-score 30 --pcr-indel-model NONE --sample-name picta_female1
 ```
