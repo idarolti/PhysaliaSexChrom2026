@@ -23,10 +23,10 @@ Don't forget to open a Filezilla connection, and change the IP to today's addres
 ## 02. Download and prepare genome assemblies
 We will explore how this tool works across species with different degrees of sex chromosme divergence
 Select to work on one of the following species.  
-**[Vulpes vulpes](https://www.inaturalist.org/taxa/42069-Vulpes-vulpes)** - Red Fox.  
-**[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard.  
-**[Lepidodactylus listeri](https://www.inaturalist.org/taxa/34352-Lepidodactylus-listeri)** - Christmas Island gecko.  
-**[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko.  
+**[Vulpes vulpes](https://www.inaturalist.org/taxa/42069-Vulpes-vulpes)** - Red Fox (17 chromosomes).  
+**[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard (10 chromosomes).  
+**[Lepidodactylus listeri](https://www.inaturalist.org/taxa/34352-Lepidodactylus-listeri)** - Christmas Island gecko (22 chromosomes).  
+**[Sphaerodactylus notatus](https://www.inaturalist.org/taxa/33689-Sphaerodactylus-notatus)** - Florida Reef Gecko (17 chromosomes).  
   
 The first two species have haplotype phased assemblies in the INSDC record, so you can search for them as in practical 1 of today, identify both haplotypes, copy the download link from the FTP page and download the files.
 SCINKD2 has the following requirements to accept the genome files:
@@ -48,8 +48,8 @@ mv GCA_964106925.2_mVulVul1.hap2.2_genomic.fna.gz mVulVul1.hap2.fasta.gz
 gunzip mVulVul1.hap1.fasta.gz
 gunzip mVulVul1.hap2.fasta.gz
 
-bgzip mVulVul1.hap1.fasta.gz
-bgzip mVulVul1.hap2.fasta.gz
+bgzip mVulVul1.hap1.fasta
+bgzip mVulVul1.hap2.fasta
 
   ```
 </details>
@@ -63,14 +63,14 @@ bgzip mVulVul1.hap2.fasta.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
 
-mv GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz rAnnSte1.2_.hap1.fasta.gz
-mv GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz rAnnSte1.2_.hap2.fasta.gz
+mv GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz rAnnSte1.2.hap1.fasta.gz
+mv GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz rAnnSte1.2.hap2.fasta.gz
 
-gunzip rAnnSte1.2_.hap1.fasta.gz
-gunzip rAnnSte1.2_.hap2.fasta.gz
+gunzip rAnnSte1.2.hap1.fasta.gz
+gunzip rAnnSte1.2.hap2.fasta.gz
 
-bgzip rAnnSte1.2_.hap1.fasta
-bgzip rAnnSte1.2_.hap2.fasta
+bgzip rAnnSte1.2.hap1.fasta
+bgzip rAnnSte1.2.hap2.fasta
   ```
 </details>
 
@@ -101,3 +101,31 @@ cp ~/Share/day5/SCINKD2/genomes/SphNot/S_notatus_TG4245_Omni-C_hap2.map.pretext.
 bgzip Lepidodactylus_listeri_hic.hap2.fasta
   ```
 </details>
+
+## 03. Run analysis
+We will here show the example for **_Vulpus_ _vulpus_**
+For this you need to modify the config file to your genome of interest, similar to the exercise on day3; set the cores to 1 in the config and give snakemake 2
+Please again only use two cores.
+Number of chromosomes for _Vulpus vulpus_ is 17
+
+```
+mkdir SCINKD
+cp /opt/course-software/SCINKD/config.json SCINKD/
+nano SCINKD/config.json
+{
+	"per_job_threads": 1,
+	"per_job_memory": 1,
+	"ChrNum": 17,
+
+	"prefix": "mVulVul1"
+}
+Ctrl+O
+Ctrl+X
+time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
+time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
+```
+**ONCE MORE THIS WILL FAIL DUE TO LIMITED POWER OF THE CLUSTER**
+
+
+
+
