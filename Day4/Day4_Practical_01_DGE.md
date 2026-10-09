@@ -162,7 +162,7 @@ Copy the stringtie merged.gtf file based on the full dataset, then create a file
 ```
 cd ../stringtie
 mkdir fullset
-cp ~/Share/day4/willow/stringtie_gtfs/fullset/merged.gtf ./fullset/
+cp ~/Share/day4/willow/stringtie/fullset/merged.gtf ./fullset/
 cd ../scripts
 python3 extract-gene-lengths.py ../htseq/catkin/read_counts_catkin.txt ../stringtie/fullset/merged.gtf ../stringtie/fullset/gene_length.txt
 head ../stringtie/fullset/gene_length.txt
