@@ -12,7 +12,7 @@ cd dosage_compensation
 
 ## 01. Quantify gene expression
 
-Obtain read counts using **[Salmon](https://combine-lab.github.io/salmon/)**. Salmon is a fast quasi-mapping approach that directly maps reads to the transcriptome without full base-to-base alignment, drastically reducing runtime and storage compared to other aligners. It does take a while to run, so you can copy the outputs directly to your working folder.
+Obtain read counts using **[Salmon](https://salmon.readthedocs.io/en/latest/index.html)**. Salmon is a fast quasi-mapping approach that directly maps reads to the transcriptome without full base-to-base alignment, drastically reducing runtime and storage compared to other aligners. It does take a while to run, so you can copy the outputs directly to your working folder.
 
 <img width="760" height="517" alt="Screenshot 2025-10-04 at 14 43 01" src="https://github.com/user-attachments/assets/166c0336-0fd1-428d-8e1b-28e39d942279" />
 
