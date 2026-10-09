@@ -33,7 +33,7 @@ SCINKD2 has the following requirements to accept the genome files:
 File naming restriction: Both input haplotype fasta files MUST be bgzipped and MUST end in ".hap1.fasta.gz" and ".hap2.fasta.gz"
 
 <details>
-  <summary>Vulpes vulpes</summary>
+  <summary>_**Vulpes vulpes**_</summary>
 <img width="1510" height="1190" alt="Vulpesvulpes1" src="https://github.com/user-attachments/assets/4066c7c3-98c3-4583-bbc3-e1341a8632ab" />
 <img width="857" height="795" alt="Vulpesvulpes2" src="https://github.com/user-attachments/assets/1ea67f86-fcd8-495d-9885-2e30a9abff98" />
 <img width="1166" height="432" alt="Vulpesvulpes3" src="https://github.com/user-attachments/assets/f2c0e5d0-ae5c-4246-9f9e-de1b450f14e6" />
