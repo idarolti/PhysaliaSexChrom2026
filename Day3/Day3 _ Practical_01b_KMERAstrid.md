@@ -129,24 +129,41 @@ Ctrl+X
 
 ### C. Start the Run
 
+With SnakeMake you can first launch a dry run which checks if all is in place to run the workflow
 ```
-snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cores 2
+cd ~/day3/scinkd3
+snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cores 2 -np 
 ```
 
-If successfully started, snakemake will let you know what it is doing, the workflow will run for quite some time, make sure to have it started before the long break.
-SCINKD3 will run through the steps illustrated below, you can also see them with inspecting the snakefile
+If this looks fine, you could start the workflow with this
+```
+snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cores 2 
+```
+**CAUTION: Since there is only 2 cores per student, this will FAIL.**
+
+
+Successfully started, snakemake will let you know what it is doing, the workflow would run for quite some time so in the sake of time and due to limited resources we will not run it.
+SCINKD3 will run through the steps illustrated below, you can also see them with inspecting the snakefile, let's do this
+
 ```
 cat /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile
 ```
-SCINKD3 build on the Kmer tool **[Meryl](https://github.com/marbl/meryl)** to count kmers first in each sample followed by intersecting kmers between individuals of the same sex and comparing the combined female and male Kmer catalog to identify kmers specific to each sex. It then uses the Meryl function meryl-lookup to identify reads that contain sex-specific kmers and then places those reads onto the reference genome using **[Minimap2](https://github.com/lh3/minimap2)**. The results are presented as read coverage per sex of sex-specific reads along the genome as well as a plot the depicts the chromosomes with an accumulation of sex-specific reads. 
-**CAUTION: Since there is only 2 cores per student, this will FAIL.**
-Meryl is quite memory intense and needs more resources then you have access to, so you can download the data we have run outside of the Amazon server
+SCINKD3 builds on the Kmer tool **[Meryl](https://github.com/marbl/meryl)** to count kmers first in each sample followed by intersecting kmers between individuals of the same sex and comparing the combined female and male Kmer catalog to identify kmers specific to each sex. It then uses the Meryl function "meryl-lookup" to identify reads that contain sex-specific kmers and then places those reads onto the reference genome using the read aligner **[Minimap2](https://github.com/lh3/minimap2)**. Ultimately, the results are presented as read coverage per sex of sex-specific reads along the genome as well as a plot that depicts the chromosomes with an accumulation of sex-specific reads. 
 
 <img width="2070" height="1499" alt="Workflow" src="https://github.com/user-attachments/assets/72877682-4592-4bcc-af20-9456b50fdf4d" />
 
+Meryl is quite memory intense and needs more resources then you have access to, so you can download the data we have run outside of the Amazon server.
+SnakeMake has the functionality to pick up a run at intermediate steps, so this is what we will do here
+
+```
+cd ~/day3/scinkd3 
+cp ~/Share/day3/scinkd3/SCINKD3RESULTS/* .
+snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cores 2 
+```
+This should generate the output plots. If this is not working for you, you can also find the plots already prepared and download them in the next step.
 
 ### D. Inspect the output
-You can find the files SCINKD3.males.png, SCINKD3.females.png and SCINKD3.dotplot.png here
+The SnakeMake run should have produced the final plots in your day3/sckind3 directory. Else, uou can find the files SCINKD3.males.png, SCINKD3.females.png and SCINKD3.dotplot.png here
 ```
 ~/Share/day3/scinkd3/outputplots
 ```
