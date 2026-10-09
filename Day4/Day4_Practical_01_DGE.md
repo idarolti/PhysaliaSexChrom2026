@@ -9,6 +9,9 @@ ssh -i ~/YOURLOCALFOLDER/scverse1.pem user5@44.251.209.2
 mkdir day4
 cd day4
 conda activate /opt/conda-envs/day4
+
+mkdir differential_gene_expression
+cd differential_gene_expression
 ```
 
 ## 01. Map RNA-seq reads
@@ -19,11 +22,6 @@ Generate genome index. Takes a while to run (SKIP)!
 
 ```
 hisat2-build -f <INPUT_GENOME>.fa <INPUT_GENOME>
-```
-
-```
-mkdir differential_gene_expression
-cd differential_gene_expression
 ```
 
 Align paired-end reads to the genome, then sort.
@@ -49,11 +47,34 @@ HISAT2 options:
 
 --dta/--downstream-transcriptome-assembly: report alignments tailored for transcript assemblers including StringTie. With this option, HISAT2 requires longer anchor lengths for de novo discovery of splice sites. This leads to fewer alignments with short-anchors, which helps transcript assemblers improve significantly in computation and memory usage.
 
-Run hisat2 and sorting for all the samples.
+**Task: Run HISAT2 and alignment sorting for all the samples**
+
+Write a bash loop to process all paired-end sequencing samples in ../reads/:
+
+1. Store the paths for the reads directory and the genome index prefix in bash variables.
+2. Loop over each forward read file (*_R1.fastq).
+3. Extract the sample prefix (e.g., female1_catkin) from the filename.
+4. Construct the matching reverse read filename (_R2.fastq).
+5. Run hisat2 to align the paired reads and save the output as a .sam file.
+6. Convert the .sam file into a coordinate-sorted .bam file with samtools, then remove the intermediate .sam file.
+
+<details>
+<summary>💡 Need a hint?</summary>
+
+1. Store paths using reads_dir="../reads" and genome_index="$HOME/Share/day4/willow/genome/genome_assembly_1k"
+2. Iterate with for r1 in ${reads_dir}/*_R1.fastq; do ... done.
+3. Strip the folder path and _R1.fastq suffix using base=$(basename "$r1" "_R1.fastq").
+4. Build the paired filename using: r2="${reads_dir}/${base}_R2.fastq"
+5. Specify inputs with -1 "$r1" and -2 "$r2", set parameters (-q --no-discordant --no-mixed --no-unal --dta), and write output to -S "${base}.sam"
+6. Define sorted bam file as basename_coordsorted.bam. Pipe the sam file into samtools sort.
+
+</details>
+
+<details>
+<summary>🔑 View Solution</summary>
 
 ```
 reads_dir="../reads"
-# Genome index prefix
 genome_index="~/Share/day4/willow/genome/genome_assembly_1k"
 
 # Loop over all fastq files
@@ -63,6 +84,8 @@ for r1 in ${reads_dir}/*_R1.fastq; do
     r2="${reads_dir}/${base}_R2.fastq"
     sam="${base}.sam"
     bam_coordsorted="${base}_coordsorted.bam"
+
+	echo "Processing sample: ${base}..."
 
     # Run HISAT2 alignment
     hisat2 "$genome_index" -1 "$r1" -2 "$r2" -q --no-discordant --no-mixed --no-unal --dta -S "$sam"
@@ -74,6 +97,7 @@ for r1 in ${reads_dir}/*_R1.fastq; do
     rm "$sam"
 done
 ```
+</details>
 
 If hisat2 is taking too long to run, then copy the outputs to your folder
 
