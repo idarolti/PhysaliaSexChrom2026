@@ -157,7 +157,7 @@ SnakeMake has the functionality to pick up a run at intermediate steps, so this 
 
 ```
 cd ~/day3/scinkd3 
-cp ~/Share/day3/scinkd3/SCINKD3RESULTS/* .
+cp -r ~/Share/day3/scinkd3/SCINKD3RESULTS/* .
 snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cores 2 
 ```
 This should generate the output plots. If this is not working for you, you can also find the plots already prepared and download them in the next step.
