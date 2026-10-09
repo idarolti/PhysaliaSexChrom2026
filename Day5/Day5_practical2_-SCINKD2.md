@@ -123,14 +123,15 @@ nano SCINKD/config.json
 }
 Ctrl+O
 Ctrl+X
-time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
-### time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile ### true run, don't execute
 ```
-**THE CLUSTER HAS NOT THE RESOURCES TO RUN THIS SO INSTEAD DO THIS**
-We have prepared the intermediate steps for you, do the following to get those and to generate the final plots. Snakemake can restart from an interruppted workflow
 
+  
+**THE CLUSTER HAS NOT THE RESOURCES TO RUN THIS SO INSTEAD DO THIS**
+As on day3, first do a dry run.
+We have prepared the intermediate steps for you, do the following to get those and to generate the final plots. Snakemake can restart from an interruppted workflow
 ```
-cp ~/Share/day5/SCINKD2/RESULTS_VULVUL/* .
+time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
+cp ~/Share/day5/SCINKD2/scinkd2_VulVul/RESULTS/* .
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
 ```
 
@@ -145,7 +146,8 @@ minimap2 -x asm5 -t1 -c --eqx --secondary=no SphNot.hap1.fasta.gz SphNot.hap2.fa
 If the command above fails, you can copy those files from here to your local machine
 
 ```
-~/Share/day5/SCINKD2/RESULTS_ASM/
+~/Share/day5/SCINKD2/RESULTS_ASM/ ##chose the paf file for your species
+~/Share/day5/SCINKD2/
 ```
 
 Can you identify the sex chromosomes from the plot?
@@ -153,7 +155,17 @@ Compare your plot files to those in **[Pinto et al. 2026 MBE](https://doi.org/10
 
 
 ## 04. Plot data
-Transfer the  files with the following file endings to your local machine: .results, .fai, .bed
+Transfer the  files with the following file endings to your local machine: .results, .fai, .bed from here
+
+```
+~/Share/day5/SCINKD2/PAFFILES/ ##chose the paf file for your species
+##chose your results files from one of the four species
+~/Share/day5/SCINKD2/scinkd2_VulVul/RESULTS/
+~/Share/day5/SCINKD2/scinkd2_AnnSte/RESULTS/
+~/Share/day5/SCINKD2/scinkd2_LepLis/RESULTS/
+~/Share/day5/SCINKD2/scinkd2_SphNot/RESULTS/
+```
+
 
 Open RStudio and load the script PlotSCINKD2.R from this repository
 
