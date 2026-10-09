@@ -15,7 +15,7 @@ conda activate /opt/conda-envs/day4
 
 Mapping reads can be done with **[HISAT2](https://daehwankimlab.github.io/hisat2/)**, a fast and sensitive alignment program for mapping next-generation sequencing reads. 
 
-Generate genome index. Take a while to run (SKIP)!
+Generate genome index. Takes a while to run (SKIP)!
 
 ```
 hisat2-build -f <INPUT_GENOME>.fa <INPUT_GENOME>
