@@ -6,8 +6,8 @@
 A lot of the steps will be done in R, so prepare a work folder on your local machine.
 
 ```
-mkdir ~Desktop/physalia/day4/dosage_compensation
-cd ~Desktop/physalia/day4/dosage_compensation
+mkdir dosage_compensation
+cd dosage_compensation
 ```
 
 ## 01. Quantify gene expression
