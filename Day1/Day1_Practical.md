@@ -241,7 +241,7 @@ gatk HaplotypeCaller \
    -O ./03.snp_calling/Poecilia_picta_female1_subset.gvcf --emit-ref-confidence GVCF \
    --min-base-quality-score 30 --pcr-indel-model NONE --sample-name picta_female1
 
-vcftools --vcf Poecilia_picta_female1_subset.gvcf --recode --stdout | grep -v '^#' | head
+vcftools --vcf Poecilia_picta_female1_subset.gvcf --recode --stdout | grep -v '^##' | head
 ```
 
 Perform genotyping of variants using [GenotypeGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/13832766863259-GenotypeGVCFs). The next steps run more quickly, so we can use as input file a gvcf based on an entire chromosome.
