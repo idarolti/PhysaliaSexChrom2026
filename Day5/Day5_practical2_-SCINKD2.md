@@ -21,7 +21,7 @@ Don't forget to open a Filezilla connection, and change the IP to today's addres
 
 
 ## 02. Download and prepare genome assemblies
-We will explore how this tool works across species with different degrees of sex chromosme divergence
+We will explore how this tool works across species with different degrees of sex chromosome divergence.  
 Select to work on one of the following species.  
 **[Vulpes vulpes](https://www.inaturalist.org/taxa/42069-Vulpes-vulpes)** - Red Fox (17 chromosomes).  
 **[Anniella stebbinsi](https://www.inaturalist.org/taxa/479459-Anniella-stebbinsi)** - Southern California or San Diegan legless lizard (10 chromosomes).  
