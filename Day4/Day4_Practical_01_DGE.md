@@ -18,7 +18,7 @@ Mapping reads can be done with **[HISAT2](https://daehwankimlab.github.io/hisat2
 Generate genome index. Take a while to run (SKIP)!
 
 ```
-hisat2-build -f genome_assembly.fa genome_assembly
+hisat2-build -f <INPUT_GENOME>.fa <INPUT_GENOME>
 ```
 
 ```
