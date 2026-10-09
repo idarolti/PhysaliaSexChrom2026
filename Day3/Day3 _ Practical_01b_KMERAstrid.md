@@ -76,7 +76,7 @@ For the sake of time, we have prepared these already so you can simply copy them
 ```
 cp ~/Share/day3/scinkd3/SRR15111* .
 ```
-The individuals SRR15111480, SRR15111481 and SRR15111482 are males, the individuals SRR15111473, SRR15111474 and SRR15111475 are females
+The individuals SRR15111480 to SRR15111486 are males, the individuals SRR15111473 to SRR15111479 are females
 
 Now modify the config file in the SCINKD3 directory to match the genome name, the prefix and the sample names. Change all memory settings to "2"
 
@@ -105,7 +105,9 @@ nano SCINKD3/config_SCINKD.v3.1.5.json
 	"SRR15111481",
 	"SRR15111482",
 	"SRR15111483",
-	"SRR15111484"],
+	"SRR15111484",
+	"SRR15111485",
+	"SRR15111486"],
 
 	"females": [
 	"SRR15111473",
@@ -113,7 +115,7 @@ nano SCINKD3/config_SCINKD.v3.1.5.json
 	"SRR15111475",
 	"SRR15111476",
 	"SRR15111477",
-]
+	"SRR15111479"]
 
 }
 
