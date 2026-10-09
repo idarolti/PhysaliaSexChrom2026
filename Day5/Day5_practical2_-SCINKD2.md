@@ -60,17 +60,18 @@ bgzip mVulVul1.hap2.fasta
 
 
   ```
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/515/GCA_051312515.2_rAnnSte1.2_hap1/GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/051/312/545/GCA_051312545.2_rAnnSte1.2_hap2/GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz
 
-mv GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz rAnnSte1.2.hap1.fasta.gz
-mv GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz rAnnSte1.2.hap2.fasta.gz
+mv GCA_051312515.2_rAnnSte1.2_hap1_genomic.fna.gz rAnnSte1.2_.hap1.fasta.gz
+mv GCA_051312545.2_rAnnSte1.2_hap2_genomic.fna.gz rAnnSte1.2_.hap2.fasta.gz
 
-gunzip rAnnSte1.2.hap1.fasta.gz
-gunzip rAnnSte1.2.hap2.fasta.gz
+gunzip rAnnSte1.2_.hap1.fasta.gz
+gunzip rAnnSte1.2_.hap2.fasta.gz
 
-bgzip rAnnSte1.2.hap1.fasta
-bgzip rAnnSte1.2.hap2.fasta
+bgzip rAnnSte1.2_.hap1.fasta.gz
+bgzip rAnnSte1.2_.hap2.fasta.gz
   ```
 </details>
 
