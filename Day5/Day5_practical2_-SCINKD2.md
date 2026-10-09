@@ -131,7 +131,7 @@ As on day3, first do a dry run.
 We have prepared the intermediate steps for you, do the following to get those and to generate the final plots. Snakemake can restart from an interruppted workflow
 ```
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
-cp ~/Share/day5/SCINKD2/scinkd2_VulVul/RESULTS/* .
+cp -r ~/Share/day5/SCINKD2/scinkd2_VulVul/RESULTS/* .
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
 ```
 
