@@ -134,10 +134,10 @@ We will use **[VCFtools](https://vcftools.github.io)** to calculate Fst (fixatio
 
 Use the command vcftools with the following arguments:
 
-gzvcf : the input VCF file (Simmrg_astcal.final.vcf.gz)
-weir-fst-pop : a list of samples in each population. Use this command twice for two populations (i.e. a list of male and female samples)
-fst-window-size : size of windows to calculate Fst in (use 10000)
-out : name of output file (i.e. Simmrg)
+gzvcf : the input VCF file (Simmrg_astcal.final.vcf.gz)    
+weir-fst-pop : a list of samples in each population. Use this command twice for two populations (i.e. a list of male and female samples)    
+fst-window-size : size of windows to calculate Fst in (use 10000)    
+out : name of output file (i.e. Simmrg)    
 
 ```
 cd Fst
@@ -155,12 +155,12 @@ We will first generate a filtered input file that we will then further format wi
 
 This starts again with vcftools to create a plink file based on filtering of the VCF file. Run with the following arguments:
 
-gzvcf : the input VCF file (Simmrg_astcal.final.vcf.gz)
-plink : tells VCFtools to output a plink file
-remove-indels : keep only SNPs, not indels (insertions/deletions up to 50bp)
-max-missing : Set the maximum allowed number of samples with missing data at a site. This is not important in our case because the data has already been filtered to remove sites with any missing data, but good practice to set to 0.5 - we need sites present in both males and females.
-max-maf / maf : Include only sites with a Minor Allele Frequency greater than or equal to the "--maf" value and less than or equal to the "--max-maf" value. One of these options may be used without the other. Allele frequency is defined as the number of times an allele appears over all individuals at that site, divided by the total number of non-missing alleles at that site. Set --maf to 0.05 and --max-maf to 0.95.
-out : name of output file (i.e. Simmrg_step1)
+gzvcf : the input VCF file (Simmrg_astcal.final.vcf.gz)       
+plink : tells VCFtools to output a plink file    
+remove-indels : keep only SNPs, not indels (insertions/deletions up to 50bp)    
+max-missing : Set the maximum allowed number of samples with missing data at a site. This is not important in our case because the data has already been filtered to remove sites with any missing data, but good practice to set to 0.5 - we need sites present in both males and females.    
+max-maf / maf : Include only sites with a Minor Allele Frequency greater than or equal to the "--maf" value and less than or equal to the "--max-maf" value. One of these options may be used without the other. Allele frequency is defined as the number of times an allele appears over all individuals at that site, divided by the total number of non-missing alleles at that site. Set --maf to 0.05 and --max-maf to 0.95.    
+out : name of output file (i.e. Simmrg_step1)    
 
 ```
 cd GWAS
@@ -171,12 +171,12 @@ Now we run plink to summarise the SNPs into values for each sex. This used the s
 
 Run with the following arguments:
 
-file : your output from the previous step. Note there are 2 output files, but you can just write the outname used in the previous step, plink will find the file needed
-pheno : the list of samples, allocated to sexes
-make-bed : create a binary file set of the output with the filtering parameters stored. Good for logging.
-out : name of output file for this step
-no-web : don't check for plink updates
-allow-no-sex : We are using sex as a phenotype, and not a covariable in our data. Therefore we do not provide 'sex' information, and need to tell plink not to remove samples without sex information. 
+file : your output from the previous step. Note there are 2 output files, but you can just write the outname used in the previous step, plink will find the file needed    
+pheno : the list of samples, allocated to sexes    
+make-bed : create a binary file set of the output with the filtering parameters stored. Good for logging.    
+out : name of output file for this step    
+no-web : don't check for plink updates    
+allow-no-sex : We are using sex as a phenotype, and not a covariable in our data. Therefore we do not provide 'sex' information, and need to tell plink not to remove samples without sex information.     
 
 ```
 plink --file vcf_output --pheno sex.list --make-bed --out outname --noweb --allow-no-sex
@@ -184,9 +184,9 @@ plink --file vcf_output --pheno sex.list --make-bed --out outname --noweb --allo
 
 GEMMA performs the actual GWAS. Use the following commands:
 
-bfile : output from plink step (without suffix)
-lm : type of linear model to use (1: Wald test, 2: Likelihood ratio test, 3: Score test, 4: all). Use Likelihood ratio test.
-o : output file name.
+bfile : output from plink step (without suffix)    
+lm : type of linear model to use (1: Wald test, 2: Likelihood ratio test, 3: Score test, 4: all). Use Likelihood ratio test.    
+o : output file name.    
 
 ```
 gemma -bfile plink_output -lm lm -o outname
