@@ -129,7 +129,7 @@ cp ~/Share/day2/SNPbased/Simmrg_astcal.final.vcf.gz .
 
 **NOTE** If any steps fail, the relevant files can be copied from ~/Share/day2/SNPbased
 
-## 03. Calculate intersex Fst 
+### Analysis 1 Calculate intersex Fst 
 We will use **[VCFtools](https://vcftools.github.io)** to calculate Fst (fixation index, a measure of genetic differentiation between populations) between males and female in 10kb windows based on the variant file you learned how to generate yesterday   
 
 Use the command vcftools with the following arguments:
@@ -144,12 +144,12 @@ cd Fst
 vcftools --gzvcf vcf --weir-fst-pop sample_list1 --weir-fst-pop sample_list2 --fst-window-size windowsize --out outputname
 ```
 
-### Plot in R  
+#### Plot in R  
 Download the output file and the file astcal.fasta.fai. This in an index of the reference this data was mapped to, and contains the lengths of each chromosome.
 Download the Simmrg_Fst_plots.R script from day2/SNPbased and run in R.
 Remember to set your working directory to where the files are saved.  
 
-## 04. Run association test for sex with GEMMA   
+### Analysis 2 Run association test for sex with GEMMA   
 
 We will first generate a filtered input file that we will then further format with PLINK and then use as input for **[GEMMA](https://github.com/genetics-statistics/GEMMA)** which runs linear mixed models to test for an association between each SNP and sex.
 
@@ -194,7 +194,7 @@ gemma -bfile plink_output -lm lm -o outname
 
 Result is in the output/ folder. Download the assoc.txt file and the Simmrg_GWAS_plots.R script from day2/SNPbased and run in R. You will also need the file astcal.fasta.fai
 
-### Calculate male and female SNP density
+### Analysis 3 Calculate male and female SNP density
 We will format the SNP variant file with **[bcftools](https://samtools.github.io/bcftools/bcftools.html)** to subset female and male entries into separate files  
 We will then calculate SNP density in 10kb windows with VCFtools.
 
@@ -229,4 +229,4 @@ done
 Copy all files called *.snpden to your local machine  
 Open Rstudio, download the script Simmrg_SNPden_plots.R and load it in R. You will again need the reference index file.
 
-## Now do the same for Petrochromis polyodon (Petpol)
+#### Now do the same for Petrochromis polyodon (Petpol)
