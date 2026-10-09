@@ -5,7 +5,7 @@ For this part of the practical, we will use an example for quantifying gene expr
 ## 00. Prepare work folder for day 4
 
 ```
-ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@44.251.209.2
+ssh -i ~/YOURLOCALFOLDER/scverse1.pem user5@44.251.209.2
 mkdir day4
 cd day4
 conda activate /opt/conda-envs/day4
@@ -15,7 +15,7 @@ conda activate /opt/conda-envs/day4
 
 Mapping reads can be done with **[HISAT2](https://daehwankimlab.github.io/hisat2/)**, a fast and sensitive alignment program for mapping next-generation sequencing reads. 
 
-Generate genome index.
+Generate genome index. Take a while to run (SKIP)!
 
 ```
 hisat2-build -f genome_assembly.fa genome_assembly
