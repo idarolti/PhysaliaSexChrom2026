@@ -8,7 +8,7 @@ For this part of the practical, we will use an example for quantifying gene expr
 ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@44.251.209.2
 mkdir day4
 cd day4
-conda activate /home/ubuntu/miniconda3/envs/sexchr
+conda activate /opt/conda-envs/day4
 ```
 
 ## 01. Map RNA-seq reads
