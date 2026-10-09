@@ -22,7 +22,7 @@ cp -r ~/Share/day3/sexdetector/bam_files/ ./
 cp -r ~/Share/day3/sexdetector/scripts/ ./
 ```
 
-Genotyping will be done using **[reads2snp](https://kimura.univ-montp2.fr/PopPhyl/index.php?section=tools)**. This is preferred when using SEX-DETector with RNA-seq data because it allows for allelic expression biases (important for sex chromosome studies because Y or W alleles may be less expressed).
+Genotyping will be done using **[reads2snp]([https://kimura.univ-montp2.fr/PopPhyl/index.php?section=tools](https://kimura.univ-montp2.fr/popphyl/resources/tools/))**. This is preferred when using SEX-DETector with RNA-seq data because it allows for allelic expression biases (important for sex chromosome studies because Y or W alleles may be less expressed).
 
 Make a list of bam files to run reads2snp.
 
