@@ -80,7 +80,7 @@ If hisat2 is taking too long to run, then copy the outputs to your folder
 ```
 cd ~/day4/differential_gene_expression
 rm -r hisat
-cp -r ~/Share/test_day4/differential_gene_expression/hisat ./
+cp -r ~/Share/day4_test/differential_gene_expression/hisat ./
 ```
 
 ## 02. Extract gene coordinates
