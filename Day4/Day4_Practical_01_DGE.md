@@ -156,6 +156,7 @@ for bam in ${bam_dir}/*_coordsorted.bam; do
     stringtie "$bam" -o "${base}.gtf" -A "${base}.gene_abund"
 done
 ```
+
 </details>
 
 Make list of all gtf files and merge
