@@ -61,7 +61,7 @@ Write a bash loop to process all paired-end sequencing samples in ../reads/:
 <details>
 <summary>💡 Need a hint?</summary>
 
-1. Store paths using reads_dir="../reads" and genome_index="$HOME/Share/day4/willow/genome/genome_assembly_1k"
+1. Store paths using reads_dir="../reads" and genome_index="~/Share/day4/willow/genome/genome_assembly_1k"
 2. Iterate with for r1 in ${reads_dir}/*_R1.fastq; do ... done
 3. Strip the folder path and _R1.fastq suffix using base=$(basename "$r1" "_R1.fastq")
 4. Build the paired filename using: r2="${reads_dir}/${base}_R2.fastq"
