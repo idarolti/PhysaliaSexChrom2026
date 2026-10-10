@@ -166,7 +166,7 @@ awk '   # reads file line by line
       skip = 0   #skip becomes 0
     }
   }
-  !/^>/ {   #for lines that don't start with ">", so the sequence lines
+  !/^>/ {   #for lines that don't start with ">" (the sequence lines)
     if (!skip) print $0   #if skip is 0, print sequence line
   }
 ' RetFam1_sex-linked_sequences.fasta > RetFam1_sex-linked_sequences_unique.fasta
