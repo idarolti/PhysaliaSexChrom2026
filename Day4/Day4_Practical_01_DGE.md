@@ -51,22 +51,22 @@ HISAT2 options:
 
 Write a bash loop to process all paired-end sequencing samples in ../reads/:
 
-1. Store the paths for the reads directory and the genome index prefix in bash variables.
-2. Loop over each forward read file (*_R1.fastq).
-3. Extract the sample prefix (e.g., female1_catkin) from the filename.
-4. Construct the matching reverse read filename (_R2.fastq).
-5. Run hisat2 to align the paired reads and save the output as a .sam file.
-6. Convert the .sam file into a coordinate-sorted .bam file with samtools, then remove the intermediate .sam file.
+1. Store the paths for the reads directory and the genome index prefix in bash variables
+2. Loop over each forward read file (*_R1.fastq)
+3. Extract the sample prefix (e.g., female1_catkin) from the filename
+4. Construct the matching reverse read filename (_R2.fastq)
+5. Run hisat2 to align the paired reads and save the output as a .sam file
+6. Convert the .sam file into a coordinate-sorted .bam file with samtools, then remove the intermediate .sam file
 
 <details>
 <summary>💡 Need a hint?</summary>
 
 1. Store paths using reads_dir="../reads" and genome_index="$HOME/Share/day4/willow/genome/genome_assembly_1k"
-2. Iterate with for r1 in ${reads_dir}/*_R1.fastq; do ... done.
-3. Strip the folder path and _R1.fastq suffix using base=$(basename "$r1" "_R1.fastq").
+2. Iterate with for r1 in ${reads_dir}/*_R1.fastq; do ... done
+3. Strip the folder path and _R1.fastq suffix using base=$(basename "$r1" "_R1.fastq")
 4. Build the paired filename using: r2="${reads_dir}/${base}_R2.fastq"
 5. Specify inputs with -1 "$r1" and -2 "$r2", set parameters (-q --no-discordant --no-mixed --no-unal --dta), and write output to -S "${base}.sam"
-6. Define sorted bam file as basename_coordsorted.bam. Pipe the sam file into samtools sort.
+6. Define sorted bam file as basename_coordsorted.bam. Pipe the sam file into samtools sort
 
 </details>
 
@@ -120,9 +120,31 @@ cd subset
 stringtie ../../hisat/female1_catkin_coordsorted.bam -o female1_catkin.gtf -A female1_catkin.gene_abund
 ```
 
-Run StringTie for all samples
+**Task: Run StringTie for all samples**
 
-```
+Write a bash loop to assemble transcripts and estimate gene abundance for all coordinate-sorted BAM alignment files in ../../hisat/
+
+1. Store the path to the directory containing the sorted BAM files in a bash variable
+2. Loop over each coordinate-sorted BAM file (*_coordsorted.bam)
+3. Extract the sample prefix (e.g., female1_catkin) from the filename
+4. Run StringTie on each BAM file
+5. Save the assembled transcript annotations as a sample-specific .gtf file
+6. Save gene-level abundance estimates as a sample-specific .gene_abund file
+
+<details>
+<summary>💡 Need a hint?</summary>
+
+1. Store the BAM directory using bam_dir="../../hisat"
+2. Iterate over the BAM files with for bam in ${bam_dir}/*_coordsorted.bam; do ... done
+3. Strip the folder path and _coordsorted.bam suffix using base=$(basename "$bam" "_coordsorted.bam")
+4. Run StringTie with the BAM file as the input: stringtie "$bam"
+5. Specify the transcript assembly output with -o "${base}.gtf"
+6. Specify the gene abundance output with -A "${base}.gene_abund"
+
+</details>
+
+<details>
+<summary>🔑 View Solution</summary>
 # Directory containing BAM files
 bam_dir="../../hisat"
 
@@ -135,6 +157,7 @@ for bam in ${bam_dir}/*_coordsorted.bam; do
     stringtie "$bam" -o "${base}.gtf" -A "${base}.gene_abund"
 done
 ```
+</details>
 
 Make list of all gtf files and merge
 
