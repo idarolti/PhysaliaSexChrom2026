@@ -197,10 +197,18 @@ Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.rea
 
 **Task: Convert the two male bam files to bw format for visualization**
 
-- **[bamCoverage](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 8), and output bw file with -o option
+- **[bamCoverage](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)**: specify input bam file with -b option, number of threads to run with -p option (can choose 2), and output bw file with -o option
 - full path to files is required
 - once you have the bw files, transfer them to desktop, together with the genome fasta and index files (found at /home/ubuntu/Share/day1/02.read_mapping/reference_genome/)
 - download also the full genome bw files (Poecilia_picta_female1.bw and Poecilia_picta_male2.bw), which can be found at /home/ubuntu/Share/day1/02.read_mapping/read_alignments/
+
+<details>
+<summary>💡 Need a hint?</summary>
+
+bamCoverage -p 2 -b </PATH/SAMPLE>.bam -o <SAMPLE>.bw
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:</PATH/FILE/> ~/Desktop
+
+</details>
 
 <details>
 <summary>🔑 View Solution</summary>
