@@ -42,7 +42,7 @@ Run reads2snp:
 cd ../scripts
 mkdir ../reads2snp
 
-./reads2snp_2.0.64.bin <PARAMETERS> -bamlist </PATH/BAM LIST> -bamref </PATH/ASSEMBLY>.fasta -out ../reads2snp/reads2snp_output
+./reads2snp_2.0.64.bin <PARAMETERS> -bamlist </PATH/BAM_LIST> -bamref </PATH/ASSEMBLY>.fasta -out ../reads2snp/reads2snp_output
 ```
 
 <details>
@@ -91,20 +91,36 @@ cd ../scripts
 Generate gen_summary file - allows SEX-DETector to run faster. The following options should be use for the command below, -hom string (names of homogametic progeny individuals separated by commas), -het string (the names of the heterogametic progeny individuals separated by commas), -hom_par string (homogametic parent name), -het_par string (heterogametic parent name). The gen_summary file is similar to the gen file except that it shows only one occurence of each possible SNP in the dataset and shows the number of times it happens in the first column instead of the position number of the SNP.
 
 ```
-./SEX-DETector_prepare_file.pl ../reads2snp/reads2snp_output.gen ../reads2snp/reads2snp_output.gen_summary -hom Female_Offspring1,Female_Offspring2,Female_Offspring3,Female_Offspring4,Female_Offspring5 -het Male_Offspring1,Male_Offspring2,Male_Offspring3,Male_Offspring4,Male_Offspring5 -hom_par Female_Mother -het_par Male_Father
+./SEX-DETector_prepare_file.pl </PATH/FILE>.gen ../reads2snp/reads2snp_output.gen_summary -hom <NAME_HOMOGAMETIC_INDIVIDUALS> -het <NAME_HETEROGAMETIC_INDIVIDUALS> -hom_par <NAME_HOMOGAMETIC_PARENT> -het_par <NAME_HETEROGAMETIC_PARENT>
 
 head ../reads2snp/reads2snp_output.gen_summary
 ```
+
+<details>
+<summary>🔑 View Full Code</summary>
+
+```
+./SEX-DETector_prepare_file.pl ../reads2snp/reads2snp_output.gen ../reads2snp/reads2snp_output.gen_summary -hom Female_Offspring1,Female_Offspring2,Female_Offspring3,Female_Offspring4,Female_Offspring5 -het Male_Offspring1,Male_Offspring2,Male_Offspring3,Male_Offspring4,Male_Offspring5 -hom_par Female_Mother -het_par Male_Father
+```
+</details>
+
 
 Run SEX-DETector
 
 ```
 ./SEX-DETector.pl -help
 
-./SEX-DETector.pl -alr ../reads2snp/reads2snp_output.alr -alr_gen ../reads2snp/reads2snp_output.gen -alr_gen_sum ../reads2snp/reads2snp_output.gen_summary -system xy -hom Female_Offspring1,Female_Offspring2,Female_Offspring3,Female_Offspring4,Female_Offspring5 -het Male_Offspring1,Male_Offspring2,Male_Offspring3,Male_Offspring4,Male_Offspring5 -hom_par Female_Mother -het_par Male_Father -seq -detail -detail-sex-linked -out ../sexdetector_output/Poecilia_reticulata
+./SEX-DETector.pl -alr </PATH/FILE>.alr -alr_gen </PATH/FILE>.gen -alr_gen_sum </PATH/FILE>.gen_summary -system xy -hom <NAME_HOMOGAMETIC_INDIVIDUALS> -het <NAME_HETEROGAMETIC_INDIVIDUALS> -hom_par <NAME_HOMOGAMETIC_PARENT> -het_par <NAME_HETEROGAMETIC_PARENT> -seq -detail -detail-sex-linked -out ../sexdetector_output/Poecilia_reticulata
 
-cd ../sexdetector_output
 ```
+
+<details>
+<summary>🔑 View Full Code</summary>
+
+```
+./SEX-DETector.pl -alr ../reads2snp/reads2snp_output.alr -alr_gen ../reads2snp/reads2snp_output.gen -alr_gen_sum ../reads2snp/reads2snp_output.gen_summary -system xy -hom Female_Offspring1,Female_Offspring2,Female_Offspring3,Female_Offspring4,Female_Offspring5 -het Male_Offspring1,Male_Offspring2,Male_Offspring3,Male_Offspring4,Male_Offspring5 -hom_par Female_Mother -het_par Male_Father -seq -detail -detail-sex-linked -out ../sexdetector_output/Poecilia_reticulata
+```
+</details>
 
 The main outputs from SEX-DETector are:
 - SNPs_detail.txt: information on each SNP of each gene (position in gene, likelihood autosomal/sex-linked, genotypes)
