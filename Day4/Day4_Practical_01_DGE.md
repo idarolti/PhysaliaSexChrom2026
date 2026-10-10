@@ -278,7 +278,7 @@ plotMDS(expr,xlim=c(-6,6))
 ```
 
 <details>
-<summary>PLOT</summary>
+<summary>📊 PLOT</summary>
 	
 <img width="643" height="623" alt="Screenshot 2025-10-01 at 19 19 32" src="https://github.com/user-attachments/assets/6a38a5da-05f2-4e37-b26a-3f1edbba5d08" />
 
