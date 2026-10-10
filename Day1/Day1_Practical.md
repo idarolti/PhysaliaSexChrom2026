@@ -204,10 +204,12 @@ Bam files for a single chromosome can be found at /home/ubuntu/Share/day1/02.rea
 
 <details>
 <summary>💡 Need a hint?</summary>
-
+    
+```
 bamCoverage -p 2 -b </PATH/SAMPLE>.bam -o <SAMPLE>.bw
 scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:</PATH/FILE/> ~/Desktop
-
+```
+    
 </details>
 
 <details>
