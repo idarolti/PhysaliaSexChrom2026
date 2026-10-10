@@ -5,9 +5,10 @@ This part of the practical will cover the steps for estimating sequence divergen
 ## 00. Prepare work folder for day 3
 
 ```
+ssh -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29
 mkdir day3
 cd day3
-conda activate /home/ubuntu/miniconda3/envs/sexchr
+conda activate /opt/conda-envs/day3
 ```
 
 ## 01. Align gametolog sequences
@@ -30,15 +31,7 @@ root_dir="1.gametolog_sequences"
 for subdir in "$root_dir"/Gametologs_*; do
     # Define the expected fasta filename inside the subdir
     fasta_file=$(find "$subdir" -maxdepth 1 -type f -name "*.stripped.cdna.fa")
-    
-    # Skip if no such fasta file found
-    if [[ -z "$fasta_file" ]]; then
-        echo "No .stripped.cdna.fa file found in $subdir"
-        continue
-    fi
-    
     echo "Processing $fasta_file ..."
-    
     # Use sed to simplify headers in place
     sed -E '/^>/ s/(_.*)//' "$fasta_file" > "${fasta_file}.tmp" && mv "${fasta_file}.tmp" "$fasta_file"
 done
@@ -47,31 +40,70 @@ done
 Align sequences with **[Prank](http://wasabiapp.org/software/prank/)**. Aligning sequences is important because dS estimation depends on the correct placement of codons and identifying homologous nucleotide positions. This part takes a few seconds to run per gametolog pair, so we can start the command and then quit if it takes too long.
 
 ```
-cd scripts
-python 01.run-prank.py ../1.gametolog_sequences
-```
+cd 1.gametolog_sequences
 
-This part takes a few seconds to run per gametolog pair, so if it takes too long you can copy the output as below:
+# Command for one file
+prank -d=ENSORLT00000000650.1.stripped.cdna.fa -f=fasta -o=ENSORLT00000000650.1.stripped -DNA -codon -once -showtree -showall -support 
 
-```
-cp -r ~/Share/day3/gametologs_divergence/1.gametolog_sequences_prank/ ../
+# Loop through all files
+for file in */*.stripped.cdna.fa; do
+    # Strips '.cdna.fa' to produce the output prefix
+    out="${file%.cdna.fa}"
+    echo "Running PRANK on $file..."
+    prank -d="$file" -f=fasta -o="$out" -DNA -codon -once -showtree -showall -support
+done
 ```
 
 Remove gaps in alignments and short sequences. Gaps represent insertions or deletions (indels) that can disrupt the reading frame and homology established at the codon level. For statistical reasons, you can also filter for a minimum gene length (shorter sequences provide very few codons for substitution rate estimation, which can lead to unstable and unreliable substitution estimates due to insufficient mutation counts and sampling noise).
 
 ```
-python 02.remove-gaps.py ../1.gametolog_sequences ../invalid_gametologs -cutoff 300
+cd ../
+INFOLDER="./1.gametolog_sequences/"
+INVALID_FOLDER="./invalid_gametologs/"
+CUTOFF=300
+
+mkdir -p "$INVALID_FOLDER"
+
+# Loop through each alignment file
+find "$INFOLDER" -type f -name "*stripped.best.fas" | while read -r aln; do
+    orthogroup_dir=$(dirname "$aln")
+    outfile="${aln%.best.fas}.gapsrm.fa"
+
+    # Remove all gap columns
+    trimal -in "$aln" -out "$outfile" -nogaps
+
+    # Check the length of the trimmed sequence
+    # (Reads the first sequence length from the trimmed file)
+    length=$(awk '/^>/ {if (seq) exit} !/^>/ {seq=seq $0} END {print length(seq)}' "$outfile")
+
+    # If below threshold, remove trimmed file and move invalid directory
+    if [ "$length" -lt "$CUTOFF" ]; then
+        echo "Removing $orthogroup_dir (length: $length bp < $CUTOFF bp)"
+        rm -f "$outfile"
+        mv "$orthogroup_dir" "$INVALID_FOLDER/"
+    fi
+done
 ```
 
 ## 02. Prepare files for PAML
 
 Convert fasta file to **[phylip](https://www.phylo.org/index.php/help/phylip)** format, which is required by PAML. PRANK includes a built-in feature for format conversion using the -convert option along with the -f flag to specify the output format.
 
-This next step will delete all the files that don't end in "gapsrm.fa" and the convert that file to phylip format. So if we want to still have a copy of the previous files, we can duplicate the 1.gametolog_sequences folder.
-
 ```
-cp -r ../1.gametolog_sequences ../2.gametolog_sequences_phylip
-python 03.convert-fasta-phylip.py ../2.gametolog_sequences_phylip gapsrm.fa
+INFOLDER="./1.gametolog_sequences/"
+
+# Get the *gapsrm.fa files
+find "$INFOLDER" -type f -name "*gapsrm.fa" | while read -r file; do
+    dir=$(dirname "$file")
+    folder_name=$(basename "$dir")
+
+    # Extracts the part of the folder name after the first underscore
+    out_prefix="${folder_name#*_}"
+    outfile="$dir/$out_prefix"
+
+    echo "Converting $file -> $outfile"
+    prank -convert -d="$file" -f=paml -o="$outfile" -keep
+done
 ```
 
 **[PAML](https://snoweye.github.io/phyclust/document/pamlDOC.pdf)** is a suite of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood (ML). The **[yn00]()** module is a method for estimating synonymous and nonsynonymous substitution rates in pairwise comparison of protein-coding DNA sequences. 
@@ -79,8 +111,6 @@ python 03.convert-fasta-phylip.py ../2.gametolog_sequences_phylip gapsrm.fa
 We must first create a paml control file that specifies input alignment and output files, plus options like the genetic code and the analyses to be performed. Then run pmal yn00.
 
 ```
-cd ../2.gametolog_sequences_phylip
-
 for d in Gametologs_*; do
     if [ -d "$d" ]; then
         base="${d#Gametologs_}"
@@ -118,10 +148,8 @@ done
 The pairwise dS values can be found in the 2YN.dS files. We can extract the dS values for all gametologs using:
 
 ```
-cd ../
-mkdir plot
+mkdir ../plot
 
-cd 2.gametolog_sequences_phylip
 for d in ./Gametologs_ENSORLT000000*; do
    folder=$(basename "$d")
    colname=${folder#Gametologs_}
@@ -146,10 +174,6 @@ head gametologs_dS_position.txt
 ```
 
 Download the gametologs_dS_position.txt file and visualize results in **[R](https://www.r-project.org/)**.
-
-```
-scp -i chrsex25.pem ubuntu@44.249.25.243:/path/gametologs_dS_position.txt ~/Desktop
-```
 
 ```
 library(ggplot2)
