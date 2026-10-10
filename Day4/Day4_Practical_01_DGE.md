@@ -83,14 +83,13 @@ for r1 in ${reads_dir}/*_R1.fastq; do
     base=$(basename "$r1" "_R1.fastq")
     r2="${reads_dir}/${base}_R2.fastq"
     sam="${base}.sam"
-    bam_coordsorted="${base}_coordsorted.bam"
 
 	echo "Processing sample: ${base}..."
-
     # Run HISAT2 alignment
     hisat2 "$genome_index" -1 "$r1" -2 "$r2" -q --no-discordant --no-mixed --no-unal --dta -S "$sam"
 
     # Convert SAM to sorted BAM
+	bam_coordsorted="${base}_coordsorted.bam"
     samtools view -bS "$sam" | samtools sort -o "$bam_coordsorted"
 
     # Optional: remove intermediate SAM file to save space
