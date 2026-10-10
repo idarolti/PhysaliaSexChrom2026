@@ -45,15 +45,12 @@ mkdir ../reads2snp
 ./reads2snp_2.0.64.bin <PARAMETERS> -bamlist </PATH/BAM LIST> -bamref </PATH/ASSEMBLY>.fasta -out ../reads2snp/reads2snp_output
 ```
 
-```
 <details>
 <summary>🔑 View Full Code</summary>
 
 ```
 ./reads2snp_2.0.64.bin -aeb -min 3 -par 0 -bqt 20 -rqt 10 -bamlist ../bam_files/bam_list.txt -bamref ../transcriptome_assembly/trinity.fasta -out ../reads2snp/reads2snp_output
 ```
-```
-
 
 Have a look at the two main reads2snp outputs: .alr and .gen
 
