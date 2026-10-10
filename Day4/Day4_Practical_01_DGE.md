@@ -300,8 +300,12 @@ lines(sample5, type="l",lwd=2,col="blue")
 lines(sample6, type="l",lwd=2,col="blue")
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+	
 <img width="617" height="587" alt="Screenshot 2025-10-01 at 19 23 46" src="https://github.com/user-attachments/assets/cd1c03fe-cbcd-4be4-8c98-de6c04a13cc0" />
 
+</details>
 
 ```
 # Normalize expression with the calcnormfactors() function that uses edgeR's TMM method
@@ -310,8 +314,12 @@ norm_expr <- calcNormFactors(expr)
 plotMDS(norm_expr,xlim=c(-6,6))
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+	
 <img width="547" height="519" alt="Screenshot 2025-10-01 at 19 24 47" src="https://github.com/user-attachments/assets/78bb9a97-8292-494f-8b75-3bbef923fba7" />
 
+</details>
 
 ```
 cpm_norm_expr <- cpm(norm_expr)
@@ -329,8 +337,12 @@ lines(sample5, type="l",lwd=2,col="blue")
 lines(sample6, type="l",lwd=2,col="blue")
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+	
 <img width="576" height="549" alt="Screenshot 2025-10-01 at 19 25 46" src="https://github.com/user-attachments/assets/42ed8f62-8e49-454f-bbf5-e01bcfd7ad46" />
 
+</details>
 
 ```
 #Extract RPKM
@@ -360,16 +372,24 @@ bootstraps = pvclust(log2(rpkm_norm+1), method.hclust="average", method.dist="eu
 plot(bootstraps)
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+	
 <img width="651" height="552" alt="Screenshot 2025-10-01 at 19 29 13" src="https://github.com/user-attachments/assets/da90da67-5ab8-4459-8dc8-e724c064be07" />
 
+</details>
 
 ```
 palette2 <-colorRamps::"matlab.like2"(n=200)
 pheatmap(log2(rpkm_norm+1), show_colnames=T, show_rownames=F, color = palette2, clustering_distance_cols = "euclidean", clustering_method="average") 
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+	
 <img width="640" height="647" alt="Screenshot 2025-10-01 at 19 36 37" src="https://github.com/user-attachments/assets/296c130a-1563-4355-8d8e-82f0a3e4976d" />
 
+</details>
 
 Run the analysis based on the leaf gene expression, and see what differences can you observe.
 
@@ -433,8 +453,13 @@ sex_biased <- subset(de_results_catkin, Padj < 0.05 & abs(logFC) > 1)
 write.table(sex_biased, file = "sex_biased_genes.txt", sep = "\t", quote = FALSE, row.names = TRUE)
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+	
 <img width="676" height="665" alt="Screenshot 2025-10-08 at 00 08 52" src="https://github.com/user-attachments/assets/56bb457f-53a2-4d04-887c-9c95d105cb13" />
 
+</details>
+	
 ## 07. Differential gene expression (with DESeq2)
 
 ```
