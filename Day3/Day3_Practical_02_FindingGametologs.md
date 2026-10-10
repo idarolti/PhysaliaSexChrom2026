@@ -153,35 +153,35 @@ Obtain a single sequence for each gene (to then blast onto the assembly).
 ```
 head RetFam1_sex-linked_sequences.fasta
 
-# reads file line by line
+# Reads file line by line
 awk '
-  # for lines that start with ">"	
-  /^>/ {
-	# save the header line in a variable "gene"
-    gene = $0
-	# remove the leading ">" symbol, leaving just the gene name
-    sub(/^>/, "", gene)
-	# remove the suffix after the last underscore in the gene name
-    sub(/_[^_]+$/, "", gene)
-	# use an array "seen" to check if this gene ID was seen before
-    if (seen[gene]++) {
-	# if the gene ID has been seen already, skip
-      skip = 1
-	# if the gene ID has not been seen already
-    } else {
-	  #print the header (e.g. >Contig346_X1)
-      print $0
-	  #skip becomes 0
-      skip = 0
-    }
-  }
-  #for lines that don't start with ">" (the sequence lines)
-  !/^>/ {
-	#if skip is 0, print sequence line
-    if (!skip) print $0
-  }
+	# For lines that start with >
+	/^>/ {
+		# Save the header line in a variable
+		gene = $0
+		# Remove the leading > sign
+		sub(/^>/, "", gene)
+		# Remove the suffix after the underscore
+		sub(/_[^_]+$/, "", gene)
+		# Use an array to check if this gene ID was seen before
+		if (seen[gene]++) {
+			# If the gene ID has been seen already then skip
+			skip = 1
+		# If the gene ID has not been seen
+		} else {
+			# Print the header
+			print $0
+			# Skip becomes 0
+			skip = 0
+		}
+	}
+	# For lines that do not start with >, the sequence lines
+	!/^>/ {
+		# If skip is 0, print sequence line
+		if (!skip) print $0
+		}
 ' RetFam1_sex-linked_sequences.fasta > RetFam1_sex-linked_sequences_unique.fasta
-
+			
 grep ">" RetFam1_sex-linked_sequences_unique.fasta -c
 ```
 
