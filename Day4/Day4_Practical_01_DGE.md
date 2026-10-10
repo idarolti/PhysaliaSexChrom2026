@@ -144,6 +144,7 @@ Write a bash loop to assemble transcripts and estimate gene abundance for all co
 
 <details>
 <summary>🔑 View Solution</summary>
+	
 # Directory containing BAM files
 bam_dir="../../hisat"
 
