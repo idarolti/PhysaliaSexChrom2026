@@ -252,18 +252,25 @@ awk -F',' '$2 == "CM002717.1"' RetFam1_blastout_tophits > RetFam1_blastout_tophi
 Transfer this file to your local machine, and plot the distribution of sex-linked genes across the sex chromosome using R.
 
 ```
-sexlinked = read.csv("RetFam1_blastout_tophits_sexchromo", header=F)
+library(ggplot2)
 
-dim(sexlinked)
-head(sexlinked)
+# Load data and assign column names
+sexlinked <- read.csv("RetFam1_blastout_tophits_sexchromo", header = FALSE)
+names(sexlinked) <- c("Gene", "Chromosome", "Bitscore", "PIdentity", "Start", "End")
 
-names(sexlinked) <- c("Gene","Chromosome","Bitscore","PIdentity","Start","End")
-head(sexlinked)
-
-positions <- sexlinked$Start
-genes <- sexlinked$Gene
-
-dotchart(sexlinked$Start/1000000,labels=sexlinked$Gene,cex=.7,main="Sex-linked genes",xlab="Sex chromosome position (Mb)",xlim=c(0,26))
+# Density plot
+ggplot(sexlinked, aes(x = Start / 1e6)) +
+  geom_density(fill = "steelblue", alpha = 0.4) +
+  # Add tick marks for the position of sex-linked genes
+  geom_rug(color = "firebrick", length = unit(0.06, "npc"), linewidth = 0.8) +
+  xlim(0, 26) +
+  labs(
+    title = "Sex-Linked Gene Distribution",
+    subtitle = paste0("Chromosome: ", sexlinked$Chromosome[1], " (N = ", nrow(sexlinked), " genes)"),
+    x = "Chromosome Position (Mb)",
+    y = "Density"
+  ) +
+  theme_classic()
 ```
 
 
@@ -365,18 +372,26 @@ END {
 awk -F',' '$2 == "CM002717.1"' RetFam2_blastout_tophits > RetFam2_blastout_tophits_sexchromo
 
 # transfer to local directory and run in R
-sexlinked = read.csv("RetFam2_blastout_tophits_sexchromo", header=F)
 
-dim(sexlinked)
-head(sexlinked)
+library(ggplot2)
 
-names(sexlinked) <- c("Gene","Chromosome","Bitscore","PIdentity","Start","End")
-head(sexlinked)
+# Load data and assign column names
+sexlinked <- read.csv("RetFam2_blastout_tophits_sexchromo", header = FALSE)
+names(sexlinked) <- c("Gene", "Chromosome", "Bitscore", "PIdentity", "Start", "End")
 
-positions <- sexlinked$Start
-genes <- sexlinked$Gene
-
-dotchart(sexlinked$Start/1000000,labels=sexlinked$Gene,cex=.7,main="Sex-linked genes",xlab="Sex chromosome position (Mb)",xlim=c(0,26))
+# Density plot
+ggplot(sexlinked, aes(x = Start / 1e6)) +
+  geom_density(fill = "steelblue", alpha = 0.4) +
+  # Add tick marks for the position of sex-linked genes
+  geom_rug(color = "firebrick", length = unit(0.06, "npc"), linewidth = 0.8) +
+  xlim(0, 26) +
+  labs(
+    title = "Sex-Linked Gene Distribution",
+    subtitle = paste0("Chromosome: ", sexlinked$Chromosome[1], " (N = ", nrow(sexlinked), " genes)"),
+    x = "Chromosome Position (Mb)",
+    y = "Density"
+  ) +
+  theme_classic()
 ```
 </details>
 
