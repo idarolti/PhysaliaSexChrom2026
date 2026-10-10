@@ -32,16 +32,26 @@ ls -d "$PWD"/* > bam_list.txt
 ```
 
 Run reads2snp:
-- -aeb: allows alleles to have different expression levels, which is important for sex chromosome anaylses as the Y copy can be less expressed than the X copy
-- -min: minimum number of reads to call a genotype
+- -aeb (allows alleles to have different expression levels, which is important for sex chromosome anaylses as the Y copy can be less expressed than the X copy)
+- -min: 3 (minimum number of reads to call a genotype)
 - -par: 0 (do not remove SNPs that appear to come from paralogous sequences, avoid overfiltering as X/Y SNPs can look like paralogous SNPs)
-- -bqt: minimum base quality
-- -rqt: minimum read mapping quality
+- -bqt: 20 (minimum base quality)
+- -rqt: 10 (minimum read mapping quality
 
 ```
 cd ../scripts
 mkdir ../reads2snp
+
+./reads2snp_2.0.64.bin <PARAMETERS> -bamlist </PATH/BAM LIST> -bamref </PATH/ASSEMBLY>.fasta -out ../reads2snp/reads2snp_output
+
+```
+<details>
+<summary>🔑 View Full Code</summary>
+
+```
 ./reads2snp_2.0.64.bin -aeb -min 3 -par 0 -bqt 20 -rqt 10 -bamlist ../bam_files/bam_list.txt -bamref ../transcriptome_assembly/trinity.fasta -out ../reads2snp/reads2snp_output
+```
+
 ```
 
 Have a look at the two main reads2snp outputs: .alr and .gen
