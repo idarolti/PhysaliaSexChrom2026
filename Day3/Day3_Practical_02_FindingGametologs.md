@@ -163,11 +163,11 @@ awk '
 		sub(/^>/, "", gene)
 		# Remove the suffix after the underscore
 		sub(/_[^_]+$/, "", gene)
-		# Use an array to check if this gene ID was seen before
+		# Use an array to check if this Gene ID was seen before
 		if (seen[gene]++) {
-			# If the gene ID has been seen already then skip
+			# If the Gene ID has been seen already then skip
 			skip = 1
-		# If the gene ID has not been seen
+		# If the Gene ID has not been seen
 		} else {
 			# Print the header
 			print $0
@@ -193,36 +193,52 @@ blastn -db ~/Share/day3/sexdetector/genome_assembly/Poecilia_reticulata -query R
 head RetFam1_blastout
 ```
 
-Identify top blast hits for each sequence. This script takes a blast output file (format: outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq") and identifies the top blast hit for each query. Top blast hit = minimum 30 pidentity, greatest blast score and greatest pidentity. If a query has two hits with identical blast score and pidentity one is chosen randomly as the tophit. 
+Identify top blast hits for each sequence. This script takes a blast output file (format: outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq") and identifies the top blast hit for each query. Top blast hit = minimum 30 pidentity, greatest blast score and greatest pidentity. If a query has two hits with identical blast score and pidentity, one is chosen randomly as the tophit. 
 
 ```
-python ../scripts/blast_tophit.py RetFam1_blastout RetFam1_blastout_tophits
+# Keep only hits with percent identity > 30 (column 3)
+awk '$3 > 30' RetFam1_blastout \
+  | \
+  # Sort by Gene ID (column 1), then Bitscore descending (column 12), then % Identity descending (column 3)
+  sort -k1,1 -k12,12nr -k3,3nr \
+  | \
+  # Pick the top hit per gene (skip if hit #1 and hit #2 tie)
+  awk -v OFS=',' '
+    function print_top() {
+        if (gene != "" && !is_tied) {
+            print gene, subject, bitscore, pident, sstart, send
+        }
+    }
+    # When we hit a new Gene ID
+    $1 != gene {
+        print_top()
+        gene=$1; subject=$2; pident=$3; sstart=$9; send=$10; bitscore=$12
+        is_tied = 0
+        next
+    }
+    # If the second hit has the exact same bitscore and identity, mark as tied
+    $12 == bitscore && $3 == pident {
+        is_tied = 1
+    }
+    END { print_top() }
+  ' > RetFam1_blastout_tophits
+
 head RetFam1_blastout_tophits
 ```
 
 Count the number of times a chromosome is assigned a sex-linked gene.
 
 ```
+# Read file line by line, specifying the files is comma-separated
 awk -F',' '
 {
-  # chromosome + gene combined key
-  key = $2 SUBSEP $1
-  # mark unique pairs
-  count[key] = 1
+    # Count occurrences of each chromosome (column 2)
+    genes_per_chrom[$2]++
 }
 END {
-  for (k in count) {
-	# split key back into chromosome and gene
-    split(k, parts, SUBSEP)
-    chrom = parts[1]
-    gene = parts[2]
-	# increment count of unique genes per chromosome
-    genes_per_chrom[chrom]++
-  }
-  for (chrom in genes_per_chrom) {
-	# output chromosome and gene count
-    print chrom, genes_per_chrom[chrom]
-  }
+    for (chrom in genes_per_chrom) {
+        print chrom, genes_per_chrom[chrom]
+    }
 }
 ' RetFam1_blastout_tophits
 ```
@@ -233,7 +249,7 @@ Extract the inferred sex-linked genes that align to the sex chromosome (CM002717
 awk -F',' '$2 == "CM002717.1"' RetFam1_blastout_tophits > RetFam1_blastout_tophits_sexchromo
 ```
 
-Transfer this file to your local machine, and plot the distribution of sex-linked genes across the sex chromosome usind R.
+Transfer this file to your local machine, and plot the distribution of sex-linked genes across the sex chromosome using R.
 
 ```
 sexlinked = read.csv("RetFam1_blastout_tophits_sexchromo", header=F)
@@ -261,7 +277,7 @@ For comparison, assess the quality of your cleaned data:
 5. Extract "true" sex-linked genes (as those aligning to the sex chromosome CM002717.1)
 6. Transfer the output to your desktop and use R to plot the distribution of sex-linked genes across the chromosome
 
-What differences do you find in the distribution of sex-linked genes between Family 1 and Family 2?
+**What differences do you find in the number and distribution of sex-linked genes between Family 1 and Family 2?**
 
 <details>
 <summary>🔑 View Solution</summary>
@@ -273,67 +289,82 @@ cd sexdetector_output_full_RetFam2
 cat RetFam2_assignment.txt | grep -w "sex-linked" -c
 cat RetFam2_assignment.txt | grep -w "autosomal" -c
 
-head RetFam2_sex-linked_sequences.fasta
-
+# Reads file line by line
 awk '
-  # on lines that start with ">"
-  /^>/ {
-	# save the header line in a variable "gene"
-    gene = $0
-	# remove the leading ">" symbol, leaving just the gene name
-    sub(/^>/, "", gene)
-	# remove the suffix after the last underscore in the gene name
-    sub(/_[^_]+$/, "", gene)
-	# use an array "seen: to check if this gene ID was seen before
-    if (seen[gene]++) {
-      skip = 1
-    } else {
-      # print header
-      print $0
-      skip = 0
-    }
-  }
-  !/^>/ {
-    # print sequence only if not skipping
-    if (!skip) print $0
-  }
+	# For lines that start with >
+	/^>/ {
+		# Save the header line in a variable
+		gene = $0
+		# Remove the leading > sign
+		sub(/^>/, "", gene)
+		# Remove the suffix after the underscore
+		sub(/_[^_]+$/, "", gene)
+		# Use an array to check if this Gene ID was seen before
+		if (seen[gene]++) {
+			# If the Gene ID has been seen already then skip
+			skip = 1
+		# If the Gene ID has not been seen
+		} else {
+			# Print the header
+			print $0
+			# Skip becomes 0
+			skip = 0
+		}
+	}
+	# For lines that do not start with >, the sequence lines
+	!/^>/ {
+		# If skip is 0, print sequence line
+		if (!skip) print $0
+		}
 ' RetFam2_sex-linked_sequences.fasta > RetFam2_sex-linked_sequences_unique.fasta
 
 grep ">" RetFam2_sex-linked_sequences_unique.fasta -c
 
 blastn -db ~/Share/day3/sexdetector/genome_assembly/Poecilia_reticulata -query RetFam2_sex-linked_sequences_unique.fasta -out RetFam2_blastout -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq"
 
-head RetFam2_blastout
+# Keep only hits with percent identity > 30 (column 3)
+awk '$3 > 30' RetFam2_blastout \
+  | \
+  # Sort by Gene ID (column 1), then Bitscore descending (column 12), then % Identity descending (column 3)
+  sort -k1,1 -k12,12nr -k3,3nr \
+  | \
+  # Pick the top hit per gene (skip if hit #1 and hit #2 tie)
+  awk -v OFS=',' '
+    function print_top() {
+        if (gene != "" && !is_tied) {
+            print gene, subject, bitscore, pident, sstart, send
+        }
+    }
+    # When we hit a new Gene ID
+    $1 != gene {
+        print_top()
+        gene=$1; subject=$2; pident=$3; sstart=$9; send=$10; bitscore=$12
+        is_tied = 0
+        next
+    }
+    # If the second hit has the exact same bitscore and identity, mark as tied
+    $12 == bitscore && $3 == pident {
+        is_tied = 1
+    }
+    END { print_top() }
+  ' > RetFam2_blastout_tophits
 
-python ../scripts/blast_tophit.py RetFam2_blastout RetFam2_blastout_tophits
-head RetFam2_blastout_tophits
-
+# Read file line by line, specifying the files is comma-separated
 awk -F',' '
 {
-  # chromosome + gene combined key
-  key = $2 SUBSEP $1
-  # mark unique pairs
-  count[key] = 1
+    # Count occurrences of each chromosome (column 2)
+    genes_per_chrom[$2]++
 }
 END {
-  for (k in count) {
-	# split key back into chromosome and gene
-    split(k, parts, SUBSEP)
-    chrom = parts[1]
-    gene = parts[2]
-	# increment count of unique genes per chromosome
-    genes_per_chrom[chrom]++
-  }
-  for (chrom in genes_per_chrom) {
-	# output chromosome and gene count
-    print chrom, genes_per_chrom[chrom]
-  }
+    for (chrom in genes_per_chrom) {
+        print chrom, genes_per_chrom[chrom]
+    }
 }
 ' RetFam2_blastout_tophits
 
 awk -F',' '$2 == "CM002717.1"' RetFam2_blastout_tophits > RetFam2_blastout_tophits_sexchromo
 
-in R
+# transfer to local directory and run in R
 sexlinked = read.csv("RetFam2_blastout_tophits_sexchromo", header=F)
 
 dim(sexlinked)
