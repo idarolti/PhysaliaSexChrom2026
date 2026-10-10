@@ -59,6 +59,21 @@ adapter_dir="/home/ubuntu/Share/day1/01.quality_trimming/"
 output_dir=./trimmed_reads
     
 trimmomatic PE \
+   $input_dir/<SAMPLE FORWARD READS>.fastq \
+   $input_dir/<SAMPLE REVERSE READS>.fastq \
+   $output_dir/<SAMPLE FORWARD READS>_trimmed_paired.fastq.gz \
+   $output_dir/<SAMPLE FORWARD READS>_trimmed_unpaired.fastq.gz \
+   $output_dir/<SAMPLE REVERSE READS>_trimmed_paired.fastq.gz \
+   $output_dir/<SAMPLE REVERSE READS>_trimmed_unpaired.fastq.gz \
+   ILLUMINACLIP:$adapter_dir/adapters.fa:2:30:10 \
+   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50
+
+```
+<details>
+<summary>🔑 View Solution</summary>
+
+```
+trimmomatic PE \
    $input_dir/sample1_R1.fastq \
    $input_dir/sample1_R2.fastq \
    $output_dir/sample1_R1_trimmed_paired.fastq.gz \
@@ -68,6 +83,8 @@ trimmomatic PE \
    ILLUMINACLIP:$adapter_dir/adapters.fa:2:30:10 \
    LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50
 ```
+
+</details>
 
 **Task: Run FastQC and MultiQC on trimmed reads**
 
