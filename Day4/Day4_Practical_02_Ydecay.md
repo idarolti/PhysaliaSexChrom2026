@@ -140,6 +140,6 @@ plot
 
 </details>
 
-### Task: Run the analysis on the picta female dataset and compare results.
+### Task: Run the analysis on the Poecilia picta female dataset and compare results.
 
-### Task: Run the analysis on the male and female datasets from P. reticulata and compare the results.
+### Task: Run the analysis on the male and female datasets from Poecilia reticulata and compare the results.
