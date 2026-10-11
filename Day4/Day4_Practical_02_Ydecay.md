@@ -133,6 +133,13 @@ plot = ggplot(data_m, aes(x=ratio, fill=category)) +
 plot
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
+<img width="603" height="567" alt="males_ASE_plot" src="https://github.com/user-attachments/assets/53ba256e-dda3-4601-9666-1e0e42668fac" />
+
+</details>
+
 ### Task: Run the analysis on the picta female dataset and compare results.
 
 ### Task: Run the analysis on the male and female datasets from P. reticulata and compare the results.
