@@ -5,14 +5,11 @@ In this practical we will explore how to measure Y gene activity decay using est
 ## 00. Prepare work folder for day 4
 
 ```
-mkdir day4
-cd day4
-conda activate /home/ubuntu/miniconda3/envs/sexchr
+ssh -i ~/YOURLOCALFOLDER/scverse1.pem user5@44.251.209.2
+conda activate /opt/conda-envs/day4
 ```
 
-## 01. Align RNA-seq reads and call SNPs
-
-(DO NOT RUN)
+## 01. Align RNA-seq reads and call SNPs (DO NOT RUN)
 
 The **[STAR](https://physiology.med.cornell.edu/faculty/skrabanek/lab/angsd/lecture_notes/STARmanual.pdf)** aligner is often recommended for mapping RNA-seq reads before calling SNPs because of its high sensitivity and accuracy in spliced alignment, especially for exon-exon junctions, and better handling of complex splicing events and repetitive regions.
 
