@@ -47,7 +47,7 @@ HISAT2 options:
 
 --dta/--downstream-transcriptome-assembly: report alignments tailored for transcript assemblers including StringTie. With this option, HISAT2 requires longer anchor lengths for de novo discovery of splice sites. This leads to fewer alignments with short-anchors, which helps transcript assemblers improve significantly in computation and memory usage.
 
-**Task: Run HISAT2 and alignment sorting for all the samples**
+## Task: Run HISAT2 and alignment sorting for all the samples
 
 Write a bash loop to process all paired-end sequencing samples in ../reads/:
 
@@ -119,7 +119,7 @@ cd subset
 stringtie ../../hisat/female1_catkin_coordsorted.bam -o female1_catkin.gtf -A female1_catkin.gene_abund
 ```
 
-**Task: Run StringTie for all samples**
+## Task: Run StringTie for all samples
 
 Write a bash loop to assemble transcripts and estimate gene abundance for all coordinate-sorted BAM alignment files in ../../hisat/
 
@@ -387,7 +387,7 @@ pheatmap(log2(rpkm_norm+1), show_colnames=T, show_rownames=F, color = palette2, 
 
 </details>
 
-**Task: Run the analysis for the leaf gene expression. Do you find any differences?**
+## Task: Run the analysis for the leaf gene expression. Do you find any differences?
 
 ## 06. Differential gene expression (with edgeR)
 
@@ -588,4 +588,4 @@ library(gridExtra)
 grid.arrange(p1, p2, ncol=2)
 ```
 
-**Task: Run the differentiale expression analysis for the leaf tissue. What contrasts can you make to the results from the catkin tissue?**
+## Task: Run the differentiale expression analysis for the leaf tissue. What contrasts can you make to the results from the catkin tissue?
