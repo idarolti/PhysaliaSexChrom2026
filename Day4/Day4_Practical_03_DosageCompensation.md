@@ -136,7 +136,12 @@ expr <- DGEList(counts=data,group=conditions)
 plotMDS(expr,xlim=c(-6,6))
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="618" height="580" alt="Screenshot 2025-10-04 at 16 46 47" src="https://github.com/user-attachments/assets/d5994cde-4c8b-4096-b991-946283323db9" />
+
+</details>
 
 ```
 cpm_expr <- cpm(expr)
@@ -154,7 +159,12 @@ lines(sample5, type="l",lwd=2,col="blue")
 lines(sample6, type="l",lwd=2,col="blue")
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="661" height="601" alt="Screenshot 2025-10-04 at 16 43 21" src="https://github.com/user-attachments/assets/1144aee0-796f-4b08-9999-a8a7f800d463" />
+
+</details>
 
 ```
 #Check normalised read count data
@@ -163,7 +173,12 @@ norm_expr <- calcNormFactors(expr)
 plotMDS(norm_expr,xlim=c(-2,2))
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="666" height="578" alt="Screenshot 2025-10-04 at 16 43 55" src="https://github.com/user-attachments/assets/a55d697d-df5b-4c7f-9e27-9630544f981b" />
+
+</details>
 
 ```
 cpm_norm_expr <- cpm(norm_expr)
@@ -181,7 +196,12 @@ lines(sample5, type="l",lwd=2,col="blue")
 lines(sample6, type="l",lwd=2,col="blue")
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="665" height="602" alt="Screenshot 2025-10-04 at 16 44 18" src="https://github.com/user-attachments/assets/9305286d-290b-40a7-9bbd-6709b3665f28" />
+
+</details>
 
 ```
 #Normalise and extract rpkm
@@ -267,7 +287,13 @@ ggplot(long_data, aes(x = sex, y = expression,fill=sex)) +
   coord_cartesian(ylim = c(0, 8))
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="404" height="531" alt="Screenshot 2025-10-04 at 16 56 45" src="https://github.com/user-attachments/assets/32de4ec2-a51d-40a2-99f9-440ad7d2b38f" />
+
+</details>
+
 
 ```
 # Create boxplot of expression by sample
@@ -281,9 +307,14 @@ ggplot(long_data, aes(x = sample, y = expression,fill=sex)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="488" height="525" alt="Screenshot 2025-10-04 at 17 04 30" src="https://github.com/user-attachments/assets/1497c2fb-8398-4404-b480-14a8c4da798a" />
 
-**Try plotting male and female expression for autosomal data**
+</details>
+
+## Task: Plot male and female expression for autosomal genes**
 
 autosomal_data <- merged %>% filter(chromosome != "LG12")
 
@@ -309,9 +340,14 @@ ggplot(combined_males, aes(x = chr_type, y = expression, fill = chr_type)) +
   coord_cartesian(ylim = c(0, 8))
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="352" height="531" alt="auto_sexchr_males" src="https://github.com/user-attachments/assets/a21bcd00-5b6f-4e78-801c-cb8effa56589" />
 
-### Try plotting the same for the female dataset
+</details>
+
+## Task: Compare expression between the autosomes and the sex chromosomes in females.
 
 ## 09. Moving average plot of male and female expression
 
@@ -373,7 +409,12 @@ ggplot(expr_lg12, aes(x=start/1000000)) +
   coord_cartesian(ylim = c(0, 8))
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
 <img width="752" height="436" alt="Screenshot 2025-10-08 at 09 53 02" src="https://github.com/user-attachments/assets/f354ebec-2dfb-4a91-b177-0b0b365aace9" />
+
+</details>
 
 ## 10. Get sex-biased genes
 
