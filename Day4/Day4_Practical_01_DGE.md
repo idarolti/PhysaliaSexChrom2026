@@ -218,17 +218,23 @@ dim(data)
 
 #Extract RPKM
 expr <- DGEList(counts=data)
+
 gene_length <- read.table("gene_length.txt",stringsAsFactors=F)
 head(gene_length)
 names(gene_length) <- c("gene","length")
 dim(gene_length)
+
 expressed_genes <- rownames(data)
 length(expressed_genes)
+
+# Subset gene length list to the genes that are expressed
 gene_length <- subset(gene_length, gene %in% expressed_genes)
 gene_length <- gene_length[match(rownames(expr),gene_length$gene),]
 gene_length_vector <- c(gene_length$length)
-all(gene_length$V1 == rownames(expr))
 #should print TRUE
+all(gene_length$V1 == rownames(expr))
+
+# Convert counts to rpkm
 rpkm <- rpkm(expr, log=FALSE,gene.length=gene_length_vector)
 write.table(rpkm, file="rpkm_catkin.txt",quote=F, sep="\t")
 ```
@@ -258,6 +264,8 @@ library("edgeR")
 data <- read.table("read_counts_catkin_filtered.txt",stringsAsFactors=F,header=T, row.names=1)
 head(data)
 dim(data)
+
+# Define the two groups (Females, Males)
 conditions <- factor(c("F","F","F","M","M","M"))
 length(conditions)
 
@@ -334,18 +342,17 @@ lines(sample6, type="l",lwd=2,col="blue")
 </details>
 
 ```
-#Extract RPKM
-gene_length <- read.table("gene_length.txt",stringsAsFactors=F)
-head(gene_length)
-names(gene_length) <- c("gene","length")
-dim(gene_length)
+#Extract Normalized RPKM values
 expressed_genes <- rownames(data)
 length(expressed_genes)
+
+# Subset gene length list to genes that pass the minimum expression threshold
 gene_length <- subset(gene_length, gene %in% expressed_genes)
 gene_length <- gene_length[match(rownames(expr),gene_length$gene),]
 gene_length_vector <- c(gene_length$length)
-all(gene_length$V1 == rownames(expr))
 #should print TRUE
+all(gene_length$V1 == rownames(expr))
+
 rpkm_norm <- rpkm(norm_expr, log=FALSE,gene.length=gene_length_vector)
 write.table(rpkm_norm, file="rpkm_catkin_normalized.txt",quote=F, sep="\t")
 ```
@@ -380,7 +387,7 @@ pheatmap(log2(rpkm_norm+1), show_colnames=T, show_rownames=F, color = palette2, 
 
 </details>
 
-Run the analysis based on the leaf gene expression, and see what differences can you observe.
+**Task: Run the analysis for the leaf gene expression. Do you find any differences?**
 
 ## 06. Differential gene expression (with edgeR)
 
@@ -388,7 +395,7 @@ Run the analysis based on the leaf gene expression, and see what differences can
 library("edgeR")
 library("ggplot2")
 
-# You can skip this first part if you ran I earlier
+# You can skip this first part if you ran it earlier
 data <- read.table("read_counts_catkin_filtered.txt",stringsAsFactors=F,header=T, row.names=1)
 head(data)
 dim(data)
@@ -427,6 +434,7 @@ sum(de_results_catkin$Padj < 0.05 & de_results_catkin$logFC < -1)
 # Volcano Plot (apply -log10 for better visualization)
 de_results_catkin$negLogFDR <- -log10(de_results_catkin$Padj)
 
+library(ggplot2)
 ggplot(de_results_catkin, aes(x=logFC, y=negLogFDR)) +
 	geom_point(alpha=0.4, size=1) +
 	theme_minimal() +
@@ -449,7 +457,7 @@ write.table(sex_biased, file = "sex_biased_genes.txt", sep = "\t", quote = FALSE
 
 </details>
 	
-## 07. Differential gene expression (with DESeq2)
+## 06. Differential gene expression (with DESeq2)
 
 ```
 # install DESeq2 if not there already
@@ -509,7 +517,7 @@ ggplot(as.data.frame(res), aes(x = log2FoldChange, y = negLogFDR)) +
              aes(x = log2FoldChange, y = negLogFDR), color = "orange", size = 1.5)
 ```
 
-## 08. Plot male and female expression for genes with different sex-bias thresholds
+## 07. Plot male and female expression for genes with different sex-bias thresholds
 
 ```
 library(ggplot2)
@@ -580,4 +588,4 @@ library(gridExtra)
 grid.arrange(p1, p2, ncol=2)
 ```
 
-### Run the differential gene expression on the leaf samples, and see what contrasts can you make to the catkin results.
+**Task: Run the differentiale expression analysis for the leaf tissue. What contrasts can you make to the results from the catkin tissue?**
