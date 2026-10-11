@@ -588,4 +588,12 @@ library(gridExtra)
 grid.arrange(p1, p2, ncol=2)
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
+<img width="1628" height="802" alt="FCthresh_plot_catkin" src="https://github.com/user-attachments/assets/68705414-9b61-4a86-bed0-f01d68c5ece9" />
+
+</details>
+
+
 ## Task: Run the differential expression analysis for the leaf tissue. What contrasts can you make to the results from the catkin tissue?
