@@ -206,18 +206,7 @@ head ../htseq/leaf/read_counts_leaf.txt
 
 ## 04. Filter lowly expressed genes
 
-Copy the stringtie merged.gtf file based on the full dataset, then create a file with the length of each gene. You only need to run this using one tissue, as all genes are included in both.
-
-```
-cd ../stringtie
-mkdir fullset
-cp ~/Share/day4/willow/stringtie/fullset/merged.gtf ./fullset/
-cd ../scripts
-python3 extract-gene-lengths.py ../htseq/catkin/read_counts_catkin.txt ../stringtie/fullset/merged.gtf ../stringtie/fullset/gene_length.txt
-head ../stringtie/fullset/gene_length.txt
-```
-
-Download the read counts file for each tissue and the gene_length txt to your local directory. First, use edgeR to convert counts to RPKM.
+Download the read counts file for each tissue and the gene_length.txt (found at ~/Share/day4/willow/stringtie/fullset/) to your local directory. First, use edgeR to convert counts to RPKM.
 
 ```
 library("edgeR")
