@@ -50,7 +50,7 @@ picta_samples <- read.table("samples_list.txt", header=T, sep=",")
 head(picta_samples)
 
 # Read quantification files
-files <- file.path("./salmon_quantification_fullset", picta_samples$sample_id, "quant.sf")
+files <- file.path("../salmon_quantification", picta_samples$sample_id, "quant.sf")
 names(files) <- paste0(picta_samples$sample_id)
 all(file.exists(files))
 
@@ -60,7 +60,7 @@ head(txi$counts)
 
 # Write read counts
 df <- data.frame(gene = rownames(txi$counts), txi$counts, check.names = FALSE)
-write.table(df, file="./expression/Poecilia_picta_counts.txt", quote = FALSE, sep = ",", row.names = FALSE)
+write.table(df, file="../expression/Poecilia_picta_counts.txt", quote = FALSE, sep = ",", row.names = FALSE)
 ```
 
 ## 03. Convert raw counts to RPKM
@@ -79,13 +79,14 @@ Covert read counts to RPKM.
 ```
 library("edgeR")
 
-data <- read.table("Poecilia_picta_counts.txt",stringsAsFactors=F, header=T, row.names=1, sep=",")
+data <- read.table("../expression/Poecilia_picta_counts.txt",stringsAsFactors=F, header=T, row.names=1, sep=",")
 head(data)
 dim(data)
 
 #Extract RPKM
 expr <- DGEList(counts=data)
-gene_length <- read.table("gene_lengths.txt",stringsAsFactors=F)
+
+gene_length <- read.table("../transcriptome/gene_lengths.txt",stringsAsFactors=F)
 head(gene_length)
 names(gene_length) <- c("gene","length")
 dim(gene_length)
@@ -95,11 +96,11 @@ length(expressed_genes)
 gene_length <- subset(gene_length, gene %in% expressed_genes)
 gene_length <- gene_length[match(rownames(expr),gene_length$gene),]
 gene_length_vector <- c(gene_length$length)
-all(gene_length$V1 == rownames(expr))
 #should print TRUE
+all(gene_length$V1 == rownames(expr))
 
 rpkm <- rpkm(expr, log=FALSE, gene.length=gene_length_vector)
-write.table(rpkm, file="Poecilia_picta_rpkm.txt",quote=F, sep=",")
+write.table(rpkm, file="../expression/Poecilia_picta_rpkm.txt",quote=F, sep=",")
 ```
 
 ## 04. Remove lowly-expressed genes
@@ -126,7 +127,7 @@ awk -F, 'NR==FNR {genes[$1]; next} FNR==1 || $1 in genes' Poecilia_picta_rpkm_fi
 ```
 library("edgeR")
 
-data <- read.table("Poecilia_picta_counts_filtered.txt",stringsAsFactors=F,header=T, row.names=1,sep=",")
+data <- read.table("../expression/Poecilia_picta_counts_filtered.txt",stringsAsFactors=F,header=T, row.names=1,sep=",")
 head(data)
 dim(data)
 conditions <- factor(c("F","F","F","M","M","M"))
@@ -205,18 +206,18 @@ lines(sample6, type="l",lwd=2,col="blue")
 
 ```
 #Normalise and extract rpkm
-expr <- DGEList(counts=data)
+expr <- DGEList(counts=df)
 norm_expr <- calcNormFactors(expr)
-gene_length <- read.table("./transcriptome/gene_lengths.txt",stringsAsFactors=F)
+gene_length <- read.table("../transcriptome/gene_lengths.txt",stringsAsFactors=F)
 head(gene_length)
 dim(gene_length)
-expressed_genes <- rownames(data)
+expressed_genes <- rownames(df)
 length(expressed_genes)
 gene_length <- subset(gene_length, V1 %in% expressed_genes)
 gene_length <- gene_length[match(rownames(expr),gene_length$V1),]
 gene_length_vector <- c(gene_length$V2)
-all(gene_length$V1 == rownames(expr))
 #should print TRUE
+all(gene_length$V1 == rownames(expr))
 
 rpkm_norm <- rpkm(norm_expr, log=FALSE, gene.length=gene_length_vector)
 
@@ -251,11 +252,11 @@ library(tidyr)
 library(dplyr)
 
 # Read expression matrix
-expr <- read.table("Poecilia_picta_rpkm_normalized.txt", stringsAsFactors = FALSE,sep=",",header=T)
+expr <- read.table("../expression/Poecilia_picta_rpkm_normalized.txt", stringsAsFactors = FALSE,sep=",",header=T)
 head(expr)
 
 # Read gene-to-chromosome mapping (no header assumed)
-genes_chr <- read.table("gene_chromosome.txt", stringsAsFactors = FALSE, col.names = c("gene", "chromosome"))
+genes_chr <- read.table("../transcriptome/gene_chromosome.txt", stringsAsFactors = FALSE, col.names = c("gene", "chromosome"))
 head(genes_chr)
 
 # Merge by gene
@@ -316,7 +317,12 @@ ggplot(long_data, aes(x = sample, y = expression,fill=sex)) +
 
 ## Task: Plot male and female expression for autosomal genes**
 
-autosomal_data <- merged %>% filter(chromosome != "LG12")
+<details>
+<summary>💡 Need a hint?</summary>
+
+Define autosomal dataset as every chromosome except LG12: autosomal_data <- merged %>% filter(chromosome != "LG12")
+
+</details>
 
 ## 08. Compare expression between the autosomes and the sex chromosomes
 
@@ -357,7 +363,7 @@ library(ggplot2)
 library(zoo)
 
 # Read your expression data csv
-expr <- read.csv("Poecilia_picta_rpkm_normalized.txt")
+expr <- read.csv("../expression/Poecilia_picta_rpkm_normalized.txt")
 
 # Remove the "-RA" suffix in the gene name
 expr$gene <- sub("-RA$", "", expr$gene)
@@ -489,7 +495,7 @@ female_biased <- female_biased[, c("gene", setdiff(colnames(female_biased), "gen
 write.table(female_biased, file = "female_biased_genes.txt", row.names = FALSE, quote=FALSE)
 ```
 
-## 11. Check for sexualization of gene expression on the sex chromosome
+## 11. (Optional check) Sexualization of gene expression on the sex chromosome
 
 ```
 # Read GFF file, skipping comment lines
