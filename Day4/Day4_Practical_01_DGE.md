@@ -588,4 +588,4 @@ library(gridExtra)
 grid.arrange(p1, p2, ncol=2)
 ```
 
-## Task: Run the differentiale expression analysis for the leaf tissue. What contrasts can you make to the results from the catkin tissue?
+## Task: Run the differential expression analysis for the leaf tissue. What contrasts can you make to the results from the catkin tissue?
