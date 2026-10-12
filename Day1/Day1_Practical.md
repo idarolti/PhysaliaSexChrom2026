@@ -56,6 +56,9 @@ mkdir trimmed_reads
     
 input_dir="/home/ubuntu/Share/day1/01.quality_trimming/raw_reads/"
 adapter_dir="/home/ubuntu/Share/day1/01.quality_trimming/"
+
+input_dir="~/Share/day1/01.quality_trimming/raw_reads/"
+adapter_dir="~/Share/day1/01.quality_trimming/"
 output_dir=./trimmed_reads
     
 trimmomatic PE \
