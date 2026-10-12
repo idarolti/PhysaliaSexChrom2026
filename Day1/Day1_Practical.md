@@ -280,7 +280,7 @@ Perform genotyping of variants using [GenotypeGVCFs](https://gatk.broadinstitute
 cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_female1_chr12.gvcf ./03.snp_calling
 cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_female1_chr12.gvcf.idx ./03.snp_calling
 
-vcftools --vcf Poecilia_picta_female1_subset.gvcf --recode --stdout | grep -v '^##' | head
+vcftools --vcf Poecilia_picta_female1_chr12.gvcf --recode --stdout | grep -v '^##' | head
 
 gatk GenotypeGVCFs \
    -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
@@ -323,7 +323,7 @@ vcftools --vcf ./03.snp_calling/Poecilia_picta_female1_chr12.selectvar_filtered.
 cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf ./03.snp_calling
 cp /home/ubuntu/Share/day1/03.snp_calling/Poecilia_picta_male2_chr12.gvcf.idx ./03.snp_calling
 
-vcftools --vcf Poecilia_picta_male2_subset.gvcf --recode --stdout | grep -v '^##' | head
+vcftools --vcf Poecilia_picta_male2_chr12.gvcf --recode --stdout | grep -v '^##' | head
 
 gatk GenotypeGVCFs \
    -R /home/ubuntu/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna \
