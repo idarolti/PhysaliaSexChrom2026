@@ -8,7 +8,7 @@ This practical will cover:
 
 ## 00. Prepare work folder for day 1
 ```
-ssh -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29
+ssh -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.91.59.241
 mkdir day1
 cd day1
 conda activate /opt/conda-envs/day1
