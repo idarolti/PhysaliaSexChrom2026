@@ -171,6 +171,6 @@ Transfer the  files with the following file endings to your local machine: .resu
 ```
 
 
-Open RStudio and load the script PlotSCINKD2.R from this repository
+Open RStudio and load the plotting R-script corresponding to the species you chose from this repository
 
 
