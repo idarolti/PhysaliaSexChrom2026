@@ -10,7 +10,7 @@ We will base our analysis on the **[SexFindR pipeline](https://sexfindr.readthed
 
 ## 00. Prepare work folder for day 2
 Open your terminal application as yesterday, connect to the server as yesterday, using your .pem file and user account, and use today's IP adress
-
+Add your user number that was given to you in the excel file yesterday behind the word "user"
 ```
 ssh -i ~/YOURLOCALFOLDER/user.pem user@44.251.209.2
 mkdir day2
