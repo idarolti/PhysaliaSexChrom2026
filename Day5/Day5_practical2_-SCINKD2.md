@@ -135,6 +135,7 @@ Try the dry run, then copying should take around 10 minutes, then redo the comma
 ```
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
 cp -r ~/Share/day5/SCINKD2/scinkd2_VulVul/RESULTS/* .
+snakemake --use-conda --touch --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
 time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
 ```
 
