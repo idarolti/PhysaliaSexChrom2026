@@ -41,7 +41,7 @@ After running, download the .html output file to your local machine to visualize
 
 ```
 pwd
-scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29:/pwd/*.html ~/Desktop
+scp -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.91.59.241:/pwd/*.html ~/Desktop
 ```
 
 Can find nice examples of different fastqc outputs [here](https://rtsf.natsci.msu.edu/genomics/technical-documents/fastqc-tutorial-and-faq.aspx).
