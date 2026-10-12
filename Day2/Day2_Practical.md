@@ -78,7 +78,7 @@ cp ~/Share/day2/coverage/picta_sample1_sample2.ratio_per_w_CC0_a0_A20015_b0_B169
 
 ### Step 4. Create coverage plots in R
 
-This script uses the R package **[DNAcopy[(https://bioconductor.org/packages/release/bioc/html/DNAcopy.html)** to generate output plots of the coverage ratio. DNAcopy uses both the raw coverage ratio, and computes the average coverage ratio of adjacent windows to create the plot. Run this on the server
+This script uses the R package **[DNAcopy](https://bioconductor.org/packages/release/bioc/html/DNAcopy.html)** to generate output plots of the coverage ratio. DNAcopy uses both the raw coverage ratio, and computes the average coverage ratio of adjacent windows to create the plot. Run this on the server
 ```
 Rscript ~/Share/day2/coverage/dif_cover_scripts/run_DNAcopy_from_bash.R sample1_sample2.ratio_per_w_CC0_*.log2adj_*
 ```
