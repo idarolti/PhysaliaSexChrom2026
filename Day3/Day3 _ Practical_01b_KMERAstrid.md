@@ -59,7 +59,7 @@ This assembly has 17 chromosomes
 
 <details>
 
-<summary>Prepare Genome</summary>
+<summary>🔑 Prepare Genome</summary>
 
 ```
 cd ~/day3/scinkd3
@@ -82,7 +82,7 @@ Now modify the config file in the SCINKD3 directory to match the genome name, th
 
 <details>
 
-<summary>Solution Modify Config File</summary>
+<summary>🔑 Solution Modify Config File</summary>
 You can either download the file to your machine and modify it with a text editor of your choice or use nano in the terminal to change the text to the one below
 
 ```
