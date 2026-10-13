@@ -12,7 +12,7 @@ We will base our analysis on the **[SexFindR pipeline](https://sexfindr.readthed
 Open your terminal application as yesterday, connect to the server as yesterday, using your .pem file and user account, and use today's IP adress. 
 Add your user number that was given to you in the excel file yesterday behind the word "user" and generate a directory for today.
 ```
-ssh -i ~/YOURLOCALFOLDER/user.pem user@34.214.98.196
+ssh -i ~/YOURLOCALFOLDER/user.pem user@52.13.143.209
 mkdir day2
 cd day2
 conda activate /opt/conda-envs/day2
