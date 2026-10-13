@@ -41,10 +41,10 @@ cd SCINKD3
 cp /opt/course-software/SCINKD3/config_SCINKD.v3.1.5.json .
 cat config_SCINKD.v3.1.5.json
 ```
-You will see information towards the settings of the tool and the input data. This tool uses a reference genome in fasta format and several male and female short read data files in fastq.gz format.
-Reference genome line 	"genome": "GCF_049243985.1_Ppicta_v3.0_genomic.fna")
-This assembly has 18 chromosomes (line 	"ChrNum": "18")
-Read file naming suffix for paired-end data 	"R1_suffix": "_1.fastq.gz", "R2_suffix": "_2.fastq.gz",
+You will see information towards the settings of the tool and the input data. This tool uses a reference genome in fasta format and several male and female short read data files in fastq.gz format.  
+Reference genome line "genome": "GCF_049243985.1_Ppicta_v3.0_genomic.fna"). 
+This assembly has 18 chromosomes (line 	"ChrNum": "18"). 
+Read file naming suffix for paired-end data  (line "R1_suffix": "_1.fastq.gz", "R2_suffix": "_2.fastq.gz"). 
 
 ### B. Prepare the input data
 
