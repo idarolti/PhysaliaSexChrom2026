@@ -164,7 +164,7 @@ snakemake --snakefile /opt/course-software/SCINKD3/SCINKD.v3.1.5.snakefile --cor
 This should generate the output plots. If this is not working for you, you can also find the plots already prepared and download them in the next step.
 
 ### D. Inspect the output
-The SnakeMake run should have produced the final plots in your day3/sckind3 directory. Else, uou can find the files SCINKD3.males.png, SCINKD3.females.png and SCINKD3.dotplot.png here
+The SnakeMake run should have produced the final plots in your day3/sckind3 directory. Else, you can find the files SCINKD3.males.png, SCINKD3.females.png and SCINKD3.dotplot.png here
 ```
 ~/Share/day3/scinkd3/outputplots
 ```
