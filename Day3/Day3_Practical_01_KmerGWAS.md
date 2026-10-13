@@ -12,7 +12,11 @@ Set up a new working directory for today, and activate the conda environment.
 ssh -i ~/YOURLOCALFOLDER/user.pem user@18.237.201.56
 mkdir day3
 cd day3
-conda activate /opt/conda-envs/day3
+# load conda environment and specify path to kmersgwas scripts
+conda activate /opt/conda-envs/kmersgwas
+export LD_LIBRARY_PATH=/opt/conda-envs/kmersgwas/lib:$LD_LIBRARY_PATH
+# Software is located at:
+/opt/course-software/kmersGWAS
 ```
 
 ## 01. Setup for K-mer analyses
@@ -22,11 +26,11 @@ Within day3, set up directories for K-mer analyses, copy all scripts needed and 
 ```
 mkdir kmersGWAS
 cd kmersGWAS
-cp ~/Share/day3/kmersGWAS/kmers_table_to_bed .
-cp ~/Share/day3/kmersGWAS/plink_to_abyss_kmers.py .
-mkdir Ppicta
-cd Ppicta
-cp ~/Share/day3/kmersGWAS/picta/Ppicta_phenotype.txt .
+mkdir Simmrg
+cd Simmrg
+cp ~/Share/day3/kmersGWAS/Simmrg/Simmrg_phenotype.list .
+cp ~/Share/day3/kmersGWAS/Simmrg/Simmrg_MALE.list .
+cp ~/Share/day3/kmersGWAS/Simmrg/Simmrg_FEMALE.list .
 ```
 
 ## 02. Generate K-mer counts
@@ -34,13 +38,13 @@ cp ~/Share/day3/kmersGWAS/picta/Ppicta_phenotype.txt .
 This first step generates a list of all kmers and their presence/absence across all individuals. It can be run with the script below, but takes a very long time, so we won't run it today. Have a look at the file using the code below, and see if you can understand what it does.
 
 ```
-cat ~/Share/day3/kmersGWAS/run_kmersGWAS_step1_picta.sh
+cat ~/Share/day3/kmersGWAS/scripts/run_kmersGWAS_step1_Simmrg.sh
 ```
 
 The output of this step is a file called *kmers.table. This is a long list of every kmer found in the samples and their presence/absence in each individual. The file is already saved in the server, and we can now use this file for the later steps.  This file can also be useful for other tools in the KMC/kmersGWAS tools, such as kinship analysis. Here we want to use this table to find kmers associated with sex, based on their presence or absence in our males and females.  
 
 ```
-cp ~/Share/day3/kmersGWAS/picta/picta_kmers_table* .
+cp ~/Share/day3/kmersGWAS/Simmrg/Simmrg_kmers_table* .
 ```
 
 ## 03. Test for association of K-mers and phenotype    
@@ -53,17 +57,20 @@ t : input file (kmers_table)
 k : 31 (this is a standard k for species barcoding, and works well for delimiting sexes as well). This was already set in step1, but here we need to tell PLINK what we used.  
 p : Sex phenotype list copied before  
 maf : minor allele frequency, set to 0.05, standard filtering
-mac : minor allele count. Another filtering set, based on the number of times the minor allele occurs, rather than frequency. In a large dataset, this can be set to 5, as a lower limit, but if using a smaller dataset, where there are <5 samples per sex, this needs to be adjusted for the data. Here we have 3 males and 3 females, so we set mac to 2, to strictly filter.
-b : batch count. If the output is larger than b bytes, split into multiple files. Set to 1000000000 (1Gb).  
+mac : minor allele count. Another filtering set, based on the number of times the minor allele occurs, rather than frequency. In a large dataset, this can be set to 5, as a lower limit, but if using a smaller dataset, where there are <5 samples per sex, this needs to be adjusted for the data. Here we have 5 males and 7 females, so we set mac to 4, to strictly filter.
+b : batch count. If the output is larger than b bytes, split into multiple files. Set to 1000000000 (1Gb). If multiple batches are created, each will end with .0, .1 etc.  
 o : output name  
 
 ```
-../kmers_table_to_bed -t kmers_table -k k -p sex_phenotypefile --maf maf --mac mac -b b -o output_name
+~/Share/day3/kmersGWAS/scripts/kmersGWAS/bin/kmers_table_to_bed -t kmers_table -k k -p sex_phenotypefile --maf maf --mac mac -b b -o output_name
 ```
-
+If this doesn't work, you can copy the output: 
+```
+cp ~/Share/day3/kmersGWAS/Simmrg/Simmrg_kmerGWAS_plink* .
+```
 Then run association test with PLINK. Set the following parameters:  
 noweb : Don't check for online updates, like yesterday  
-bfile : input file, output from the previous step (use your output name, plus the ending '.0', without the ending '.bed')  
+bfile : input file, output from the previous step (use your output name, plus the batch number ending '.0', without the ending '.bed')  
 allow-no-sex : no sex as co-variate, like yesterday  
 assoc : test for an association  
 out : output file name  
@@ -75,13 +82,13 @@ plink --noweb --bfile plink_file --allow-no-sex --assoc --out outname
 WARNING: this step may fail due to lack of memory. This shouldn't be an issue when working in your own university/institute cluster. If it does, copy the output from the shared folder.
 
 ```
-cp ~/Share/day3/kmersGWAS/picta/picta_kmers.assoc .
+cp ~/Share/day3/kmersGWAS/Simmrg/Simmrg_kmers.assoc .
 ```
 
 This file is not tab-delimited, so annoying to work with. Use [awk](https://speciationgenomics.github.io/awk/) to fix this, and add the suffix .tab.  
 
 ```
-awk -v OFS='\t' '{ $1=$1; print }' picta_kmers.assoc > picta_kmers.assoc.tab
+awk -v OFS='\t' '{ $1=$1; print }' Simmrg_kmers.assoc > Simmrg_kmers.assoc.tab
 ```
 
 This output file now lists every kmer and how associated it is with the phenotype, using a p-value.
@@ -92,7 +99,7 @@ Check the output file for the most significant p-value, and filter for only kmer
 First cut out the 9th column (*cut -f 9*), then remove the header line containing 'P' (*grep -v 'P'*), then sort numerically (*sort -g*), and finally give the last value in this list (*head -1*).
 
 ```
-cut -f 9 picta_kmers.assoc.tab | grep -v 'P' | sort -g | head -1
+cut -f 9 Simmrg_kmers.assoc.tab | grep -v 'P' | sort -g | head -1
 ```
 
 This might take some time, and should results in the value 0.000532.  
@@ -100,7 +107,7 @@ Now use this value to filter the list of kmers, using awk.
 Edit the command for the p-value output from the step above.  
 
 ```
-awk '$9 <= P' picta_kmers.assoc.tab > picta_most_significant_assoc.tab
+awk '$9 <= P' Simmrg_kmers.assoc.tab > Simmrg_most_significant_assoc.tab
 ```
 
 Now, we have a list of kmers that are strongly associated with sex, but no information about where these kmers came from. The next step is to figure this out, using blast.
@@ -114,7 +121,7 @@ This step makes small contigs from the associated kmers we just found. This is u
 This uses a custom script from the kmerGWAS tool to convert the PLINK association file to a fasta file of all kmers. This can be used for assembly of potentially sex-specific contigs using the short read assembler **[ABySS](https://github.com/bcgsc/abyss)**
 
 ```
-python ../plink_to_abyss_kmers.py picta_most_significant_assoc.tab picta_plink_abyss_input.txt
+python ~/Share/day3/kmersGWAS/scripts/plink_to_abyss_kmers.py Simmrg_most_significant_assoc.tab Simmrg_abyss_input.txt
 ```
 
 Assemble small contigs with ABySS. Use the following arguments:  
@@ -123,7 +130,7 @@ c : Coverage threshold. Remove contigs with mean k-mer coverage less than this v
 e : Erosion threshold. Erode bases at the ends of blunt contigs with coverage less than this value. Set to 0.  
 o : output name
 ```
-ABYSS -k k -c c -e e picta_plink_abyss_input -o output_name
+ABYSS -k k -c c -e e Simmrg_abyss_input -o output_name
 ```
 
 ## 06. Locate the assembled contigs in reference genome    
@@ -131,26 +138,25 @@ ABYSS -k k -c c -e e picta_plink_abyss_input -o output_name
 Use **[BlastN](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&BLAST_SPEC=GeoBlast&PAGE_TYPE=BlastSearch)**  to locate contigs in the reference genome, for this first generate a blast reference database for the reference genome and then run blast.  
 
 ```
-cp ~/Share/day1/02.read_mapping/reference_genome/Poecilia_picta.fna .
 # make the reference database. Set the database type to nucleotide
-makeblastdb -in Poecilia_picta.fna -dbtype nucl
+makeblastdb -in ~/Share/day3/kmersGWAS/astcal.fasta -dbtype nucl
 # run blast. Set the output format to #6, see the link for information.
-blastn -query picta_plink_abyss_output.txt -db Poecilia_picta.fna -outfmt 6 -out picta_kmers_blast.out
+blastn -query Simmrg_abyss_output.txt -db ~/Share/day3/kmersGWAS/astcal.fasta -outfmt 6 -out Simmrg_astcal_kmers_blast.out
 ```
 
 ## 07. Visualize genomic locations of the assembled contigs in R
 
-Download the output file of the BLAST above picta_kmers_blast.out file to your local machine. Also download the file chrlength_Ppicta.tsv from this github.  
+Download the output file of the BLAST above Simmrg_astcal_kmers_blast.out file to your local machine. Also download the file chrlength_astcal.tsv from this ~/Share/day3/kmersGWAS .  
 On your machine open **[R](https://cran.r-project.org)** or **[RStudio](https://posit.co/products/open-source/rstudio/?sid=1)**   
 
-In R execute the code below
+In R execute the code below. Note the blast filtering step, play around here and decide if you want to filter the output.  
 
 ```
 install.packages("tidyverse")
 library(tidyverse)
 
 # Read in data
-kmerblast_out <- read_tsv("picta_kmers_blast.out") %>%
+kmerblast_out <- read_tsv("Simmrg_kmers_blast.out") %>%
   rename("query_sid" = 1,
          "scaf" = 2,
          "ident.match_p" = 3,
@@ -166,13 +172,25 @@ kmerblast_out <- read_tsv("picta_kmers_blast.out") %>%
 
 # Read in reference chromosome list
 
-ref <- read_tsv("chrlength_Ppicta.tsv") %>%
+ref <- read_tsv("chrlength_astcal.txt") %>%
   rename("scaf" = 1,
-         "length" = 2)
+         "length" = 3) %>%
+  filter(grepl('LS', scaf))
+  
+
+# have a look at the different variables in the blast output. Maybe you want to filter the blast hits based on this?
+
+ggplot(kmerblast_out) +
+  geom_histogram(aes(x = alignmt_len, y = after_stat(density)), binwidth = 1)
+# + xlim(0, 200)
+
+ggplot(kmerblast_out) +
+  geom_histogram(aes(x = gapopen_n, y = after_stat(density)), binwidth = 1)
 
 # query' is unique for each k-mer, so we want to select the best hit for each one and plot those:
 kmerblast_filter <- 
-  filter(kmerblast_out, !grepl('JAVY', scaf)) %>% 
+  filter(kmerblast_out, grepl('LS', scaf)) %>%
+# add extra filtering based on the histograms above
   group_by(query_sid) %>% 
   top_n(n = 1, wt = -exp_value)
 
@@ -193,7 +211,7 @@ kmer_chr$n_prop <- kmer_chr$n / kmer_chr$length
                y=n_prop)) + 
     geom_col() +
     theme_bw() +
-    labs(title = bquote("Blasted kmerGWAS results for P. picta"),
+    labs(title = bquote("Blasted kmerGWAS results for P. marginatus (North)"),
          subtitle = "Counts per chromosome, proportional to chromosome length") +
     xlab("Chromosome") +
     ylab("ABySS contig blastn hit proportion") +
@@ -210,12 +228,12 @@ kmer_chr$n_prop <- kmer_chr$n / kmer_chr$length
 ### kmer positions
   
   (points <-
-      filter(kmerblast_filter, scaf == "CM065364.1") %>%
+      filter(kmerblast_filter, scaf == "my_chrom_name") %>%
       ggplot(aes(x = ref_start, y = ident.match_p)) +
       geom_point(
         size = 1) +
-      labs(title = bquote("Blasted kmerGWAS results for P. picta"),
-           subtitle = "All kmers")) +
+      labs(title = bquote("Blasted kmerGWAS results for P. marginatus (North)"),
+           subtitle = "My chromosome")) +
       labs(x = "Position (bp)", y = "Blast similarity best hit per contig (%)") +
       theme_bw() + 
       theme(legend.position = "none") + 
@@ -225,5 +243,5 @@ kmer_chr$n_prop <- kmer_chr$n / kmer_chr$length
             axis.title.y = element_text(size = 12, angle = 90, hjust = .5, vjust = .5, face = "plain"),
             title = element_text(size=15)
       )
-```
 
+```
