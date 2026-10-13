@@ -5,13 +5,13 @@ This part of the practical will cover the steps for identifying sex-linked seque
 ## 00. Prepare work folder for day 3
 
 ```
-ssh -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29
+ssh -i user.pem user@52.13.143.209
 mkdir day3
 cd day3
 conda activate /opt/conda-envs/day3
 ```
 
-## 02. Genotyping
+## 02. Genotyping (subset)
 
 First, obtain alignment bam files and transcriptome assembly.
 ```
@@ -144,8 +144,8 @@ cd sexdetector_output_full_RetFam1
 Find how many genes are inferred as autosomal versus sex-linked.
 
 ```
-cat RetFam1_assignment.txt | grep -w "sex-linked" -c
-cat RetFam1_assignment.txt | grep -w "autosomal" -c
+echo -n "Sex-linked: "; grep -wc "sex-linked" RetFam1_assignment.txt
+echo -n "Autosomal: ";  grep -wc "autosomal"  RetFam1_assignment.txt
 ```
 
 Obtain a single sequence for each gene (to then blast onto the assembly).
