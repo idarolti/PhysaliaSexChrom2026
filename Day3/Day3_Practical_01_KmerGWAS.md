@@ -63,7 +63,7 @@ o : output name
 
 Then run association test with PLINK. Set the following parameters:  
 noweb : Don't check for online updates, like yesterday  
-bfile : input file, output from the previous step (ends with .0)  
+bfile : input file, output from the previous step (use your output name, plus the ending '.0', without the ending '.bed')  
 allow-no-sex : no sex as co-variate, like yesterday  
 assoc : test for an association  
 out : output file name  
