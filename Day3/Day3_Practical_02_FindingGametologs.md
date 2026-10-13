@@ -276,7 +276,7 @@ ggplot(sexlinked, aes(x = Start / 1e6)) +
 <details>
 <summary>📊 PLOT</summary>
 
-[RetFam1_plot.pdf](https://github.com/user-attachments/files/33386363/RetFam1_plot.pdf)
+<img width="1028" height="450" alt="Screenshot 2026-10-13 at 15 08 08" src="https://github.com/user-attachments/assets/a29cec37-3244-49a8-bfae-5d3f8e7891c0" />
 
 </details>
 
