@@ -185,7 +185,7 @@ awk '
 grep ">" RetFam1_sex-linked_sequences_unique.fasta -c
 ```
 
-Use Blast to see where on the genome the identifyied sex-linked genes align. A Blast database (with makeblastdb) has been already created in the Shared folder.
+Use Blast to see where on the genome the identifyied sex-linked genes align. A Blast database (with makeblastdb) has been already created in the Shared folder. We know the sex chromosome is "CM002717.1" in the reference genome file.
 
 ```
 blastn -db ~/Share/day3/sexdetector/genome_assembly/Poecilia_reticulata -query RetFam1_sex-linked_sequences_unique.fasta -out RetFam1_blastout -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sseq"
