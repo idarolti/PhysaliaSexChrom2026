@@ -165,6 +165,8 @@ out : name of output file (i.e. Simmrg_step1)
 ```
 cd GWAS
 vcftools --gzvcf vcf --plink --remove-indels --max-missing max-missing --max-maf max-maf --maf maf --out outname
+# or if this uses too much memory, this command works in the same way and should be lighter
+bcftools view -v snps -q 0.05:minor -e 'MAF > 0.95' -m2 -M2 -Oz -o Simmrg_filtered.vcf.gz Simmrg_astcal.final.vcf.gz
 ```
 
 Now we run plink to summarise the SNPs into values for each sex. This used the sex.list which lists samples in the 2 populations, males and females, with values 1 and 2. Use 'cat' to inspect this file.
