@@ -156,7 +156,7 @@ install.packages("tidyverse")
 library(tidyverse)
 
 # Read in data
-kmerblast_out <- read_tsv("Simmrg_kmers_blast.out") %>%
+kmerblast_out <- read_tsv("Simmrg_astcal_kmers_blast.out") %>%
   rename("query_sid" = 1,
          "scaf" = 2,
          "ident.match_p" = 3,
