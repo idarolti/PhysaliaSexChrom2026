@@ -5,7 +5,7 @@ This part of the practical will cover the steps for estimating sequence divergen
 ## 00. Prepare work folder for day 3
 
 ```
-ssh -i ~/YOURLOCALFOLDER/scverse1.pem ubuntu@35.89.239.29
+ssh -i user.pem user@52.13.143.209
 mkdir day3
 cd day3
 conda activate /opt/conda-envs/day3
@@ -53,6 +53,8 @@ for file in */*.stripped.cdna.fa; do
     prank -d="$file" -f=fasta -o="$out" -DNA -codon -once -showtree -showall -support
 done
 ```
+
+This step produces individual .best.fas alignment files. You can have a look at the alignments for Gametologs 19091 (NNNs added) and 23526 (--- added).
 
 Remove gaps in alignments and short sequences. Gaps represent insertions or deletions (indels) that can disrupt the reading frame and homology established at the codon level. For statistical reasons, you can also filter for a minimum gene length (shorter sequences provide very few codons for substitution rate estimation, which can lead to unstable and unreliable substitution estimates due to insufficient mutation counts and sampling noise).
 
