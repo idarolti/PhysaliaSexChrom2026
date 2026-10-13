@@ -133,10 +133,10 @@ We have prepared the intermediate steps for you, do the following to get those a
 Try the dry run, then copying should take around 10 minutes, then redo the command as true command removing "-np"
 
 ```
-time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
+snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile -np #dry run
 cp -r ~/Share/day5/SCINKD2/scinkd2_VulVul/RESULTS/* .
 snakemake --use-conda --touch --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
-time snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
+snakemake --use-conda --rerun-incomplete --nolock --cores 2 -s /opt/course-software/SCINKD/SCINKD.v2.2.4.snakefile
 ```
 
 For the next step we also need visualisation so we will once more generate pairwise alignments with Minimap2
