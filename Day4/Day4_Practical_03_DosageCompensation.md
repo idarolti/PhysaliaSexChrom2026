@@ -25,8 +25,8 @@ salmon quant --numBootstraps 100 --gcBias --seqBias -p 12 -l A -i ~/Share/day4/d
 ```
 
 ```
-scp -i scverse1.pem ubuntu@44.254.129.237:~/Share/day4/dosage_compensation/transcriptome ./
-scp -i scverse1.pem ubuntu@44.254.129.237:~/Share/day4/dosage_compensation/salmon_quantification ./
+scp -i user.pem user@44.254.129.237:~/Share/day4/dosage_compensation/transcriptome ./
+scp -i user.pem user@44.254.129.237:~/Share/day4/dosage_compensation/salmon_quantification ./
 ```
 
 ## 02. Obtain merged counts data
