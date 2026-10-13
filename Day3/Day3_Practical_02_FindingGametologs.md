@@ -36,7 +36,7 @@ Run reads2snp:
 - -min: 3 (minimum number of reads to call a genotype)
 - -par: 0 (do not remove SNPs that appear to come from paralogous sequences, avoid overfiltering as X/Y SNPs can look like paralogous SNPs)
 - -bqt: 20 (minimum base quality)
-- -rqt: 10 (minimum read mapping quality
+- -rqt: 10 (minimum read mapping quality)
 
 ```
 cd ../scripts
