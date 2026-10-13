@@ -54,7 +54,7 @@ for file in */*.stripped.cdna.fa; do
 done
 ```
 
-This step produces individual .best.fas alignment files. You can have a look at the alignments for Gametologs 19091 (NNNs added) and 23526 (--- added).
+This step produces individual .best.fas alignment files. You can have a look at the alignments for Gametologs 23526 where "-" was added as a result to missing sequences in one of the gametologs.
 
 Remove gaps in alignments and short sequences. Gaps represent insertions or deletions (indels) that can disrupt the reading frame and homology established at the codon level. For statistical reasons, you can also filter for a minimum gene length (shorter sequences provide very few codons for substitution rate estimation, which can lead to unstable and unreliable substitution estimates due to insufficient mutation counts and sampling noise).
 
