@@ -273,6 +273,13 @@ ggplot(sexlinked, aes(x = Start / 1e6)) +
   theme_classic()
 ```
 
+<details>
+<summary>📊 PLOT</summary>
+
+[RetFam1_plot.pdf](https://github.com/user-attachments/files/33386363/RetFam1_plot.pdf)
+
+</details>
+
 
 **Task: Run the last part of the analysis (04.SNP segregation analysis full) using the SEX-DETector output from another family.**
 
