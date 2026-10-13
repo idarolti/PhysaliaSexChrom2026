@@ -153,7 +153,8 @@ SCINKD3 builds on the Kmer tool **[Meryl](https://github.com/marbl/meryl)** to c
 <img width="2070" height="1499" alt="Workflow" src="https://github.com/user-attachments/assets/72877682-4592-4bcc-af20-9456b50fdf4d" />
 
 Meryl is quite memory intense and needs more resources then you have access to, so you can download the data we have run outside of the Amazon server.
-SnakeMake has the functionality to pick up a run at intermediate steps, so this is what we will do here
+SnakeMake has the functionality to pick up a run at intermediate steps, however in the interest of time we work with the prepared files
+Only run below I you want to inspect the data in hour home folder
 
 ```
 cd ~/day3/scinkd3 
