@@ -127,7 +127,7 @@ icode = 0  * (0:universal code; 1:mammalian mt; 2-10:see below (choose 0 for sta
 weighting = 0 * (assumes all codon changes are equally likely when calculating differences)
 commonf3x4 = 0 * (default configuration parameter for codon frequencies estimation)
 ndata = 1 * (how many gene alignments are in the sequence input file)
-EOF * (end of file - hardstop indicator for paml parser)
+EOF
         echo "Wrote $ctl_path"
     fi
 done
