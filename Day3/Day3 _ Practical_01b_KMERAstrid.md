@@ -54,7 +54,7 @@ The sequencing data from Pinto et al. 2022 are deposited under BioProject ID PRJ
 Inspect the BioProject **[here](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA746057/)** to familiarise yourself with such data.  
 
 Then, download the reference genome from NCBI for _Sphaerodactylus townsendi_ (GCF_021028975.2) and unzip it.  
-For this, you can search the NCBI Genome database, then chose the FTP site and copy the full path. In your server session download the file and unzip. Place it in the day3/scinkd3 directory
+For this, you can search the NCBI Genome database, then chose the FTP site and copy the full path. In your server session download the file and unzip. Place it in the day3/scinkd3 directory.  
 This assembly has 17 chromosomes
 
 <details>
