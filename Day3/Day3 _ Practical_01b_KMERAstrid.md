@@ -69,7 +69,7 @@ gunzip GCF_021028975.2_MPM_Stown_v2.3_genomic.fna.gz
 
 </details>
 
-Get the male and female short read data, we will use a subset of three individuals to run the analysis.
+Get the male and female short read data, we will use a subset of three individuals per sex to run the analysis.
 You could normally fetch those data from the BioProject mentioned above with the sratoolkit using the commands prefetch + the SRR accession number followed by the command fastq_dump.
 For the sake of time, we have prepared these already so you can simply copy them to your directory.
 
