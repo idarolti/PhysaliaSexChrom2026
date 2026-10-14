@@ -11,7 +11,7 @@ Start FileZilla with today's IP, open your terminal and connect to the server, s
 ## 00. Prepare work folder for day 3
 
 ```
-ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@18.237.201.56
+ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@44.244.12.10
 mkdir day3
 cd day3
 
