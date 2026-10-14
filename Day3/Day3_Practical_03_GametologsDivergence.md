@@ -108,7 +108,7 @@ find "$INFOLDER" -type f -name "*gapsrm.fa" | while read -r file; do
 done
 ```
 
-**[PAML](https://snoweye.github.io/phyclust/document/pamlDOC.pdf)** is a suite of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood (ML). The **[yn00]()** module is a method for estimating synonymous and nonsynonymous substitution rates in pairwise comparison of protein-coding DNA sequences. 
+**[PAML](https://github.com/abacus-gene/paml)** is a suite of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood (ML). The **[yn00](https://github.com/abacus-gene/paml/wiki/yn00)** module is a method for estimating synonymous and nonsynonymous substitution rates in pairwise comparison of protein-coding DNA sequences. 
 
 We must first create a paml control file that specifies input alignment and output files, plus options like the genetic code and the analyses to be performed. Then run pmal yn00.
 
