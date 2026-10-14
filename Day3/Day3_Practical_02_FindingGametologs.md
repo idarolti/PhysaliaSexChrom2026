@@ -5,7 +5,7 @@ This part of the practical will cover the steps for identifying sex-linked seque
 ## 00. Prepare work folder for day 3
 
 ```
-ssh -i user.pem user@52.13.143.209
+ssh -i user.pem user@44.244.12.10
 mkdir day3
 cd day3
 conda activate /opt/conda-envs/day3
