@@ -18,7 +18,7 @@ cd day3
 ```
 
 ## 01. Setup for SCINKD3 analyses identifying sex chromosomes from short reads by comparing male and female catalogs 
-We will first run scinkd3, which compares kmer catalogs of males and females using a SnakeMake Workflow
+We will  run **[SCINKD3](https://github.com/DrPintoThe2nd/SCINKD3/tree/main)**, which compares kmer catalogs of males and females using a SnakeMake Workflow
 
 Within day3, set up a directory for scinkd3-based analyses and set the right compute environment 
 
