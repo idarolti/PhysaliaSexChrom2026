@@ -315,7 +315,7 @@ ggplot(long_data, aes(x = sample, y = expression,fill=sex)) +
 
 </details>
 
-## Task: Plot male and female expression for autosomal genes**
+## Task: Plot male and female expression for autosomal genes
 
 <details>
 <summary>💡 Need a hint?</summary>
