@@ -9,7 +9,7 @@ Set up a new working directory for today, and activate the conda environment.
 ## 00. Prepare work folder for day 3
 
 ```
-ssh -i ~/YOURLOCALFOLDER/user.pem user@18.237.201.56
+ssh -i ~/YOURLOCALFOLDER/user.pem user@44.244.12.10
 mkdir day3
 cd day3
 # load conda environment and specify path to kmersgwas scripts
