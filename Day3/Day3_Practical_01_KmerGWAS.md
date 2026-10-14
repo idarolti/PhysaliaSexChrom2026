@@ -55,9 +55,9 @@ Use the script copied before, and set the input file, the kmer size, the phenoty
 
 t : input file (kmers_table)  
 k : 31 (this is a standard k for species barcoding, and works well for delimiting sexes as well). This was already set in step1, but here we need to tell PLINK what we used.  
-p : Sex phenotype list copied before  
-maf : minor allele frequency, set to 0.05, standard filtering
-mac : minor allele count. Another filtering set, based on the number of times the minor allele occurs, rather than frequency. In a large dataset, this can be set to 5, as a lower limit, but if using a smaller dataset, where there are <5 samples per sex, this needs to be adjusted for the data. Here we have 5 males and 7 females, so we set mac to 4, to strictly filter.
+p : Sex phenotype list copied before    
+maf : minor allele frequency, set to 0.05, standard filtering  
+mac : minor allele count. Another filtering set, based on the number of times the minor allele occurs, rather than frequency. In a large dataset, this can be set to 5, as a lower limit, but if using a smaller dataset, where there are <5 samples per sex, this needs to be adjusted for the data. Here we have 5 males and 7 females, so we set mac to 4, to strictly filter.  
 b : batch count. If the output is larger than b bytes, split into multiple files. Set to 1000000000 (1Gb). If multiple batches are created, each will end with .0, .1 etc.  
 o : output name  
 
@@ -102,7 +102,7 @@ First cut out the 9th column (*cut -f 9*), then remove the header line containin
 cut -f 9 Simmrg_kmers.assoc.tab | grep -v 'P' | sort -g | head -1
 ```
 
-This might take some time, and should results in the value 0.000532.  
+This might take some time, and should results in the value 9.634e-07.  
 Now use this value to filter the list of kmers, using awk.  
 Edit the command for the p-value output from the step above.  
 
@@ -112,7 +112,7 @@ awk '$9 <= P' Simmrg_kmers.assoc.tab > Simmrg_most_significant_assoc.tab
 
 Now, we have a list of kmers that are strongly associated with sex, but no information about where these kmers came from. The next step is to figure this out, using blast.
 
-## 05. Assemble contigs from significant kmers    
+## 04. Assemble contigs from significant kmers    
 
 This step makes small contigs from the associated kmers we just found. This is useful for two reasons:  
 1. We are looking for a region of the genome associated with sex, so if there are many kmers associated with sex coming from the same region, this is more likely to be a sex-determining region. If many kmers align together and assemble into single contigs, this is highly informative of a large area of many associated kmers, therefore a good candidate region.
@@ -133,7 +133,7 @@ o : output name
 ABYSS -k k -c c -e e Simmrg_abyss_input -o output_name
 ```
 
-## 06. Locate the assembled contigs in reference genome    
+## 05. Locate the assembled contigs in reference genome    
 
 Use **[BlastN](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&BLAST_SPEC=GeoBlast&PAGE_TYPE=BlastSearch)**  to locate contigs in the reference genome, for this first generate a blast reference database for the reference genome and then run blast.  
 
@@ -144,7 +144,7 @@ makeblastdb -in ~/Share/day3/kmersGWAS/astcal.fasta -dbtype nucl
 blastn -query Simmrg_abyss_output.txt -db ~/Share/day3/kmersGWAS/astcal.fasta -outfmt 6 -out Simmrg_astcal_kmers_blast.out
 ```
 
-## 07. Visualize genomic locations of the assembled contigs in R
+## 06. Visualize genomic locations of the assembled contigs in R
 
 Download the output file of the BLAST above Simmrg_astcal_kmers_blast.out file to your local machine. Also download the file chrlength_astcal.tsv from this ~/Share/day3/kmersGWAS .  
 On your machine open **[R](https://cran.r-project.org)** or **[RStudio](https://posit.co/products/open-source/rstudio/?sid=1)**   
