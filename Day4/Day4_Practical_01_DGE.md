@@ -5,7 +5,7 @@ For this part of the practical, we will use an example for quantifying gene expr
 ## 00. Prepare work folder for day 4
 
 ```
-ssh -i user.pem user@52.13.143.209
+ssh -i user.pem user@35.87.218.63
 mkdir day4
 cd day4
 conda activate /opt/conda-envs/day4
