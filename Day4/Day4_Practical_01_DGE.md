@@ -528,11 +528,11 @@ library(tidyr)
 expr <- read.table("rpkm_catkin_filtered.txt", header=TRUE, row.names=1)
 sex_biased <- read.table("sex_biased_genes.txt", header=TRUE)
 
-# Filter genes present in expression data
+# Optional: Filter genes present in expression data
 sex_biased$gene_id <- rownames(sex_biased)
 sex_biased <- sex_biased %>% filter(gene_id %in% rownames(expr))
 
-# Separate male and female samples
+# Get male and female samples
 female_samples <- grep("^female", colnames(expr), value=TRUE)
 male_samples <- grep("^male", colnames(expr), value=TRUE)
 
