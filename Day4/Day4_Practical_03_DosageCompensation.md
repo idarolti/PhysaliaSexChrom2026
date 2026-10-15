@@ -252,15 +252,15 @@ library(tidyr)
 library(dplyr)
 
 # Read expression matrix
-expr <- read.table("../expression/Poecilia_picta_rpkm_normalized.txt", stringsAsFactors = FALSE,sep=",",header=T)
-head(expr)
+rpkm_df <- read.table("../expression/Poecilia_picta_rpkm_normalized.txt", stringsAsFactors = FALSE,sep=",",header=T)
+head(rpkm_df)
 
 # Read gene-to-chromosome mapping (no header assumed)
 genes_chr <- read.table("../transcriptome/gene_chromosome.txt", stringsAsFactors = FALSE, col.names = c("gene", "chromosome"))
 head(genes_chr)
 
 # Merge by gene
-merged <- merge(expr, genes_chr, by = "gene", all.x = TRUE)
+merged <- merge(rpkm_df, genes_chr, by = "gene", all.x = TRUE)
 head(merged)
 
 # Apply log2 transformation (+1 pseudocount) to expression columns
