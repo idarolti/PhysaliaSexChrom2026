@@ -142,4 +142,4 @@ plot
 
 ### Task: Run the analysis on the Poecilia picta female dataset and compare results.
 
-### Task: Run the analysis on the male and female datasets from Poecilia reticulata and compare the results.
+### Task: Run the analysis on the male and female datasets from Poecilia reticulata (homomorphic sex chromosomes) and compare the results.
