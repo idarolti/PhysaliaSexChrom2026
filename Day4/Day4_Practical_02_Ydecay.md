@@ -1,6 +1,6 @@
 # Day 4 Practical - 02. Y gene activity decay
 
-In this practical we will explore how to measure Y gene activity decay using estimates of allele-specific expression (ASE). ASE quanitfies the ratio of Y-linked allele expression to X-linked allele expression for genes that still have homologs on both sex chromosomes. A low expression ratio (Y/X) indicates reduced Y gene activity, signaling functional degradation or partial gene silencing on Y. We will use RNA-seq data from Poecilia picta males and females, perform genotyping to identify heterozygous sites, calculate the expression ratio for the two alleles at each site, and compare the distribution of ratios between sites on the autosomes and on the sex chromosomes, in both males and females.
+In this practical we will explore how to measure Y gene activity decay using estimates of allele-specific expression (ASE). ASE quantifies the ratio of Y-linked allele expression to X-linked allele expression for genes that still have homologs on both sex chromosomes. A low expression ratio (Y/X) indicates reduced Y gene activity, signaling functional degradation or partial gene silencing on Y. We will use RNA-seq data from Poecilia picta males and females, perform genotyping to identify heterozygous sites, calculate the expression ratio for the two alleles at each site, and compare the distribution of ratios between sites on the autosomes and on the sex chromosomes, in both males and females.
 
 ## 00. Prepare work folder for day 4
 
