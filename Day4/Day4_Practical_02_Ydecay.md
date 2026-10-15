@@ -5,7 +5,7 @@ In this practical we will explore how to measure Y gene activity decay using est
 ## 00. Prepare work folder for day 4
 
 ```
-ssh -i user.pem user@52.13.143.209
+ssh -i user.pem user@35.87.218.63
 conda activate /opt/conda-envs/day4
 ```
 
