@@ -526,11 +526,11 @@ library(tidyr)
 
 # Load expression data and sex-biased gene list
 expr <- read.table("rpkm_catkin_filtered.txt", header=TRUE, row.names=1)
-sexbias <- read.table("sex_biased_genes.txt", header=TRUE)
+sex_biased <- read.table("sex_biased_genes.txt", header=TRUE)
 
 # Filter genes present in expression data
-sexbias$gene_id <- rownames(sexbias)
-sexbias <- sexbias %>% filter(gene_id %in% rownames(expr))
+sex_biased$gene_id <- rownames(sex_biased)
+sex_biased <- sex_biased %>% filter(gene_id %in% rownames(expr))
 
 # Separate male and female samples
 female_samples <- grep("^female", colnames(expr), value=TRUE)
@@ -545,7 +545,7 @@ expr$log2_male <- log2(expr$mean_male + 1)
 
 # Merge fold change info
 expr$gene_id <- rownames(expr)
-data <- merge(expr, sexbias, by="gene_id")
+data <- merge(expr, sex_biased, by="gene_id")
 
 # Define fold change groups
 data$abs_logFC <- abs(data$logFC)
