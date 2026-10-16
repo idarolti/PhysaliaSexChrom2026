@@ -10,7 +10,7 @@ As on day3 this is a workflow that is executed over SnakeMake.
 Open your terminal application as usual, connect to the server as usual, replace "25" with the number of your user account and use today's IP address
 
 ```
-ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@35.89.239.29
+ssh -i ~/YOURLOCALFOLDER/chrsex5.pem user5@52.37.221.125
 cd day5
 mkdir SCINKD2
 cd SCINKD2
